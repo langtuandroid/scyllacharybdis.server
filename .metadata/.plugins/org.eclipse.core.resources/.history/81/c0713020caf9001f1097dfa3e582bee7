@@ -1,0 +1,7 @@
+package sfs2x.extensions.games.chess;
+
+public class FriendListResult 
+{
+	@Facebook
+	
+}
