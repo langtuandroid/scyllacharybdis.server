@@ -10,7 +10,7 @@ import com.restfb.FacebookException;
 
 public class FBFriends {
 	
-	private String MY_ACCESS_TOKEN = "64b0e38ce75e26902e0fd699d75adee0";
+	private String MY_ACCESS_TOKEN = "";
 	FacebookClient facebookClient = new DefaultFacebookClient(MY_ACCESS_TOKEN);
 
 	public FBFriends()
