@@ -1,0 +1,23 @@
+package com.pikitus.games.chess.handlers;
+
+import com.pikitus.games.chess.ChessBoard;
+import com.pikitus.games.chess.SFSChess;
+import com.smartfoxserver.v2.entities.User;
+import com.smartfoxserver.v2.entities.data.ISFSObject;
+import com.smartfoxserver.v2.extensions.BaseClientRequestHandler;
+
+public class ValidMoveHandler extends BaseClientRequestHandler 
+{
+	@Override
+	public void handleClientRequest(User user, ISFSObject params)
+	{
+		SFSChess gameExt = (SFSChess) getParentExtension();
+		sendBoard( gameExt.getGameBoard() );
+	}
+	
+	public void sendBoard(SFSChess sfsChess) 
+	{
+		send("VALID_MOVES", board.getBoardArray(), getParentRoom().getUserList());		
+	}
+
+}
