@@ -43,13 +43,20 @@ public class ChessBoard
 		mBoard.put("blackKing", (long) ( 0x10 ) >>> 8 );
 		
 		Iterator<String> iterator = mBoard.keySet().iterator();
+		System.out.print("\n\n");
+		System.out.print("************************************");
+		System.out.print("\n\n");
 		while( iterator.hasNext() ) 
 		{
 		  String key   = iterator.next();
 		  Long value = mBoard.get(key);
 		  String bitString = Long.toBinaryString(value);		  
-		  System.out.print("Array: " + key + " value: " + bitString);
+		  System.out.print("Array: " + key + " value: " + bitString );
+		  System.out.print("\n");
 		}
+		System.out.print("\n\n");
+		System.out.print("************************************");
+		System.out.print("\n\n");
 	}
 
 	/**
