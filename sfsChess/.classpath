@@ -7,6 +7,5 @@
 	<classpathentry kind="lib" path="C:/Development/SFS2X-RC1/SFS2X/lib/sfs2x-core.jar"/>
 	<classpathentry kind="lib" path="C:/Development/SFS2X-RC1/SFS2X/lib/slf4j-api-1.5.10.jar"/>
 	<classpathentry kind="lib" path="C:/Development/SFS2X-RC1/SFS2X/lib/slf4j-log4j12.jar"/>
-	<classpathentry kind="lib" path="lib/restfb-1.5.4.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
