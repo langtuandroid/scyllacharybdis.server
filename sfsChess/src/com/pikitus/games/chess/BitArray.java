@@ -1,4 +1,4 @@
-package jamaica;
+package com.pikitus.games.chess;
 
 /**
  * The bit array class that functs as an array of boolean, in which
