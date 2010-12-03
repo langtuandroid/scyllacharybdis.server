@@ -1,0 +1,40 @@
+package sfs2x.extensions.games.chess;
+
+import java.util.Iterator;
+import java.util.List;
+
+import com.smartfoxserver.v2.entities.data.ISFSArray;
+import com.smartfoxserver.v2.entities.data.ISFSObject;
+import com.smartfoxserver.v2.entities.data.SFSArray;
+import com.smartfoxserver.v2.entities.data.SFSObject;
+
+public class FriendsList 
+{
+	private FBFriends fbFriends = new FBFriends();
+
+	public FriendsList()
+	{
+	}
+	
+	public ISFSObject getFriendsList()
+	{
+		ISFSArray friendsArray = new SFSArray();
+
+		List<FriendListResult> users = fbFriends.getFriendsList();
+		Iterator<FriendListResult> itr = users.iterator();
+		while( itr.hasNext() ) 
+		{
+			ISFSObject friend = new SFSObject();
+			friend.put()
+			
+		}
+			
+			friendsArray.addLong((long) 0);
+			FriendListResult element = itr.next();
+			System.out.print( element.toString() );
+		}
+
+		ISFSObject obj = new SFSObject();
+		obj.putSFSArray("predictionsArray", predictionsArray);
+		return obj;
+}
