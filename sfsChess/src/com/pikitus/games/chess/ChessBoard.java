@@ -45,7 +45,7 @@ public class ChessBoard
 									 };
 	
 	// A map of square indices indexed by label
-	private HashMap<String, Int> mSquareIndices = new HashMap<String, Int>();
+	private HashMap<String, Integer> mSquareIndices = new HashMap<String, Integer>();
 	
 	// A hash table of bit boards, each representing a set of pieces
 	private HashMap<String, Long> mPieceBoards  = new HashMap<String, Long>();
@@ -136,7 +136,7 @@ public class ChessBoard
 	
 	public void printBoard()
 	{
-		System.out.println( "-------------------------" );
+		System.out.println( "|--|--|--|--|--|--|--|--|" );
 		
 		for( int i = 7; i >= 0; i-- )
 		{
@@ -145,51 +145,51 @@ public class ChessBoard
 			for( int j = 0; j < 8; j++ )
 			{
 				int index = i * 8 + j;
-				if( mSquareBoards[index] & mPieceBoards.get( WHITE_PAWNS ) != 0 )
+				if( (mSquareBoards[index] & mPieceBoards.get( WHITE_PAWNS )) != 0 )
 				{
 					line += "WP|";
 				}
-				else if ( mSquareBoards[index] & mPieceBoards.get( WHITE_ROOKS ) != 0 )
+				else if ( (mSquareBoards[index] & mPieceBoards.get( WHITE_ROOKS )) != 0 )
 				{
 					line += "WR|";
 				}
-				else if ( mSquareBoards[index] & mPieceBoards.get( WHITE_KNIGHTS ) != 0 )
+				else if ( (mSquareBoards[index] & mPieceBoards.get( WHITE_KNIGHTS )) != 0 )
 				{
 					line += "WN|";
 				}
-				else if ( mSquareBoards[index] & mPieceBoards.get( WHITE_BISHOPS ) != 0 )
+				else if ( (mSquareBoards[index] & mPieceBoards.get( WHITE_BISHOPS )) != 0 )
 				{
 					line += "WB|";
 				}
-				else if ( mSquareBoards[index] & mPieceBoards.get( WHITE_QUEEN ) != 0 )
+				else if ( (mSquareBoards[index] & mPieceBoards.get( WHITE_QUEEN )) != 0 )
 				{
 					line += "WQ|";
 				}
-				else if ( mSquareBoards[index] & mPieceBoards.get( WHITE_KING ) != 0 )
+				else if ( (mSquareBoards[index] & mPieceBoards.get( WHITE_KING )) != 0 )
 				{
 					line += "WK|";
 				}
-				else if ( mSquareBoards[index] & mPieceBoards.get( BLACK_PAWNS ) != 0 )
+				else if ( (mSquareBoards[index] & mPieceBoards.get( BLACK_PAWNS )) != 0 )
 				{
 					line += "BP|";
 				}
-				else if ( mSquareBoards[index] & mPieceBoards.get( BLACK_ROOKS ) != 0 )
+				else if ( (mSquareBoards[index] & mPieceBoards.get( BLACK_ROOKS )) != 0 )
 				{
 					line += "BR|";
 				}
-				else if ( mSquareBoards[index] & mPieceBoards.get( BLACK_KNIGHTS ) != 0 )
+				else if ( (mSquareBoards[index] & mPieceBoards.get( BLACK_KNIGHTS )) != 0 )
 				{
 					line += "BN|";
 				}
-				else if ( mSquareBoards[index] & mPieceBoards.get( BLACK_BISHOPS ) != 0 )
+				else if ( (mSquareBoards[index] & mPieceBoards.get( BLACK_BISHOPS )) != 0 )
 				{
 					line += "BB|";
 				}
-				else if ( mSquareBoards[index] & mPieceBoards.get( BLACK_QUEEN ) != 0 )
+				else if ( (mSquareBoards[index] & mPieceBoards.get( BLACK_QUEEN )) != 0 )
 				{
 					line += "BQ|";
 				}
-				else if ( mSquareBoards[index] & mPieceBoards.get( BLACK_KING ) != 0 )
+				else if ( (mSquareBoards[index] & mPieceBoards.get( BLACK_KING )) != 0 )
 				{
 					line += "BK|";
 				}
@@ -200,10 +200,8 @@ public class ChessBoard
 			}
 			
 			System.out.println(line);
+			System.out.println( "|--|--|--|--|--|--|--|--|" );
 		}
-		
-		System.out.println( "-------------------------" );
-		
 	}
 	
 	/**
