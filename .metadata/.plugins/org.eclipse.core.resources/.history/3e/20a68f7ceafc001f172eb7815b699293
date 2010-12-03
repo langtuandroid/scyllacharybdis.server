@@ -46,11 +46,11 @@ public class ChessBoard {
 		return obj;
 	}
 
-	public ISFSObject getPossibleMoveArray()
+	public ISFSObject getPredictionsArray()
 	{
-		ISFSArray possibleMoveArray = new SFSArray();
+		ISFSArray predictionsArray = new SFSArray();
 		for ( int i = 0; i < 16; i++ ) {
-			possibleMoveArray.addLong((long) 0);
+			predictionsArray.addLong((long) 0);
 		}
 		ISFSObject obj = new SFSObject();
 		obj.putSFSArray("predictionsArray", predictionsArray);
@@ -108,5 +108,24 @@ public class ChessBoard {
 		return false;
 	}
 	
+	public void move( String to, String from ) 
+	{
+		ISFSObject resObj = new SFSObject();
+		resObj.putBool("valid", mGameBoard.move( to, from ) );
+		send("moveResults", resObj, getParentRoom().getUserList() );		
+		
+		sendBoard();
+	}
+	
+	public void sendBoard() 
+	{
+		send("getBoardResults", getBoardArray(), getParentRoom().getUserList());		
+		send("getPredictionsResults", getPredictionsArray(), getParentRoom().getUserList() );		
+	}
 
+	public void sendBoard(User user) 
+	{
+		send("getBoardResults", getBoardArray(), user);		
+		send("getPredictionsResults", getPredictionsArray(), user);		
+	}
 }

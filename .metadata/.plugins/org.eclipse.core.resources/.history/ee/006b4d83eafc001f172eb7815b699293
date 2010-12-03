@@ -50,7 +50,7 @@ public class ChessBoard {
 	{
 		ISFSArray possibleMoveArray = new SFSArray();
 		for ( int i = 0; i < 16; i++ ) {
-			possibleMoveArray.addLong((long) 0);
+			predictionsArray.addLong((long) 0);
 		}
 		ISFSObject obj = new SFSObject();
 		obj.putSFSArray("predictionsArray", predictionsArray);

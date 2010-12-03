@@ -143,6 +143,27 @@ public class SFSChess extends SFSExtension
 		this.sendSFSObject( "gameOver", new SFSObject() );				
 	}
 	
+	public void move( String to, String from ) 
+	{
+		ISFSObject resObj = new SFSObject();
+		resObj.putBool("valid", mGameBoard.move( to, from ) );
+		send("moveResults", resObj, getParentRoom().getUserList() );		
+		
+		sendBoard();
+	}
+	
+	public void sendBoard() 
+	{
+		send("getBoardResults", getBoardArray(), getParentRoom().getUserList());		
+		send("getPredictionsResults", getPredictionsArray(), getParentRoom().getUserList() );		
+	}
+
+	public void sendBoard(User user) 
+	{
+		send("getBoardResults", getBoardArray(), user);		
+		send("getPredictionsResults", getPredictionsArray(), user);		
+	}
+	
 	public void sendSFSObject(String name, ISFSObject object)
 	{
 		send( name, object, getParentRoom().getUserList() );
