@@ -1,6 +1,7 @@
 package com.pikitus.games.chess;
 
 import java.util.HashMap;
+
 import java.util.Iterator;
 import java.util.Map;
 
@@ -51,7 +52,6 @@ public class ChessBoard
 	
 	public ChessBoard() 
 	{
-		initializeBoard();
 	}
 	
 	public void initializeBoard() 
