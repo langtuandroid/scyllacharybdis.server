@@ -8,3 +8,5 @@
 1291164503685	Rename package 'com.pikitus.chess'
 1291164526836	Rename package 'com.pikitus.chess.handlers'
 1291165604046	Copy compilation unit
+1291341783845	Rename type 'PredictionHandler'
+1291344073705	Move compilation unit

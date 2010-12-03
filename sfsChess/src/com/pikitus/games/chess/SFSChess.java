@@ -32,6 +32,15 @@ public class SFSChess extends SFSExtension
 	    // Register the move piece handler
 	    addRequestHandler("movePiece", MoveHandler.class);
 	}
+	
+	/**
+	 * Get the game board
+	 * @return (ChessBoard) 
+	 */
+	public ChessBoard getGameBoard() 
+	{
+		return mGameBoard;
+	}
 
 	/**
 	 * Has the game started yet
@@ -40,24 +49,6 @@ public class SFSChess extends SFSExtension
 	public boolean isStarted()
 	{
 		return mGameStarted;
-	}
-	
-	/**
-	 * Get who's turn it is
-	 * @return (User) The players id.
-	 */
-	public User getWhoseTurn()
-    {
-	    return mWhoseTurn;
-    }
-	
-	/**
-	 * Set who's turn it is
-	 * @param user (User) The user
-	 */
-	void setTurn(User user)
-	{
-		mWhoseTurn = user;
 	}
 	
 	/**
@@ -102,18 +93,36 @@ public class SFSChess extends SFSExtension
 		
 		// Send information to all the clients
 		this.sendSFSObject( "start", resObj );		
+	}	
+	
+	/**
+	 * Get who's turn it is
+	 * @return (User) The players id.
+	 */
+	public User getWhoseTurn()
+    {
+	    return mWhoseTurn;
+    }
+	
+	/**
+	 * Set who's turn it is
+	 * @param user (User) The user
+	 */
+	void setTurn(User user)
+	{
+		mWhoseTurn = user;
 	}
 	
 	/**
-	 * Send all the users the player that won.
-	 * @param winner (User) The player that won.
+	 * Swap turn
 	 */
-	public void sendWinner( User winner ) 
+	public void swapTurn()
 	{
-		ISFSObject resObj = new SFSObject();
-		resObj.putInt("winner", winner.getId() );
-		send("winner", resObj, getParentRoom().getUserList() );		
-		gameOver();
+		if ( mWhoseTurn == mPlayer1) {
+			setTurn(mPlayer2);
+		} else { 
+			setTurn(mPlayer1);
+		}
 	}
 	
 	/**
@@ -140,35 +149,37 @@ public class SFSChess extends SFSExtension
 	 */
 	public void gameOver() 
 	{
-		this.sendSFSObject( "gameOver", new SFSObject() );				
+		this.sendSFSObject( "GAME_OVER", new SFSObject() );				
 	}
 	
-	public void move( String to, String from ) 
+	/**
+	 * Send all the users the player that won.
+	 * @param winner (User) The player that won.
+	 */
+	public void sendWinner( User winner ) 
 	{
 		ISFSObject resObj = new SFSObject();
-		resObj.putBool("valid", mGameBoard.move( to, from ) );
-		send("moveResults", resObj, getParentRoom().getUserList() );		
-		
-		sendBoard();
+		resObj.putInt("winner", winner.getId() );
+		send("winner", resObj, getParentRoom().getUserList() );		
+		gameOver();
 	}
 	
-	public void sendBoard() 
-	{
-		send("getBoardResults", getBoardArray(), getParentRoom().getUserList());		
-		send("getPredictionsResults", getPredictionsArray(), getParentRoom().getUserList() );		
-	}
-
-	public void sendBoard(User user) 
-	{
-		send("getBoardResults", getBoardArray(), user);		
-		send("getPredictionsResults", getPredictionsArray(), user);		
-	}
-	
+	/**
+	 * Send a sfs object to all the clients in the room
+	 * @param name (String) Event name the client receives
+	 * @param object (ISFSObject) The object being sent to the client
+	 */
 	public void sendSFSObject(String name, ISFSObject object)
 	{
 		send( name, object, getParentRoom().getUserList() );
 	}
 
+	/**
+	 * Send a sfsobject to a user in the room
+	 * @param name (String) Event name the client receives
+	 * @param object (ISFSObject) The object being sent to the client
+	 * @param user (User) The user to send the object too
+	 */
 	public void sendSFSObject(String name, ISFSObject object, User user) 
 	{
 		send( name, object, user );
