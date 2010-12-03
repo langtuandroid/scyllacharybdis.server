@@ -32,7 +32,7 @@ public class ChessBoard
 	// An array of bit boards, each representing a single square
 	private long[] mSquareBoards = new long[64];
 	
-	// An array of string labels that runs parallel to mSquares
+	// An array of string labels that runs parallel to mSquareBoards
 	private String[] mSquareLabels = {  "a1", "b1", "c1", "d1", "e1", "f1", "g1", "h1",
 										"a2", "b2", "c2", "d2", "e2", "f2", "g2", "h2",
 										"a3", "b3", "c3", "d3", "e3", "f3", "g3", "h3",
@@ -130,6 +130,80 @@ public class ChessBoard
 										mPieceBoards.get(BLACK_BISHOPS) |
 										mPieceBoards.get(BLACK_QUEEN) |
 										mPieceBoards.get(BLACK_KING) );
+	    
+	    
+	}
+	
+	public void printBoard()
+	{
+		System.out.println( "-------------------------" );
+		
+		for( int i = 7; i >= 0; i-- )
+		{
+			String line = "|";
+			
+			for( int j = 0; j < 8; j++ )
+			{
+				int index = i * 8 + j;
+				if( mSquareBoards[index] & mPieceBoards.get( WHITE_PAWNS ) != 0 )
+				{
+					line += "WP|";
+				}
+				else if ( mSquareBoards[index] & mPieceBoards.get( WHITE_ROOKS ) != 0 )
+				{
+					line += "WR|";
+				}
+				else if ( mSquareBoards[index] & mPieceBoards.get( WHITE_KNIGHTS ) != 0 )
+				{
+					line += "WN|";
+				}
+				else if ( mSquareBoards[index] & mPieceBoards.get( WHITE_BISHOPS ) != 0 )
+				{
+					line += "WB|";
+				}
+				else if ( mSquareBoards[index] & mPieceBoards.get( WHITE_QUEEN ) != 0 )
+				{
+					line += "WQ|";
+				}
+				else if ( mSquareBoards[index] & mPieceBoards.get( WHITE_KING ) != 0 )
+				{
+					line += "WK|";
+				}
+				else if ( mSquareBoards[index] & mPieceBoards.get( BLACK_PAWNS ) != 0 )
+				{
+					line += "BP|";
+				}
+				else if ( mSquareBoards[index] & mPieceBoards.get( BLACK_ROOKS ) != 0 )
+				{
+					line += "BR|";
+				}
+				else if ( mSquareBoards[index] & mPieceBoards.get( BLACK_KNIGHTS ) != 0 )
+				{
+					line += "BN|";
+				}
+				else if ( mSquareBoards[index] & mPieceBoards.get( BLACK_BISHOPS ) != 0 )
+				{
+					line += "BB|";
+				}
+				else if ( mSquareBoards[index] & mPieceBoards.get( BLACK_QUEEN ) != 0 )
+				{
+					line += "BQ|";
+				}
+				else if ( mSquareBoards[index] & mPieceBoards.get( BLACK_KING ) != 0 )
+				{
+					line += "BK|";
+				}
+				else
+				{
+					line += "  |";
+				}
+			}
+			
+			System.out.println(line);
+		}
+		
+		System.out.println( "-------------------------" );
+		
 	}
 	
 	/**
