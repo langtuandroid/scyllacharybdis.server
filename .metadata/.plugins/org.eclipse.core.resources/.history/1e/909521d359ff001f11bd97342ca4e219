@@ -1,0 +1,20 @@
+package com.pikitus.client;
+
+public class WelcomeWidget extends Composite {
+
+}
+public class HelloWidget {
+
+    public HelloWidget() {
+        // obtain a reference to the service
+        service = (DataServiceAsync) GWT.create(DataService.class);
+        ServiceDefTarget endpoint = (ServiceDefTarget) service;
+        endpoint.setServiceEntryPoint(GWT.getModuleBaseURL() + "data");
+
+        initWidget(panel);
+        panel.add(label, DockPanel.CENTER);
+        panel.add(button, DockPanel.SOUTH);
+        
+        // click listener to get data from server
+        button.addClickListener(new ButtonClickListener());
+    }

@@ -201,7 +201,15 @@ public class ChessBoard
 			
 			System.out.println(line);
 			System.out.println( "|--|--|--|--|--|--|--|--|" );
+		  String key   = iterator.next();
+		  Long value = mBoard.get(key);
+		  String bitString = Long.toBinaryString(value);		  
+		  System.out.print("Array: " + key + " value: " + bitString );
+		  System.out.print("\n");
 		}
+		System.out.print("\n\n");
+		System.out.print("************************************");
+		System.out.print("\n\n");
 	}
 	
 	/**

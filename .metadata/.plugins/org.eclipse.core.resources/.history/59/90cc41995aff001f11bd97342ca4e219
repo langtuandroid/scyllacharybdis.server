@@ -1,0 +1,16 @@
+package com.pikitus.client;
+
+import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.DockPanel;
+
+public class WelcomeWidget extends Composite 
+{
+	private final DockPanel panel = new DockPanel();
+	
+    public WelcomeWidget() {
+
+        initWidget(panel);
+        panel.add("test", DockPanel.CENTER);
+        panel.add("button", DockPanel.SOUTH);
+    }
+}
