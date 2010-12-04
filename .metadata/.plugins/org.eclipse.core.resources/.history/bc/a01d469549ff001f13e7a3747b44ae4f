@@ -1,0 +1,25 @@
+package com.pikitus.client;
+
+import pl.rmalinowski.gwt2swf.client.ui.SWFWidget;
+
+import com.google.gwt.core.client.EntryPoint;
+import com.google.gwt.core.client.GWT;
+import com.google.gwt.user.client.ui.RootPanel;
+
+/**
+ * Entry point classes define <code>onModuleLoad()</code>.
+ */
+public class Pikitus implements EntryPoint
+{
+
+	/**
+	 * This is the entry point method.
+	 */
+	public void onModuleLoad() {
+		
+		SWFWidget swfWidget = new SWFWidget("chess.swf", 800, 600);
+
+		RootPanel.get().add(swfWidget);
+		  
+	}
+}
