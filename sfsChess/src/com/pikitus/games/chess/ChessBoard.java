@@ -1,7 +1,10 @@
 package com.pikitus.games.chess;
 
+import MoveModel;
+
 import java.util.HashMap;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Map;
 
@@ -46,9 +49,16 @@ public class ChessBoard
 	
 	// A hash map of bit boards indexed by label, each representing a single square
 	private HashMap<String, Long> mSquareMap = new HashMap<String, Long>();
+	
+	// A has map of square labels indexed by square
+	private HashMap<Long, String> mLabelMap = new HashMap<Long, String>();
 		
 	// A hash table of bit boards, each representing a set of pieces
 	private HashMap<String, Long> mPieceBoards  = new HashMap<String, Long>();
+	
+	private long[] mRows = new long[8];
+	
+	private long[] mColumns = new long[8];
 	
 	// Current player, 0 is white, 1 is black
 	private int currentPlayer = 0;
@@ -63,12 +73,22 @@ public class ChessBoard
 	
 	public void initializeBoard() 
 	{
+		for( int i = 0; i < mRows.length; i++ )
+		{
+			mRows[i] = 0L;
+			mColumns[i] = 0L;
+		}
+		
 		// Setup mSquareArray
 	    for( int i = 0; i < mSquareArray.length; i++ )
 	    {
 	      // Push in a 1 bit on the right hand side and shift it left i times
 	      mSquareArray[ i ] = ( 1L << i );
 	      mSquareMap.put( mSquareLabels[i], mSquareArray[i] );
+	      mLabelMap.put( mSquareArray[i], mSquareLabels[i] );
+	      
+	      mRows[ i / 8 ] = mRows[ i / 8 ] | mSquareArray[i];
+	      mColumns[ i % 8 ] = mColumns[ i % 8 ] | mSquareArray[i];
 	    }
 	    
 	    // All squares are represented by -1 (Java uses signed 64-bit integers)
@@ -96,14 +116,7 @@ public class ChessBoard
 							    		mSquareMap.get("f2") |
 							    		mSquareMap.get("g2") |
 							    		mSquareMap.get("h2") );
-	    
-	    mPieceBoards.put(WHITE_PIECES,  mPieceBoards.get(WHITE_PAWNS) |
-	    								mPieceBoards.get(WHITE_ROOKS) |
-	    								mPieceBoards.get(WHITE_KNIGHTS) |
-	    								mPieceBoards.get(WHITE_BISHOPS) |
-	    								mPieceBoards.get(WHITE_QUEEN) |
-	    								mPieceBoards.get(WHITE_KING) );
-	    
+	      
 	    mPieceBoards.put(BLACK_ROOKS, 	mSquareMap.get("a8") |
 	    								mSquareMap.get("h8"));
 
@@ -126,13 +139,7 @@ public class ChessBoard
 							    		mSquareMap.get("g7") |
 							    		mSquareMap.get("h7") );
 							    
-	    mPieceBoards.put(BLACK_PIECES,  mPieceBoards.get(BLACK_PAWNS) |
-										mPieceBoards.get(BLACK_ROOKS) |
-										mPieceBoards.get(BLACK_KNIGHTS) |
-										mPieceBoards.get(BLACK_BISHOPS) |
-										mPieceBoards.get(BLACK_QUEEN) |
-										mPieceBoards.get(BLACK_KING) );
-	    
+	   updateSummaryBoards();
 	    
 	}
 	
@@ -347,7 +354,6 @@ public class ChessBoard
 					mPieceBoards.get(WHITE_QUEEN) |
 					mPieceBoards.get(WHITE_KING) );
 	}
-
 	
 	/**
 	 * Are we in check
@@ -400,5 +406,77 @@ public class ChessBoard
 		obj.putSFSArray("predictionsArray", validMoveArray);
 		return obj;
 	}
-	
+
+	private class MoveGenerator
+	{
+		public MoveGenerator()
+		{
+			
+		}
+		
+		public HashMap<String, ArrayList<MoveModel>> getLegalMoves( int player )
+		{
+			return (player == WHITE) ? getWhiteLegalMoves() : getBlackLegalMoves();	
+		}
+		
+		private HashMap<String, ArrayList<MoveModel>> getWhiteLegalMoves()
+		{
+			HashMap<String, ArrayList<MoveModel>> legalMoves = new HashMap<String, ArrayList<MoveModel>>();
+			
+			legalMoves.put(WHITE_PAWNS, getWhitePawnAttacks( ) );
+			//legalMoves.put(WHITE_ROOKS, getWhiteRookAttacks( ) );
+			//legalMoves.put(WHITE_KNIGHTS, getWhiteKnightAttacks( ) );
+			//legalMoves.put(WHITE_BISHOPS, getWhiteBishopAttacks( ) );
+			//legalMoves.put(WHITE_QUEEN, getWhiteQueenAttacks( ) );
+			//legalMoves.put(WHITE_KING, getWhiteKingAttacks( ) );
+			
+			return legalMoves;
+		}
+		
+		private HashMap<String, ArrayList<MoveModel>> getBlackLegalMoves()
+		{
+			HashMap<String, ArrayList<MoveModel>> legalMoves = new HashMap<String, ArrayList<MoveModel>>();
+			
+			return legalMoves;
+		}
+		
+		private ArrayList<MoveModel> getWhitePawnAttacks()
+		{
+			ArrayList<MoveModel> moves = new ArrayList<MoveModel>();
+			
+			for ( long square:mSquareArray )
+			{
+				if( (square & mPieceBoards.get(WHITE_PAWNS)) != 0 )
+				{
+					long moveNorth = square >> 8;
+					if ( (moveNorth & mPieceBoards.get(WHITE_PIECES)) == 0 )
+					{
+						moves.add( new MoveModel( mLabelMap.get(moveNorth), mLabelMap.get(square) ) );
+					}
+					
+					long moveNorthWest = square >> 9;
+				    if ( (moveNorthWest & mPieceBoards.get(BLACK_PIECES)) != 0 )
+					{
+						moves.add( new MoveModel( mLabelMap.get(moveNorthWest), mLabelMap.get(square) ) );
+					}
+				    
+				    long moveNorthEast = square >> 7;
+				    if ( (moveNorthEast & mPieceBoards.get(BLACK_PIECES)) != 0 )
+					{
+						moves.add( new MoveModel( mLabelMap.get(moveNorthEast), mLabelMap.get(square) ) );
+					}
+					
+				    if ( (square & mRows[1]) != 0 )
+				    {
+				    	moves.add( new MoveModel( mLabelMap.get( (moveNorth >> 8) ), mLabelMap.get(square) ) );
+				    }
+				}
+			}
+			
+			return moves;
+		}
+	}
 }
+
+
+
