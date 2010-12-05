@@ -31,9 +31,9 @@ public class ChessBoard
 	private final String ALL_SQUARES = "all_squares";
 	
 	// An array of bit boards, each representing a single square
-	private long[] mSquareBoards = new long[64];
+	private long[] mSquareArray = new long[64];
 	
-	// An array of string labels that runs parallel to mSquareBoards
+	// An array of string labels that runs parallel to mSquareArray
 	private String[] mSquareLabels = {  "a1", "b1", "c1", "d1", "e1", "f1", "g1", "h1",
 										"a2", "b2", "c2", "d2", "e2", "f2", "g2", "h2",
 										"a3", "b3", "c3", "d3", "e3", "f3", "g3", "h3",
@@ -44,11 +44,18 @@ public class ChessBoard
 										"a8", "b8", "c8", "d8", "e8", "f8", "g8", "h8"
 									 };
 	
-	// A map of square indices indexed by label
-	private HashMap<String, Integer> mSquareIndices = new HashMap<String, Integer>();
-	
+	// A hash map of bit boards indexed by label, each representing a single square
+	private HashMap<String, Long> mSquareMap = new HashMap<String, Long>();
+		
 	// A hash table of bit boards, each representing a set of pieces
 	private HashMap<String, Long> mPieceBoards  = new HashMap<String, Long>();
+	
+	// Current player, 0 is white, 1 is black
+	private int currentPlayer = 0;
+	
+	// Constants for current player
+	private final int WHITE = 0;
+	private final int BLACK = 1;
 	
 	public ChessBoard() 
 	{
@@ -56,44 +63,39 @@ public class ChessBoard
 	
 	public void initializeBoard() 
 	{
-		// Setup mSquareBoards
-	    for( int i = 0; i < mSquareBoards.length; i++ )
+		// Setup mSquareArray
+	    for( int i = 0; i < mSquareArray.length; i++ )
 	    {
 	      // Push in a 1 bit on the right hand side and shift it left i times
-	      mSquareBoards[ i ] = ( 1L << i );
-	    }
-	    
-	    // Setup mSquareLabels
-	    for( int i = 0; i < mSquareLabels.length; i++ )
-	    {
-	    	mSquareIndices.put(mSquareLabels[i], i);
+	      mSquareArray[ i ] = ( 1L << i );
+	      mSquareMap.put( mSquareLabels[i], mSquareArray[i] );
 	    }
 	    
 	    // All squares are represented by -1 (Java uses signed 64-bit integers)
 	    mPieceBoards.put(ALL_SQUARES, -1L);
 	    
 	    // Setup the boards for the pieces of each color 
-	    mPieceBoards.put(WHITE_ROOKS, 	mSquareBoards[ mSquareIndices.get("a1") ] |
-	                            		mSquareBoards[ mSquareIndices.get("h1") ]);
+	    mPieceBoards.put(WHITE_ROOKS, 	mSquareMap.get("a1") |
+	                            		mSquareMap.get("h1") );
 	    
-	    mPieceBoards.put(WHITE_KNIGHTS, mSquareBoards[ mSquareIndices.get("b1") ] |
-	    								mSquareBoards[ mSquareIndices.get("g1") ]);
+	    mPieceBoards.put(WHITE_KNIGHTS, mSquareMap.get("b1") |
+	    								mSquareMap.get("g1") );
 	    
-	    mPieceBoards.put(WHITE_BISHOPS, mSquareBoards[ mSquareIndices.get("c1") ] |
-                				  		mSquareBoards[ mSquareIndices.get("f1") ]);
+	    mPieceBoards.put(WHITE_BISHOPS, mSquareMap.get("c1") |
+                				  		mSquareMap.get("f1") );
 	    
-	    mPieceBoards.put(WHITE_QUEEN, 	mSquareBoards[ mSquareIndices.get("d1") ]);
+	    mPieceBoards.put(WHITE_QUEEN, 	mSquareMap.get("d1"));
         
-	    mPieceBoards.put(WHITE_KING,	mSquareBoards[ mSquareIndices.get("e1") ]);
+	    mPieceBoards.put(WHITE_KING,	mSquareMap.get("e1"));
 	    
-	    mPieceBoards.put(WHITE_PAWNS, 	mSquareBoards[ mSquareIndices.get("a2") ] | 
-							    		mSquareBoards[ mSquareIndices.get("b2") ] |
-							    		mSquareBoards[ mSquareIndices.get("c2") ] |
-							    		mSquareBoards[ mSquareIndices.get("d2") ] |
-							    		mSquareBoards[ mSquareIndices.get("e2") ] |
-							    		mSquareBoards[ mSquareIndices.get("f2") ] |
-							    		mSquareBoards[ mSquareIndices.get("g2") ] |
-							    		mSquareBoards[ mSquareIndices.get("h2") ] );
+	    mPieceBoards.put(WHITE_PAWNS, 	mSquareMap.get("a2") | 
+							    		mSquareMap.get("b2") |
+							    		mSquareMap.get("c2") |
+							    		mSquareMap.get("d2") |
+							    		mSquareMap.get("e2") |
+							    		mSquareMap.get("f2") |
+							    		mSquareMap.get("g2") |
+							    		mSquareMap.get("h2") );
 	    
 	    mPieceBoards.put(WHITE_PIECES,  mPieceBoards.get(WHITE_PAWNS) |
 	    								mPieceBoards.get(WHITE_ROOKS) |
@@ -102,27 +104,27 @@ public class ChessBoard
 	    								mPieceBoards.get(WHITE_QUEEN) |
 	    								mPieceBoards.get(WHITE_KING) );
 	    
-	    mPieceBoards.put(BLACK_ROOKS, 	mSquareBoards[ mSquareIndices.get("a8") ] |
-	    								mSquareBoards[ mSquareIndices.get("h8") ]);
+	    mPieceBoards.put(BLACK_ROOKS, 	mSquareMap.get("a8") |
+	    								mSquareMap.get("h8"));
 
-	    mPieceBoards.put(BLACK_KNIGHTS, mSquareBoards[ mSquareIndices.get("b8") ] |
-										mSquareBoards[ mSquareIndices.get("g8") ]);
+	    mPieceBoards.put(BLACK_KNIGHTS, mSquareMap.get("b8") |
+										mSquareMap.get("g8"));
 
-	    mPieceBoards.put(BLACK_BISHOPS, mSquareBoards[ mSquareIndices.get("c8") ] |
-		  								mSquareBoards[ mSquareIndices.get("f8") ]);
+	    mPieceBoards.put(BLACK_BISHOPS, mSquareMap.get("c8") |
+		  								mSquareMap.get("f8"));
 
-	    mPieceBoards.put(BLACK_QUEEN, 	mSquareBoards[ mSquareIndices.get("d8") ]);
+	    mPieceBoards.put(BLACK_QUEEN, 	mSquareMap.get("d8"));
 
-	    mPieceBoards.put(BLACK_KING,	mSquareBoards[ mSquareIndices.get("e8") ]);
+	    mPieceBoards.put(BLACK_KING,	mSquareMap.get("e8"));
 
-	    mPieceBoards.put(BLACK_PAWNS, 	mSquareBoards[ mSquareIndices.get("a7") ] | 
-							    		mSquareBoards[ mSquareIndices.get("b7") ] |
-							    		mSquareBoards[ mSquareIndices.get("c7") ] |
-							    		mSquareBoards[ mSquareIndices.get("d7") ] |
-							    		mSquareBoards[ mSquareIndices.get("e7") ] |
-							    		mSquareBoards[ mSquareIndices.get("f7") ] |
-							    		mSquareBoards[ mSquareIndices.get("g7") ] |
-							    		mSquareBoards[ mSquareIndices.get("h7") ] );
+	    mPieceBoards.put(BLACK_PAWNS, 	mSquareMap.get("a7") | 
+							    		mSquareMap.get("b7") |
+							    		mSquareMap.get("c7") |
+							    		mSquareMap.get("d7") |
+							    		mSquareMap.get("e7") |
+							    		mSquareMap.get("f7") |
+							    		mSquareMap.get("g7") |
+							    		mSquareMap.get("h7") );
 							    
 	    mPieceBoards.put(BLACK_PIECES,  mPieceBoards.get(BLACK_PAWNS) |
 										mPieceBoards.get(BLACK_ROOKS) |
@@ -145,51 +147,51 @@ public class ChessBoard
 			for( int j = 0; j < 8; j++ )
 			{
 				int index = i * 8 + j;
-				if( (mSquareBoards[index] & mPieceBoards.get( WHITE_PAWNS )) != 0 )
+				if( (mSquareArray[index] & mPieceBoards.get( WHITE_PAWNS )) != 0 )
 				{
 					line += "WP|";
 				}
-				else if ( (mSquareBoards[index] & mPieceBoards.get( WHITE_ROOKS )) != 0 )
+				else if ( (mSquareArray[index] & mPieceBoards.get( WHITE_ROOKS )) != 0 )
 				{
 					line += "WR|";
 				}
-				else if ( (mSquareBoards[index] & mPieceBoards.get( WHITE_KNIGHTS )) != 0 )
+				else if ( (mSquareArray[index] & mPieceBoards.get( WHITE_KNIGHTS )) != 0 )
 				{
 					line += "WN|";
 				}
-				else if ( (mSquareBoards[index] & mPieceBoards.get( WHITE_BISHOPS )) != 0 )
+				else if ( (mSquareArray[index] & mPieceBoards.get( WHITE_BISHOPS )) != 0 )
 				{
 					line += "WB|";
 				}
-				else if ( (mSquareBoards[index] & mPieceBoards.get( WHITE_QUEEN )) != 0 )
+				else if ( (mSquareArray[index] & mPieceBoards.get( WHITE_QUEEN )) != 0 )
 				{
 					line += "WQ|";
 				}
-				else if ( (mSquareBoards[index] & mPieceBoards.get( WHITE_KING )) != 0 )
+				else if ( (mSquareArray[index] & mPieceBoards.get( WHITE_KING )) != 0 )
 				{
 					line += "WK|";
 				}
-				else if ( (mSquareBoards[index] & mPieceBoards.get( BLACK_PAWNS )) != 0 )
+				else if ( (mSquareArray[index] & mPieceBoards.get( BLACK_PAWNS )) != 0 )
 				{
 					line += "BP|";
 				}
-				else if ( (mSquareBoards[index] & mPieceBoards.get( BLACK_ROOKS )) != 0 )
+				else if ( (mSquareArray[index] & mPieceBoards.get( BLACK_ROOKS )) != 0 )
 				{
 					line += "BR|";
 				}
-				else if ( (mSquareBoards[index] & mPieceBoards.get( BLACK_KNIGHTS )) != 0 )
+				else if ( (mSquareArray[index] & mPieceBoards.get( BLACK_KNIGHTS )) != 0 )
 				{
 					line += "BN|";
 				}
-				else if ( (mSquareBoards[index] & mPieceBoards.get( BLACK_BISHOPS )) != 0 )
+				else if ( (mSquareArray[index] & mPieceBoards.get( BLACK_BISHOPS )) != 0 )
 				{
 					line += "BB|";
 				}
-				else if ( (mSquareBoards[index] & mPieceBoards.get( BLACK_QUEEN )) != 0 )
+				else if ( (mSquareArray[index] & mPieceBoards.get( BLACK_QUEEN )) != 0 )
 				{
 					line += "BQ|";
 				}
-				else if ( (mSquareBoards[index] & mPieceBoards.get( BLACK_KING )) != 0 )
+				else if ( (mSquareArray[index] & mPieceBoards.get( BLACK_KING )) != 0 )
 				{
 					line += "BK|";
 				}
@@ -201,34 +203,152 @@ public class ChessBoard
 			
 			System.out.println(line);
 			System.out.println( "|--|--|--|--|--|--|--|--|" );
-		  String key   = iterator.next();
-		  Long value = mBoard.get(key);
-		  String bitString = Long.toBinaryString(value);		  
-		  System.out.print("Array: " + key + " value: " + bitString );
-		  System.out.print("\n");
 		}
-		System.out.print("\n\n");
-		System.out.print("************************************");
-		System.out.print("\n\n");
 	}
 	
 	/**
 	 * Move a piece
-	 * @param to (String) Alpha Numeric ( A1 )
-	 * @param from (String) Alpha Numeric ( A1 )
+	 * @param (MoveModel) Model representing the move
 	 * @return (boolean) Returns true if its a valid move.
 	 */
-	public boolean movePiece(String to, String from) 
+	public boolean movePiece( MoveModel move ) 
 	{
-		int toRow = (int) convertToNumber( to.substring(0, 1) );
-		int toCol = (int) convertToNumber( to.substring(1, 2) );
-
-		int fromRow = (int) convertToNumber( from.substring(0, 1) );
-		int fromCol = (int) convertToNumber( from.substring(1, 2) );
+		long to = mSquareMap.get(move.to);
+		long from = mSquareMap.get(move.from);
+		
+		// Get the label of the piece to move
+		String pieceToMove = getPieceLabel( from, currentPlayer );
+		
+		if ( pieceToMove != null )
+		{
+			// Zero out the piece's current position
+			mPieceBoards.put( pieceToMove, (~from) & mPieceBoards.get(pieceToMove) );
+			
+			// Set the piece's new position to 1
+			mPieceBoards.put( pieceToMove, to | mPieceBoards.get(pieceToMove) );
+		}
+		else
+		{
+			return false;
+		}
+		
+		// Get the piece to take ( if any )
+		String pieceBeingTaken = getPieceLabel( to, (currentPlayer + 1) % 2 );
+		
+		// If there's a piece to take
+		if ( pieceBeingTaken != null )
+		{
+			// Zero out the piece's current position
+			mPieceBoards.put( pieceBeingTaken, (~to) & mPieceBoards.get(pieceBeingTaken) );
+		}
+			
+		// Update the current player
+		currentPlayer = ( currentPlayer + 1 ) % 2;
+		
+		// Update the white and black piece boards
+		updateSummaryBoards();
 		
 		return true;
 	}
+	
+	private String getPieceLabel( long to, int player )
+	{
+		if ( player == WHITE )
+		{
+			return getWhitePieceLabel( to );
+		}
+		else if ( player == BLACK )
+		{
+			return getBlackPieceLabel( to );
+		}
+		else
+		{
+			return null;
+		}
+	}
 
+	private String getWhitePieceLabel( long square )
+	{
+		if ( (square & mPieceBoards.get(WHITE_PAWNS)) != 0 )
+		{
+			return WHITE_PAWNS;
+		}
+		else if( (square & mPieceBoards.get(WHITE_ROOKS)) != 0 )
+		{
+			return WHITE_ROOKS;
+		}
+		else if( (square & mPieceBoards.get(WHITE_KNIGHTS)) != 0 )
+		{
+			return WHITE_KNIGHTS;
+		}
+		else if( (square & mPieceBoards.get(WHITE_BISHOPS)) != 0 )
+		{
+			return WHITE_BISHOPS;
+		}
+		else if( (square & mPieceBoards.get(WHITE_QUEEN)) != 0 )
+		{
+			return WHITE_QUEEN;
+		}
+		else if( (square & mPieceBoards.get(WHITE_KING)) != 0 )
+		{
+			return WHITE_KING;
+		}
+		else
+		{
+			return null;
+		}
+	}
+	
+	private String getBlackPieceLabel( long square )
+	{
+		if ( (square & mPieceBoards.get(BLACK_PAWNS)) != 0 )
+		{
+			return BLACK_PAWNS;
+		}
+		else if( (square & mPieceBoards.get(BLACK_ROOKS)) != 0 )
+		{
+			return BLACK_ROOKS;
+		}
+		else if( (square & mPieceBoards.get(BLACK_KNIGHTS)) != 0 )
+		{
+			return BLACK_KNIGHTS;
+		}
+		else if( (square & mPieceBoards.get(BLACK_BISHOPS)) != 0 )
+		{
+			return BLACK_BISHOPS;
+		}
+		else if( (square & mPieceBoards.get(BLACK_QUEEN)) != 0 )
+		{
+			return BLACK_QUEEN;
+		}
+		else if( (square & mPieceBoards.get(BLACK_KING)) != 0 )
+		{
+			return BLACK_KING;
+		}
+		else
+		{
+			return null;
+		}
+	}
+	
+	private void updateSummaryBoards()
+	{
+		 mPieceBoards.put(BLACK_PIECES,  mPieceBoards.get(BLACK_PAWNS) |
+					mPieceBoards.get(BLACK_ROOKS) |
+					mPieceBoards.get(BLACK_KNIGHTS) |
+					mPieceBoards.get(BLACK_BISHOPS) |
+					mPieceBoards.get(BLACK_QUEEN) |
+					mPieceBoards.get(BLACK_KING) );
+
+		 mPieceBoards.put(WHITE_PIECES,  mPieceBoards.get(WHITE_PAWNS) |
+					mPieceBoards.get(WHITE_ROOKS) |
+					mPieceBoards.get(WHITE_KNIGHTS) |
+					mPieceBoards.get(WHITE_BISHOPS) |
+					mPieceBoards.get(WHITE_QUEEN) |
+					mPieceBoards.get(WHITE_KING) );
+	}
+
+	
 	/**
 	 * Are we in check
 	 * @return
@@ -281,31 +401,4 @@ public class ChessBoard
 		return obj;
 	}
 	
-	/**
-	 * Hacky convert statement
-	 * @param substring
-	 * @return
-	 */
-	private int convertToNumber(String substring) 
-	{
-		substring = substring.toLowerCase();
-		if ( substring == "a" ) { return 1; }
-		if ( substring ==  "b" ) { return 2; }
-		if ( substring ==  "c" ) { return 3; }
-		if ( substring ==  "d" ) { return 4; }
-		if ( substring ==  "e" ) { return 5; }
-		if ( substring ==  "f" ) { return 6; }
-		if ( substring ==  "g" ) { return 7; }
-		if ( substring ==  "h" ) { return 8; }
-
-		if ( substring ==  "1" ) { return 1; }
-		if ( substring ==  "2" ) { return 2; }
-		if ( substring ==  "3" ) { return 3; }
-		if ( substring ==  "4" ) { return 4; }
-		if ( substring ==  "5" ) { return 5; }
-		if ( substring ==  "6" ) { return 6; }
-		if ( substring ==  "7" ) { return 7; }
-		if ( substring ==  "8" ) { return 8; }
-		return 0;
-	}
 }
