@@ -1,9 +1,8 @@
 package com.pikitus.games.chess;
 
-import MoveModel;
+
 
 import java.util.HashMap;
-
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Map;
@@ -34,7 +33,7 @@ public class ChessBoard
 	private final String ALL_SQUARES = "all_squares";
 	
 	// An array of bit boards, each representing a single square
-	private long[] mSquareArray = new long[64];
+	private ArrayList<Long> mSquareArray = new ArrayList<Long>();
 	
 	// An array of string labels that runs parallel to mSquareArray
 	private String[] mSquareLabels = {  "a1", "b1", "c1", "d1", "e1", "f1", "g1", "h1",
@@ -80,15 +79,15 @@ public class ChessBoard
 		}
 		
 		// Setup mSquareArray
-	    for( int i = 0; i < mSquareArray.length; i++ )
+	    for( int i = 0; i < 64; i++ )
 	    {
 	      // Push in a 1 bit on the right hand side and shift it left i times
-	      mSquareArray[ i ] = ( 1L << i );
-	      mSquareMap.put( mSquareLabels[i], mSquareArray[i] );
-	      mLabelMap.put( mSquareArray[i], mSquareLabels[i] );
+	      mSquareArray.add(( 1L << i ));
+	      mSquareMap.put( mSquareLabels[i], mSquareArray.get(i) );
+	      mLabelMap.put( mSquareArray.get(i), mSquareLabels[i] );
 	      
-	      mRows[ i / 8 ] = mRows[ i / 8 ] | mSquareArray[i];
-	      mColumns[ i % 8 ] = mColumns[ i % 8 ] | mSquareArray[i];
+	      mRows[ i / 8 ] = mRows[ i / 8 ] | mSquareArray.get(i);
+	      mColumns[ i % 8 ] = mColumns[ i % 8 ] | mSquareArray.get(i);
 	    }
 	    
 	    // All squares are represented by -1 (Java uses signed 64-bit integers)
@@ -154,51 +153,51 @@ public class ChessBoard
 			for( int j = 0; j < 8; j++ )
 			{
 				int index = i * 8 + j;
-				if( (mSquareArray[index] & mPieceBoards.get( WHITE_PAWNS )) != 0 )
+				if( (mSquareArray.get(index) & mPieceBoards.get( WHITE_PAWNS )) != 0 )
 				{
 					line += "WP|";
 				}
-				else if ( (mSquareArray[index] & mPieceBoards.get( WHITE_ROOKS )) != 0 )
+				else if ( (mSquareArray.get(index) & mPieceBoards.get( WHITE_ROOKS )) != 0 )
 				{
 					line += "WR|";
 				}
-				else if ( (mSquareArray[index] & mPieceBoards.get( WHITE_KNIGHTS )) != 0 )
+				else if ( (mSquareArray.get(index) & mPieceBoards.get( WHITE_KNIGHTS )) != 0 )
 				{
 					line += "WN|";
 				}
-				else if ( (mSquareArray[index] & mPieceBoards.get( WHITE_BISHOPS )) != 0 )
+				else if ( (mSquareArray.get(index) & mPieceBoards.get( WHITE_BISHOPS )) != 0 )
 				{
 					line += "WB|";
 				}
-				else if ( (mSquareArray[index] & mPieceBoards.get( WHITE_QUEEN )) != 0 )
+				else if ( (mSquareArray.get(index) & mPieceBoards.get( WHITE_QUEEN )) != 0 )
 				{
 					line += "WQ|";
 				}
-				else if ( (mSquareArray[index] & mPieceBoards.get( WHITE_KING )) != 0 )
+				else if ( (mSquareArray.get(index) & mPieceBoards.get( WHITE_KING )) != 0 )
 				{
 					line += "WK|";
 				}
-				else if ( (mSquareArray[index] & mPieceBoards.get( BLACK_PAWNS )) != 0 )
+				else if ( (mSquareArray.get(index) & mPieceBoards.get( BLACK_PAWNS )) != 0 )
 				{
 					line += "BP|";
 				}
-				else if ( (mSquareArray[index] & mPieceBoards.get( BLACK_ROOKS )) != 0 )
+				else if ( (mSquareArray.get(index) & mPieceBoards.get( BLACK_ROOKS )) != 0 )
 				{
 					line += "BR|";
 				}
-				else if ( (mSquareArray[index] & mPieceBoards.get( BLACK_KNIGHTS )) != 0 )
+				else if ( (mSquareArray.get(index) & mPieceBoards.get( BLACK_KNIGHTS )) != 0 )
 				{
 					line += "BN|";
 				}
-				else if ( (mSquareArray[index] & mPieceBoards.get( BLACK_BISHOPS )) != 0 )
+				else if ( (mSquareArray.get(index) & mPieceBoards.get( BLACK_BISHOPS )) != 0 )
 				{
 					line += "BB|";
 				}
-				else if ( (mSquareArray[index] & mPieceBoards.get( BLACK_QUEEN )) != 0 )
+				else if ( (mSquareArray.get(index) & mPieceBoards.get( BLACK_QUEEN )) != 0 )
 				{
 					line += "BQ|";
 				}
-				else if ( (mSquareArray[index] & mPieceBoards.get( BLACK_KING )) != 0 )
+				else if ( (mSquareArray.get(index) & mPieceBoards.get( BLACK_KING )) != 0 )
 				{
 					line += "BK|";
 				}
@@ -211,6 +210,39 @@ public class ChessBoard
 			System.out.println(line);
 			System.out.println( "|--|--|--|--|--|--|--|--|" );
 		}
+	}
+	
+	public void printMoves( ArrayList<MoveModel> moves )
+	{
+		System.out.println( "|--|--|--|--|--|--|--|--|" );
+		
+		for( int i = 7; i >= 0; i-- )
+		{
+			String line = "|";
+			
+			for( int j = 0; j < 8; j++ )
+			{
+				boolean isMove = false;
+				
+				for ( MoveModel move:moves )
+				{
+					if ( mSquareLabels[ i*8 + j ] == move.to )
+					{
+						line += "**|";
+						isMove = true;
+						break;
+					}
+				}
+				
+				if ( isMove == false )
+				{
+					line += "  |";
+				}
+			}
+			
+			System.out.println(line);
+			System.out.println( "|--|--|--|--|--|--|--|--|" );
+		}	
 	}
 	
 	/**
@@ -354,7 +386,7 @@ public class ChessBoard
 					mPieceBoards.get(WHITE_QUEEN) |
 					mPieceBoards.get(WHITE_KING) );
 	}
-	
+
 	/**
 	 * Are we in check
 	 * @return
@@ -373,10 +405,16 @@ public class ChessBoard
 		return false;
 	}	
 	
+	public HashMap<String, ArrayList<MoveModel>> getLegalMoves()
+	{
+		return new MoveGenerator().getLegalMoves(currentPlayer);
+	}
+	
 	/**
 	 * Get the board array
 	 * @return (ISFSObject) I should name each one
 	 */
+	/*
 	public ISFSObject getBoardArray() 
 	{
 		ISFSArray boardArray = new SFSArray();
@@ -391,11 +429,13 @@ public class ChessBoard
 		obj.putSFSArray("boardArray", boardArray);
 		return obj;
 	}
-
+	*/
+	
 	/**
 	 * Get valid move array
 	 * @return
 	 */
+	/*
 	public ISFSObject getValidMoveArray()
 	{
 		ISFSArray validMoveArray = new SFSArray();
@@ -406,7 +446,8 @@ public class ChessBoard
 		obj.putSFSArray("predictionsArray", validMoveArray);
 		return obj;
 	}
-
+	*/
+	
 	private class MoveGenerator
 	{
 		public MoveGenerator()
@@ -424,9 +465,9 @@ public class ChessBoard
 			HashMap<String, ArrayList<MoveModel>> legalMoves = new HashMap<String, ArrayList<MoveModel>>();
 			
 			legalMoves.put(WHITE_PAWNS, getWhitePawnAttacks( ) );
-			//legalMoves.put(WHITE_ROOKS, getWhiteRookAttacks( ) );
+			legalMoves.put(WHITE_ROOKS, getWhiteRookAttacks( ) );
 			//legalMoves.put(WHITE_KNIGHTS, getWhiteKnightAttacks( ) );
-			//legalMoves.put(WHITE_BISHOPS, getWhiteBishopAttacks( ) );
+			legalMoves.put(WHITE_BISHOPS, getWhiteBishopAttacks( ) );
 			//legalMoves.put(WHITE_QUEEN, getWhiteQueenAttacks( ) );
 			//legalMoves.put(WHITE_KING, getWhiteKingAttacks( ) );
 			
@@ -448,32 +489,274 @@ public class ChessBoard
 			{
 				if( (square & mPieceBoards.get(WHITE_PAWNS)) != 0 )
 				{
-					long moveNorth = square >> 8;
+					long moveNorth = square << 8;
 					if ( (moveNorth & mPieceBoards.get(WHITE_PIECES)) == 0 )
 					{
-						moves.add( new MoveModel( mLabelMap.get(moveNorth), mLabelMap.get(square) ) );
+						moves.add( new MoveModel( mLabelMap.get(square), mLabelMap.get(moveNorth) ) );
 					}
 					
-					long moveNorthWest = square >> 9;
+					long moveNorthWest = square << 9;
 				    if ( (moveNorthWest & mPieceBoards.get(BLACK_PIECES)) != 0 )
 					{
-						moves.add( new MoveModel( mLabelMap.get(moveNorthWest), mLabelMap.get(square) ) );
+						moves.add( new MoveModel( mLabelMap.get(square), mLabelMap.get(moveNorthWest) ) );
 					}
 				    
-				    long moveNorthEast = square >> 7;
+				    long moveNorthEast = square << 7;
 				    if ( (moveNorthEast & mPieceBoards.get(BLACK_PIECES)) != 0 )
 					{
-						moves.add( new MoveModel( mLabelMap.get(moveNorthEast), mLabelMap.get(square) ) );
+						moves.add( new MoveModel( mLabelMap.get(square), mLabelMap.get(moveNorthEast) ) );
 					}
 					
 				    if ( (square & mRows[1]) != 0 )
 				    {
-				    	moves.add( new MoveModel( mLabelMap.get( (moveNorth >> 8) ), mLabelMap.get(square) ) );
+				    	moves.add( new MoveModel( mLabelMap.get(square), mLabelMap.get( (moveNorth << 8) ) ) );
 				    }
 				}
 			}
 			
 			return moves;
+		}
+		
+		private ArrayList<MoveModel> getWhiteRookAttacks()
+		{
+			return getRookAttacks(mPieceBoards.get(WHITE_ROOKS), WHITE);
+		}
+		
+		private ArrayList<MoveModel> getBlackRookAttacks()
+		{
+			return getRookAttacks(mPieceBoards.get(BLACK_ROOKS), BLACK);
+		}
+		
+		private ArrayList<MoveModel> getRookAttacks( long piece, int color )
+		{
+			ArrayList<MoveModel> moves = new ArrayList<MoveModel>();
+			
+			// Get piece boards for each team
+			long opposingPieces = ( color == WHITE ) ? mPieceBoards.get(BLACK_PIECES) : mPieceBoards.get(WHITE_PIECES);
+			long allyPieces = ( color == BLACK ) ? mPieceBoards.get(BLACK_PIECES) : mPieceBoards.get(WHITE_PIECES);
+			
+			// Iterate through each square
+			for ( long square:mSquareArray )
+			{
+				// If the square has a rook
+				if( (square & piece) != 0 )
+				{
+					// Get the index of the square
+					int squareIndex = mSquareArray.indexOf(square);
+					
+					// Go left from position until you hit something or the end of the board
+					for ( int i = squareIndex - 1; i >= (squareIndex / 8) * 8; i-- )
+					{
+						// If we're not colliding with an ally piece
+						if ( (mSquareArray.get(i) & allyPieces) == 0 )
+						{
+							// Add the move
+							moves.add( new MoveModel( mSquareLabels[squareIndex], mSquareLabels[i] ) );
+							
+							// If we're capturing an opposing piece
+							if ( (mSquareArray.get(i) & opposingPieces) != 0 )
+							{
+								// Terminate loop since we're stopping to capture the piece
+								break;
+							}
+						}
+						else
+						{
+							break;
+						}
+					}
+					
+					// Go right from position until you hit something or the end of the board
+					for ( int i = squareIndex + 1; i < (squareIndex / 8 + 1) * 8; i++ )
+					{
+						// If we're not colliding with a white piece
+						if ( (mSquareArray.get(i) & allyPieces) == 0 )
+						{
+							// Add the move
+							moves.add( new MoveModel( mSquareLabels[squareIndex], mSquareLabels[i] ) );
+							
+							// If we're capturing a black piece
+							if ( (mSquareArray.get(i) & opposingPieces) != 0 )
+							{
+								// Terminate loop since we're stopping to capture the piece
+								break;
+							}
+						}
+						else
+						{
+							break;
+						}
+					}
+					
+					// Go up from position until you hit something or the end of the board
+					for ( int i = squareIndex + 8; i < 64; i += 8)
+					{
+						// If we're not colliding with a white piece
+						if ( (mSquareArray.get(i) & allyPieces) == 0 )
+						{
+							// Add the move
+							moves.add( new MoveModel( mSquareLabels[squareIndex], mSquareLabels[i] ) );
+							
+							// If we're capturing a black piece
+							if ( (mSquareArray.get(i) & opposingPieces) != 0 )
+							{
+								// Terminate loop since we're stopping to capture the piece
+								break;
+							}
+						}
+						else
+						{
+							break;
+						}
+					}
+					
+					// Go down from position until you hit something or the end of the board
+					for ( int i = squareIndex - 8; i >= 0; i -= 8)
+					{
+						// If we're not colliding with a white piece
+						if ( (mSquareArray.get(i) & allyPieces) == 0 )
+						{
+							// Add the move
+							moves.add( new MoveModel( mSquareLabels[squareIndex], mSquareLabels[i] ) );
+							
+							// If we're capturing a black piece
+							if ( (mSquareArray.get(i) & opposingPieces) != 0 )
+							{
+								// Terminate loop since we're stopping to capture the piece
+								break;
+							}
+						}
+						else
+						{
+							break;
+						}
+					}
+				}
+			}
+
+			return moves;
+
+		}
+		
+		private ArrayList<MoveModel> getWhiteBishopAttacks()
+		{
+			return getBishopAttacks( mPieceBoards.get(WHITE_BISHOPS), WHITE );
+		}
+		
+		private ArrayList<MoveModel> getBlackBishopAttacks()
+		{
+			return getBishopAttacks( mPieceBoards.get(BLACK_BISHOPS), BLACK );
+		}
+		
+		private ArrayList<MoveModel> getBishopAttacks( long piece, int color )
+		{
+			ArrayList<MoveModel> moves = new ArrayList<MoveModel>();
+			
+			// Get piece boards for each team
+			long opposingPieces = ( color == WHITE ) ? mPieceBoards.get(BLACK_PIECES) : mPieceBoards.get(WHITE_PIECES);
+			long allyPieces = ( color == BLACK ) ? mPieceBoards.get(BLACK_PIECES) : mPieceBoards.get(WHITE_PIECES);
+			
+			// Iterate through each square
+			for ( long square:mSquareArray )
+			{
+				// If the square has a rook
+				if( (square & piece) != 0 )
+				{
+					// Get the index of the square
+					int squareIndex = mSquareArray.indexOf(square);
+					
+					// Go northeast from position until you hit something or the end of the board
+					for ( int i = squareIndex + 9; i % 8 != 0 && i / 8 < 8 && i < 64; i += 9 )
+					{
+						// If we're not colliding with an ally piece
+						if ( (mSquareArray.get(i) & allyPieces) == 0 )
+						{
+							// Add the move
+							moves.add( new MoveModel( mSquareLabels[squareIndex], mSquareLabels[i] ) );
+							
+							// If we're capturing an opposing piece
+							if ( (mSquareArray.get(i) & opposingPieces) != 0 )
+							{
+								// Terminate loop since we're stopping to capture the piece
+								break;
+							}
+						}
+						else
+						{
+							break;
+						}
+					}
+					
+					// Go northwest from position until you hit something or the end of the board
+					for ( int i = squareIndex + 7; i % 8 != 7 && i / 8 < 8 && i < 64; i += 7 )
+					{
+						// If we're not colliding with a white piece
+						if ( (mSquareArray.get(i) & allyPieces) == 0 )
+						{
+							// Add the move
+							moves.add( new MoveModel( mSquareLabels[squareIndex], mSquareLabels[i] ) );
+							
+							// If we're capturing a black piece
+							if ( (mSquareArray.get(i) & opposingPieces) != 0 )
+							{
+								// Terminate loop since we're stopping to capture the piece
+								break;
+							}
+						}
+						else
+						{
+							break;
+						}
+					}
+					
+					// Go southeast from position until you hit something or the end of the board
+					for ( int i = squareIndex - 7; i % 8 != 0 && i / 8 >= 0 && i >= 0; i -= 7)
+					{
+						// If we're not colliding with a white piece
+						if ( (mSquareArray.get(i) & allyPieces) == 0 )
+						{
+							// Add the move
+							moves.add( new MoveModel( mSquareLabels[squareIndex], mSquareLabels[i] ) );
+							
+							// If we're capturing a black piece
+							if ( (mSquareArray.get(i) & opposingPieces) != 0 )
+							{
+								// Terminate loop since we're stopping to capture the piece
+								break;
+							}
+						}
+						else
+						{
+							break;
+						}
+					}
+					
+					// Go southwest from position until you hit something or the end of the board
+					for ( int i = squareIndex - 9; i % 8 != 7 && i / 8 >= 0 && i >= 0; i -= 9)
+					{
+						// If we're not colliding with a white piece
+						if ( (mSquareArray.get(i) & allyPieces) == 0 )
+						{
+							// Add the move
+							moves.add( new MoveModel( mSquareLabels[squareIndex], mSquareLabels[i] ) );
+							
+							// If we're capturing a black piece
+							if ( (mSquareArray.get(i) & opposingPieces) != 0 )
+							{
+								// Terminate loop since we're stopping to capture the piece
+								break;
+							}
+						}
+						else
+						{
+							break;
+						}
+					}
+				}
+			}
+
+			return moves;
+
 		}
 	}
 }
