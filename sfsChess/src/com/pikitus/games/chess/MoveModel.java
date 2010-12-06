@@ -10,7 +10,7 @@ public class MoveModel
 		
 	}
 	
-	public MoveModel( String to, String from )
+	public MoveModel( String from, String to )
 	{
 		this.to = to;
 		this.from = from;
