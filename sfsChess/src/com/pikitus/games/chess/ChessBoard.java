@@ -1,13 +1,13 @@
 package com.pikitus.games.chess;
 
-
-
 import MoveModel;
 
 import java.util.HashMap;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Map;
+
+import ChessBoard.MoveGenerator;
 
 import com.smartfoxserver.v2.entities.data.ISFSArray;
 import com.smartfoxserver.v2.entities.data.ISFSObject;
@@ -16,7 +16,6 @@ import com.smartfoxserver.v2.entities.data.SFSObject;
 
 public class ChessBoard 
 {
-	
 	// Indices for mPieceBoards
 	private final String WHITE_PAWNS = "white_pawns";
 	private final String WHITE_ROOKS = "white_rooks";
@@ -407,16 +406,20 @@ public class ChessBoard
 		return false;
 	}	
 	
-	public HashMap<String, ArrayList<MoveModel>> getLegalMoves()
+	public HashMap<String, ArrayList<MoveModel>> getLegalMovesMap()
 	{
-		return new MoveGenerator().getLegalMoves(currentPlayer);
+		return new MoveGenerator().getLegalMovesMap();
+	}
+	
+	public ArrayList<MoveModel> getLegalMovesArray( int color )
+	{
+		return new MoveGenerator().getLegalMovesArray( color );
 	}
 	
 	/**
 	 * Get the board array
 	 * @return (ISFSObject) I should name each one
 	 */
-	/*
 	public ISFSObject getBoardArray() 
 	{
 		ISFSArray boardArray = new SFSArray();
@@ -431,24 +434,27 @@ public class ChessBoard
 		obj.putSFSArray("boardArray", boardArray);
 		return obj;
 	}
-	*/
 	
 	/**
 	 * Get valid move array
 	 * @return
 	 */
-	/*
 	public ISFSObject getValidMoveArray()
 	{
-		ISFSArray validMoveArray = new SFSArray();
-		for ( int i = 0; i < 16; i++ ) {
-			validMoveArray.addLong((long) 0);
+		ISFSArray out = new SFSArray();
+		ArrayList<MoveModel> validMoves = getLegalMovesArray();
+		
+		for ( int i = 0; i < validMoves.size(); i++ ) 
+		{	
+			// Totally guessing, here.  Probably should be an add SFS object or something
+			// You get the idea, though
+			out.add(validMoves.get(i));
 		}
+		
 		ISFSObject obj = new SFSObject();
-		obj.putSFSArray("predictionsArray", validMoveArray);
+		obj.putSFSArray("validMovesArray", out);
 		return obj;
 	}
-	*/
 	
 	private class MoveGenerator
 	{
@@ -457,9 +463,39 @@ public class ChessBoard
 			
 		}
 		
-		public HashMap<String, ArrayList<MoveModel>> getLegalMoves( int player )
+		/**
+		 * For debugging
+		 * @return HashMap of moves indexed by piece type
+		 */
+		public HashMap<String, ArrayList<MoveModel>> getLegalMovesMap( )
 		{
-			return (player == WHITE) ? getWhiteLegalMoves() : getBlackLegalMoves();	
+			HashMap<String, ArrayList<MoveModel>> legalMoves = new HashMap<String, ArrayList<MoveModel>>();
+			
+			legalMoves.putAll( getWhiteLegalMoves() );
+			legalMoves.putAll( getBlackLegalMoves() );
+
+			
+			return legalMoves;	
+		}
+		
+		/**
+		 * For going out to the server
+		 * @return An array list of all possible moves
+		 */
+		public ArrayList<MoveModel> getLegalMovesArray( int color )
+		{
+			HashMap<String, ArrayList<MoveModel>> legalMoves = new HashMap<String, ArrayList<MoveModel>>();
+			
+			legalMoves.putAll( (color == WHITE) ? getWhiteLegalMoves() : getBlackLegalMoves() );
+			
+			ArrayList<MoveModel> out = new ArrayList<MoveModel>();
+			
+			for( ArrayList<MoveModel> moves : legalMoves.values() )
+			{
+				out.addAll( moves );
+			}
+			
+			return out;
 		}
 		
 		private HashMap<String, ArrayList<MoveModel>> getWhiteLegalMoves()
@@ -468,10 +504,10 @@ public class ChessBoard
 			
 			legalMoves.put(WHITE_PAWNS, getWhitePawnAttacks( ) );
 			legalMoves.put(WHITE_ROOKS, getWhiteRookAttacks( ) );
-			//legalMoves.put(WHITE_KNIGHTS, getWhiteKnightAttacks( ) );
+			legalMoves.put(WHITE_KNIGHTS, getWhiteKnightAttacks( ) );
 			legalMoves.put(WHITE_BISHOPS, getWhiteBishopAttacks( ) );
 			legalMoves.put(WHITE_QUEEN, getWhiteQueenAttacks( ) );
-			//legalMoves.put(WHITE_KING, getWhiteKingAttacks( ) );
+			legalMoves.put(WHITE_KING, getWhiteKingAttacks( ) );
 			
 			return legalMoves;
 		}
@@ -480,6 +516,13 @@ public class ChessBoard
 		{
 			HashMap<String, ArrayList<MoveModel>> legalMoves = new HashMap<String, ArrayList<MoveModel>>();
 			
+			legalMoves.put(BLACK_PAWNS, getBlackPawnAttacks( ) );
+			legalMoves.put(BLACK_ROOKS, getBlackRookAttacks( ) );
+			legalMoves.put(BLACK_KNIGHTS, getBlackKnightAttacks( ) );
+			legalMoves.put(BLACK_BISHOPS, getBlackBishopAttacks( ) );
+			legalMoves.put(BLACK_QUEEN, getBlackQueenAttacks( ) );
+			legalMoves.put(BLACK_KING, getBlackKingAttacks( ) );
+			
 			return legalMoves;
 		}
 		
@@ -487,35 +530,138 @@ public class ChessBoard
 		{
 			ArrayList<MoveModel> moves = new ArrayList<MoveModel>();
 			
-			for ( long square:mSquareArray )
+			// Get piece boards for each team
+			long opposingPieces = mPieceBoards.get(BLACK_PIECES);
+			long allyPieces = mPieceBoards.get(WHITE_PIECES);
+			
+			long piece = mPieceBoards.get(WHITE_PAWNS);
+			
+			for( long square:mSquareArray )
 			{
-				if( (square & mPieceBoards.get(WHITE_PAWNS)) != 0 )
+				if ( (square & piece) != 0 )
 				{
-					long moveNorth = square << 8;
-					if ( (moveNorth & mPieceBoards.get(WHITE_PIECES)) == 0 )
+					// Get the index of the square
+					int squareIndex = mSquareArray.indexOf(square);
+					
+					// Go north one square
+					int i = squareIndex + 8; 
+					if( i < 64 )
 					{
-						moves.add( new MoveModel( mLabelMap.get(square), mLabelMap.get(moveNorth) ) );
+						// If we're not colliding with an ally piece
+						if ( (mSquareArray.get(i) & allyPieces) == 0 )
+						{
+							// Add the move
+							moves.add( new MoveModel( mSquareLabels[squareIndex], mSquareLabels[i] ) );
+						}
 					}
 					
-					long moveNorthWest = square << 9;
-				    if ( (moveNorthWest & mPieceBoards.get(BLACK_PIECES)) != 0 )
+					// Go northeast one square
+					i = squareIndex + 9;
+					if ( i % 8 != 0 && i / 8 < 8 && i < 64 )
 					{
-						moves.add( new MoveModel( mLabelMap.get(square), mLabelMap.get(moveNorthWest) ) );
-					}
-				    
-				    long moveNorthEast = square << 7;
-				    if ( (moveNorthEast & mPieceBoards.get(BLACK_PIECES)) != 0 )
-					{
-						moves.add( new MoveModel( mLabelMap.get(square), mLabelMap.get(moveNorthEast) ) );
+						// If we're not capturing an enemy piece
+						if ( (mSquareArray.get(i) & opposingPieces) != 0 )
+						{
+							// Add the move
+							moves.add( new MoveModel( mSquareLabels[squareIndex], mSquareLabels[i] ) );
+						}
 					}
 					
-				    if ( (square & mRows[1]) != 0 )
-				    {
-				    	moves.add( new MoveModel( mLabelMap.get(square), mLabelMap.get( (moveNorth << 8) ) ) );
-				    }
+					
+					// Go northwest one square
+					i = squareIndex + 7; 
+					if( i % 8 != 7 && i / 8 < 8 && i < 64 )
+					{
+						// If we're capturing an enemy piece
+						if ( (mSquareArray.get(i) & opposingPieces) != 0 )
+						{
+							// Add the move
+							moves.add( new MoveModel( mSquareLabels[squareIndex], mSquareLabels[i] ) );
+						}
+					}
+					
+					// Go north twice if still on starting line
+					i = squareIndex + 16;
+					if( i < 64 && ( ( mSquareArray.get(squareIndex) & mRows[1] ) != 0) )
+					{
+						// If we're not colliding with any other piece
+						if ( (mSquareArray.get(i) & allyPieces) == 0 && (mSquareArray.get(i) & opposingPieces) == 0)
+						{
+							// Add the move
+							moves.add( new MoveModel( mSquareLabels[squareIndex], mSquareLabels[i] ) );
+						}
+					}
 				}
 			}
+			return moves;
+		}
+		
+		private ArrayList<MoveModel> getBlackPawnAttacks()
+		{
+			ArrayList<MoveModel> moves = new ArrayList<MoveModel>();
 			
+			// Get piece boards for each team
+			long opposingPieces = mPieceBoards.get(WHITE_PIECES);
+			long allyPieces = mPieceBoards.get(BLACK_PIECES);
+			
+			long piece = mPieceBoards.get(BLACK_PAWNS);
+			
+			for( long square:mSquareArray )
+			{
+				if ( (square & piece) != 0 )
+				{
+					// Get the index of the square
+					int squareIndex = mSquareArray.indexOf(square);
+					
+					// Go south one square
+					int i = squareIndex - 8; 
+					if( i >= 0 )
+					{
+						// If we're not colliding with an ally piece
+						if ( (mSquareArray.get(i) & allyPieces) == 0 )
+						{
+							// Add the move
+							moves.add( new MoveModel( mSquareLabels[squareIndex], mSquareLabels[i] ) );
+						}
+					}
+					
+					// Go southeast one square
+					i = squareIndex - 7; 
+					if( i % 8 != 0 && i / 8 >= 0 && i >= 0 )
+					{
+						// If we're taking an enemy piece
+						if ( (mSquareArray.get(i) & opposingPieces) != 0 )
+						{
+							// Add the move
+							moves.add( new MoveModel( mSquareLabels[squareIndex], mSquareLabels[i] ) );	
+						}
+					}
+					
+					// Go southwest one square
+					i = squareIndex - 9; 
+					if ( i % 8 != 7 && i / 8 >= 0 && i >= 0 )
+					{
+						// If we're taking an enemy piece
+						if ( (mSquareArray.get(i) & opposingPieces) != 0 )
+						{
+							// Add the move
+							moves.add( new MoveModel( mSquareLabels[squareIndex], mSquareLabels[i] ) );
+						}
+					}
+					
+					// Go south twice if still on starting line
+					i = squareIndex - 16;
+					if( i >= 0 && ( ( mSquareArray.get(squareIndex) & mRows[6] ) != 0) )
+					{
+						// If we're not colliding with any other piece
+						if ( (mSquareArray.get(i) & allyPieces) == 0 && (mSquareArray.get(i) & opposingPieces) == 0)
+						{
+							// Add the move
+							moves.add( new MoveModel( mSquareLabels[squareIndex], mSquareLabels[i] ) );
+						}
+					}
+				}
+			}
 			return moves;
 		}
 		
@@ -661,7 +807,7 @@ public class ChessBoard
 			// Iterate through each square
 			for ( long square:mSquareArray )
 			{
-				// If the square has a rook
+				// If the square has a bishop
 				if( (square & piece) != 0 )
 				{
 					// Get the index of the square
@@ -780,8 +926,264 @@ public class ChessBoard
 			
 			return moves;
 		}
+		
+		private ArrayList<MoveModel> getWhiteKingAttacks()
+		{
+			return getKingAttacks( mPieceBoards.get(WHITE_KING), WHITE);
+		}
+		
+		private ArrayList<MoveModel> getBlackKingAttacks()
+		{
+			return getKingAttacks( mPieceBoards.get(BLACK_KING), BLACK);
+		}
+		
+		private ArrayList<MoveModel> getKingAttacks( long piece, int color )
+		{
+			ArrayList<MoveModel> moves = new ArrayList<MoveModel>();
+			
+			// Get piece boards for each team
+			//long opposingPieces = ( color == WHITE ) ? mPieceBoards.get(BLACK_PIECES) : mPieceBoards.get(WHITE_PIECES);
+			long allyPieces = ( color == BLACK ) ? mPieceBoards.get(BLACK_PIECES) : mPieceBoards.get(WHITE_PIECES);
+			
+			// Iterate through each square
+			for ( long square:mSquareArray )
+			{
+				// If the square has a king
+				if( (square & piece) != 0 )
+				{
+					// Get the index of the square
+					int squareIndex = mSquareArray.indexOf(square);
+					
+					// Go northeast one square
+					int i = squareIndex + 9;
+					if ( i % 8 != 0 && i / 8 < 8 && i < 64 )
+					{
+						// If we're not colliding with an ally piece
+						if ( (mSquareArray.get(i) & allyPieces) == 0 )
+						{
+							// Add the move
+							moves.add( new MoveModel( mSquareLabels[squareIndex], mSquareLabels[i] ) );
+						}
+					}
+					
+					
+					// Go northwest one square
+					i = squareIndex + 7; 
+					if( i % 8 != 7 && i / 8 < 8 && i < 64 )
+					{
+						// If we're not colliding with a white piece
+						if ( (mSquareArray.get(i) & allyPieces) == 0 )
+						{
+							// Add the move
+							moves.add( new MoveModel( mSquareLabels[squareIndex], mSquareLabels[i] ) );
+						}
+					}
+					
+					// Go southeast one square
+					i = squareIndex - 7; 
+					if( i % 8 != 0 && i / 8 >= 0 && i >= 0 )
+					{
+						// If we're not colliding with a white piece
+						if ( (mSquareArray.get(i) & allyPieces) == 0 )
+						{
+							// Add the move
+							moves.add( new MoveModel( mSquareLabels[squareIndex], mSquareLabels[i] ) );	
+						}
+					}
+					
+					// Go southwest one square
+					i = squareIndex - 9; 
+					if ( i % 8 != 7 && i / 8 >= 0 && i >= 0 )
+					{
+						// If we're not colliding with a white piece
+						if ( (mSquareArray.get(i) & allyPieces) == 0 )
+						{
+							// Add the move
+							moves.add( new MoveModel( mSquareLabels[squareIndex], mSquareLabels[i] ) );
+						}
+					}
+					
+					// Go left one square
+					i = squareIndex - 1; 
+					if( i >= (squareIndex / 8) * 8)
+					{
+						// If we're not colliding with an ally piece
+						if ( (mSquareArray.get(i) & allyPieces) == 0 )
+						{
+							// Add the move
+							moves.add( new MoveModel( mSquareLabels[squareIndex], mSquareLabels[i] ) );
+						}
+					}
+					
+					// Go right one square
+					i = squareIndex + 1; 
+					if ( i < (squareIndex / 8 + 1) * 8 )
+					{
+						// If we're not colliding with a white piece
+						if ( (mSquareArray.get(i) & allyPieces) == 0 )
+						{
+							// Add the move
+							moves.add( new MoveModel( mSquareLabels[squareIndex], mSquareLabels[i] ) );
+						}
+					}
+					
+					// Go north one square
+					i = squareIndex + 8; 
+					if ( i < 64 )
+					{
+						// If we're not colliding with a white piece
+						if ( (mSquareArray.get(i) & allyPieces) == 0 )
+						{
+							// Add the move
+							moves.add( new MoveModel( mSquareLabels[squareIndex], mSquareLabels[i] ) );
+						}
+					}
+					
+					// Go south one square
+					i = squareIndex - 8; 
+					if( i >= 0 )
+					{
+						// If we're not colliding with a white piece
+						if ( (mSquareArray.get(i) & allyPieces) == 0 )
+						{
+							// Add the move
+							moves.add( new MoveModel( mSquareLabels[squareIndex], mSquareLabels[i] ) );
+						}
+					}
+				}
+			}
+			
+			return moves;
+		}
+		
+		private ArrayList<MoveModel> getWhiteKnightAttacks()
+		{
+			return getKnightAttacks( mPieceBoards.get(WHITE_KNIGHTS), WHITE );
+		}
+		
+		private ArrayList<MoveModel> getBlackKnightAttacks()
+		{
+			return getKnightAttacks( mPieceBoards.get( BLACK_KNIGHTS ), BLACK );
+		}
+		
+		private ArrayList<MoveModel> getKnightAttacks( long piece, int color )
+		{
+			ArrayList<MoveModel> moves = new ArrayList<MoveModel>();
+			
+			// Get piece boards for each team
+			//long opposingPieces = ( color == WHITE ) ? mPieceBoards.get(BLACK_PIECES) : mPieceBoards.get(WHITE_PIECES);
+			long allyPieces = ( color == BLACK ) ? mPieceBoards.get(BLACK_PIECES) : mPieceBoards.get(WHITE_PIECES);
+			
+			// Iterate through each square
+			for ( long square:mSquareArray )
+			{
+				// If the square has a knight
+				if( (square & piece) != 0 )
+				{
+					// Get the index of the square
+					int squareIndex = mSquareArray.indexOf(square);
+					
+					// Go north-northwest
+					int i = squareIndex + 15;
+					if ( i % 8 != 7 && i < 64 )
+					{
+						// If we're not colliding with an ally piece
+						if ( (mSquareArray.get(i) & allyPieces) == 0 )
+						{
+							// Add the move
+							moves.add( new MoveModel( mSquareLabels[squareIndex], mSquareLabels[i] ) );
+						}
+					}
+					
+					// Go north-northeast
+					i = squareIndex + 17;
+					if ( i % 8 != 0 && i < 64 )
+					{
+						// If we're not colliding with an ally piece
+						if ( (mSquareArray.get(i) & allyPieces) == 0 )
+						{
+							// Add the move
+							moves.add( new MoveModel( mSquareLabels[squareIndex], mSquareLabels[i] ) );
+						}
+					}
+					
+					// Go west-northwest
+					i = squareIndex + 6;
+					if ( i % 8 != 7 && i < 64 )
+					{
+						// If we're not colliding with an ally piece
+						if ( (mSquareArray.get(i) & allyPieces) == 0 )
+						{
+							// Add the move
+							moves.add( new MoveModel( mSquareLabels[squareIndex], mSquareLabels[i] ) );
+						}
+					}
+					
+					// Go west-southwest
+					i = squareIndex - 10;
+					if ( i % 8 != 7 && i >= 0 )
+					{
+						// If we're not colliding with an ally piece
+						if ( (mSquareArray.get(i) & allyPieces) == 0 )
+						{
+							// Add the move
+							moves.add( new MoveModel( mSquareLabels[squareIndex], mSquareLabels[i] ) );
+						}
+					}
+					
+					// Go south-southwest
+					i = squareIndex - 17;
+					if ( i % 8 != 7 && i >= 0 )
+					{
+						// If we're not colliding with an ally piece
+						if ( (mSquareArray.get(i) & allyPieces) == 0 )
+						{
+							// Add the move
+							moves.add( new MoveModel( mSquareLabels[squareIndex], mSquareLabels[i] ) );
+						}
+					}
+					
+					// Go south-southeast
+					i = squareIndex - 15;
+					if ( i % 8 != 0 && i >= 0 )
+					{
+						// If we're not colliding with an ally piece
+						if ( (mSquareArray.get(i) & allyPieces) == 0 )
+						{
+							// Add the move
+							moves.add( new MoveModel( mSquareLabels[squareIndex], mSquareLabels[i] ) );
+						}
+					}
+					
+					// Go east-southeast
+					i = squareIndex - 6;
+					if ( i % 8 != 0 && i >= 0 )
+					{
+						// If we're not colliding with an ally piece
+						if ( (mSquareArray.get(i) & allyPieces) == 0 )
+						{
+							// Add the move
+							moves.add( new MoveModel( mSquareLabels[squareIndex], mSquareLabels[i] ) );
+						}
+					}
+					
+					// Go east-northeast
+					i = squareIndex + 10;
+					if ( i % 8 != 0 && i < 64 )
+					{
+						// If we're not colliding with an ally piece
+						if ( (mSquareArray.get(i) & allyPieces) == 0 )
+						{
+							// Add the move
+							moves.add( new MoveModel( mSquareLabels[squareIndex], mSquareLabels[i] ) );
+						}
+					}
+				}
+			}
+			
+			return moves;
+		}
 	}
 }
-
 
 
