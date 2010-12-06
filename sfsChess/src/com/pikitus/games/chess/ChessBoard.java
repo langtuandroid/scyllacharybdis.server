@@ -2,6 +2,8 @@ package com.pikitus.games.chess;
 
 
 
+import MoveModel;
+
 import java.util.HashMap;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -468,7 +470,7 @@ public class ChessBoard
 			legalMoves.put(WHITE_ROOKS, getWhiteRookAttacks( ) );
 			//legalMoves.put(WHITE_KNIGHTS, getWhiteKnightAttacks( ) );
 			legalMoves.put(WHITE_BISHOPS, getWhiteBishopAttacks( ) );
-			//legalMoves.put(WHITE_QUEEN, getWhiteQueenAttacks( ) );
+			legalMoves.put(WHITE_QUEEN, getWhiteQueenAttacks( ) );
 			//legalMoves.put(WHITE_KING, getWhiteKingAttacks( ) );
 			
 			return legalMoves;
@@ -757,6 +759,26 @@ public class ChessBoard
 
 			return moves;
 
+		}
+		
+		private ArrayList<MoveModel> getWhiteQueenAttacks()
+		{
+			return getQueenAttacks( mPieceBoards.get(WHITE_QUEEN), WHITE);
+		}
+		
+		private ArrayList<MoveModel> getBlackQueenAttacks()
+		{
+			return getQueenAttacks( mPieceBoards.get(BLACK_QUEEN), BLACK);
+		}
+		
+		private ArrayList<MoveModel> getQueenAttacks( long piece, int color )
+		{
+			ArrayList<MoveModel> moves = new ArrayList<MoveModel>();
+			
+			moves.addAll(getRookAttacks( piece, color));
+			moves.addAll(getBishopAttacks( piece, color));
+			
+			return moves;
 		}
 	}
 }
