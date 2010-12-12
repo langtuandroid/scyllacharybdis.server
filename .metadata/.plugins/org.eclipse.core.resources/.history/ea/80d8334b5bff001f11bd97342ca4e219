@@ -1,0 +1,26 @@
+package com.pikitus.client;
+
+import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.DockPanel;
+
+public class WelcomeWidget extends Composite 
+{
+	private final DockPanel panel = new DockPanel();
+	
+    public WelcomeWidget() {
+    	 HTML html = new HTML(
+    		      "This is <b>HTML</b>.  It will be interpreted as such if you specify "
+    		        + "the <span style='font-family:fixed'>asHTML</span> flag.", true);
+
+    		    // Add them to the root panel.
+    		    VerticalPanel panel = new VerticalPanel();
+    		    panel.add(lbl);
+    		    panel.add(html);
+    		    RootPanel.get().add(panel);
+    		    
+    	HMTLWidget test = new HTMLWidget();
+        initWidget(panel);
+        panel.add("test", DockPanel.CENTER);
+        panel.add("button", DockPanel.SOUTH);
+    }
+}

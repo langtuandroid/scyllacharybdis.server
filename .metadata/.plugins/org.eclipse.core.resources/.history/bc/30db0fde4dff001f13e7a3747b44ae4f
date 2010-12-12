@@ -1,0 +1,5 @@
+package com.pikitus.client;
+
+public class LoginService {
+
+}

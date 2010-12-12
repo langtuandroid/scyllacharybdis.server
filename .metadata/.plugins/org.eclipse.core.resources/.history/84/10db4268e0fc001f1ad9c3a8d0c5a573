@@ -1,0 +1,33 @@
+package com.pikitus.login;
+
+import sfs2x.extensions.games.chess.OnUserGoneHandler;
+import com.smartfoxserver.v2.core.SFSEventType;
+import com.smartfoxserver.v2.entities.User;
+import com.smartfoxserver.v2.entities.data.ISFSObject;
+import com.smartfoxserver.v2.entities.data.SFSObject;
+import com.smartfoxserver.v2.extensions.SFSExtension;
+
+public class SFSLogin extends SFSExtension 
+{
+	private final String version = "0.2";
+	
+	@Override
+	public void init() {
+	
+		trace("SFSLogin Extension started, rel. " + version);
+	    addRequestHandler("getFriends", FriendsList.class);
+	    
+	    addEventHandler(SFSEventType.USER_DISCONNECT, OnUserGoneHandler.class);
+	    addEventHandler(SFSEventType.USER_LEAVE_ROOM, OnUserGoneHandler.class);
+	}
+
+	public void sendSFSObject(String name, ISFSObject object)
+	{
+		send( name, object, getParentRoom().getUserList() );
+	}
+
+	public void sendSFSObject(String name, ISFSObject object, User user) 
+	{
+		send( name, object, user );
+	}
+}	

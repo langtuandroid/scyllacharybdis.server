@@ -1,0 +1,5 @@
+package com.pikitus.games.chess.handlers;
+
+public class BoardHandler {
+
+}

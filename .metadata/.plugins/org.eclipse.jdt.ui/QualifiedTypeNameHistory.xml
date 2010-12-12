@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="com.pikitus.chess.handlers.MoveHandler"/>
+<fullyQualifiedTypeName name="com.pikitus.games.chess.ChessBoard"/>
+<fullyQualifiedTypeName name="pl.rmalinowski.gwt2swf.client.ui.SWFWidget"/>
+<fullyQualifiedTypeName name="com.google.gwt.user.client.rpc.RemoteServiceRelativePath"/>
+<fullyQualifiedTypeName name="com.google.gwt.user.client.ui.Composite"/>
+<fullyQualifiedTypeName name="com.google.gwt.user.client.ui.DockPanel"/>
+<fullyQualifiedTypeName name="com.google.gwt.user.client.ui.VerticalPanel"/>
+<fullyQualifiedTypeName name="com.google.gwt.user.client.ui.HTML"/>
+</qualifiedTypeNameHistroy>

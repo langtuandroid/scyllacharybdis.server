@@ -1,0 +1,18 @@
+package com.pikitus.client;
+
+import pl.rmalinowski.gwt2swf.client.ui.SWFWidget;
+
+import com.google.gwt.user.client.rpc.RemoteService;
+import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
+import com.google.gwt.user.client.ui.RootPanel;
+
+@RemoteServiceRelativePath("chess")
+public class GameService implements RemoteService 
+{
+	public void onModuleLoad() {
+		
+		SWFWidget swfWidget = new SWFWidget("chess.swf", 800, 600);
+		RootPanel.get().add(swfWidget);
+	}	
+}
+
