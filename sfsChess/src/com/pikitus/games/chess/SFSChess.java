@@ -5,8 +5,10 @@ import com.smartfoxserver.v2.entities.data.ISFSObject;
 import com.smartfoxserver.v2.entities.data.SFSObject;
 import com.smartfoxserver.v2.extensions.SFSExtension;
 import com.pikitus.games.chess.ChessBoard;
+import com.pikitus.games.chess.handlers.BoardHandler;
 import com.pikitus.games.chess.handlers.MoveHandler;
 import com.pikitus.games.chess.handlers.PlayerJoinedHandler;
+import com.pikitus.games.chess.handlers.ValidMoveHandler;
 
 public class SFSChess extends SFSExtension 
 {
@@ -26,11 +28,11 @@ public class SFSChess extends SFSExtension
 		// Create a new chess board
 		mGameBoard = new ChessBoard();
 		
-		// Register the player joined
-	    addRequestHandler("playerJoined", PlayerJoinedHandler.class);
+	    addRequestHandler("PLAYER_JOINED", PlayerJoinedHandler.class);
+	    addRequestHandler("MOVE_PIECE", MoveHandler.class);
+	    addRequestHandler("GET_BOARD", BoardHandler.class);
+	    addRequestHandler("GET_VALID_MOVES", ValidMoveHandler.class);
 	    
-	    // Register the move piece handler
-	    addRequestHandler("movePiece", MoveHandler.class);
 	}
 	
 	/**
@@ -67,7 +69,7 @@ public class SFSChess extends SFSExtension
 		mGameStarted = true;
 		
 		// Reset the board
-		mGameBoard.resetBoard();
+		mGameBoard.initializeBoard();
 		
 		// Get the users by the location they entered the game
 		mPlayer1 = getParentRoom().getUserByPlayerId(1);

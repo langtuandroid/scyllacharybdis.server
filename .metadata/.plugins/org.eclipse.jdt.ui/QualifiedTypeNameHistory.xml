@@ -8,4 +8,13 @@
 <fullyQualifiedTypeName name="com.google.gwt.user.client.ui.DockPanel"/>
 <fullyQualifiedTypeName name="com.google.gwt.user.client.ui.VerticalPanel"/>
 <fullyQualifiedTypeName name="com.google.gwt.user.client.ui.HTML"/>
+<fullyQualifiedTypeName name="com.pikitus.games.chess.models.UpdateModel"/>
+<fullyQualifiedTypeName name="com.smartfoxserver.v2.entities.data.SFSObject"/>
+<fullyQualifiedTypeName name="java.util.Set"/>
+<fullyQualifiedTypeName name="java.util.Iterator"/>
+<fullyQualifiedTypeName name="com.pikitus.games.chess.models.MoveModel"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="com.smartfoxserver.v2.entities.data.SFSArray"/>
+<fullyQualifiedTypeName name="com.pikitus.games.chess.handlers.BoardHandler"/>
+<fullyQualifiedTypeName name="com.pikitus.games.chess.handlers.ValidMoveHandler"/>
 </qualifiedTypeNameHistroy>
