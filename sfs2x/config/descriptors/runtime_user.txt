@@ -1,0 +1,578 @@
+// SMARTFOXSERVER 2X ADMIN TOOL'S ZONE MONITOR MODULE
+// User settings descriptor file
+// 
+// The "category" attribute indicates in which tab on the interface (if a TabNavigator is used) the parameter will be displayed. If missing a default category is used.
+
+//-------------------------------------------
+// USER MANAGEMENT
+//-------------------------------------------
+
+// USER ID
+{
+	"name":"id",
+	"label":"User ID",
+	"tooltip":"The user identification number",
+	"category":"User management",
+	"type":"NumericStepper",
+	"value":{$BasicValue=user.id},
+	"edit":false
+},
+
+// USER NAME
+{
+	"name":"name",
+	"label":"User name",
+	"tooltip":"The user name",
+	"category":"User management",
+	"type":"TextInput",
+	"value":"{$BasicValue=user.name}",
+	"edit":false
+},
+
+// IP ADDRESS
+{
+	"name":"ipAddress",
+	"label":"IP address",
+	"tooltip":"---TBD---",
+	"category":"User management",
+	"type":"TextInput",
+	"value":"{$BasicValue=helper.ipAddress}",
+	"edit":false
+},
+
+// SESSION ID
+{
+	"name":"sessionId",
+	"label":"Session ID",
+	"tooltip":"---TBD---",
+	"category":"User management",
+	"type":"TextInput",
+	"value":"{$BasicValue=session.id}",
+	"edit":false
+},
+
+// SESSION HASH ID
+{
+	"name":"sessionHashId",
+	"label":"Session hash ID",
+	"tooltip":"---TBD---",
+	"category":"User management",
+	"type":"TextInput",
+	"value":"{$BasicValue=helper.sessionHashId}",
+	"edit":false
+},
+
+// CLIENT INFO
+{
+	"name":"clientInfo",
+	"label":"Client info",
+	"tooltip":"---TBD---",
+	"category":"User management",
+	"type":"TextInput",
+	"value":"{$BasicValue=helper.clientInfo}",
+	"edit":false
+},
+
+// FROZEN
+{
+	"name":"sessionFrozen",
+	"label":"Is frozen",
+	"tooltip":"---TBD---",
+	"category":"User management",
+	"type":"TextInput",
+	"value":"{$BasicValue=session.frozen}",
+	"edit":false
+},
+
+//-------------------------------------------
+// RUNTIME USER SETTINGS
+//-------------------------------------------
+
+// LOCAL USER
+{
+	"name":"local",
+	"label":"Is local",
+	"tooltip":"---TBD---",
+	"category":"Runtime user settings",
+	"type":"CheckBox",
+	"value":{$BasicValue=user.local},
+	"edit":false
+},
+
+// NON-PLAYER CHARACTER
+{
+	"name":"npc",
+	"label":"Is NPC",
+	"tooltip":"---TBD---",
+	"category":"Runtime user settings",
+	"type":"CheckBox",
+	"value":{$BasicValue=user.npc},
+	"edit":false
+},
+
+// LOGIN TIME
+{
+	"name":"loginTime",
+	"label":"Login time",
+	"tooltip":"---TBD---",
+	"category":"Runtime user settings",
+	"type":"TextInput",
+	"value":"{$BasicValue=helper.loginTime}",
+	"edit":false
+},
+
+// PLAYER ID
+{
+	"name":"playerId",
+	"label":"Last player ID",
+	"tooltip":"---TBD---",
+	"category":"Runtime user settings",
+	"type":"TextInput",
+	"value":"{$BasicValue=user.playerId}",
+	"edit":false
+},
+
+// PLAYER IDS BY ROOM
+{
+	"name":"playerIds",
+	"label":"Player ID by room",
+	"tooltip":"---TBD---",
+	"category":"Runtime user settings",
+	"type":"DataGrid",
+	"componentParams":
+	{
+		"height":100
+	},
+	"defaultListItem":
+	[
+		{
+			"name":"roomName",
+			"label":"Room name",
+			"tooltip":"The room name",
+			"type":"TextInput",
+			"value":""
+		},
+		{
+			"name":"playerId",
+			"label":"Player ID",
+			"tooltip":"---TBD---",
+			"type":"TextInput",
+			"value":""
+		}
+	],
+	"listValues":{$List=playerIds, instance=helper, fields=roomName;playerId},
+	"edit":false
+},
+
+// IS SUPERUSER
+{
+	"name":"superUser",
+	"label":"Is Super User",
+	"tooltip":"---TBD---",
+	"category":"Runtime user settings",
+	"type":"CheckBox",
+	"value":{$BasicValue=user.superUser},
+	"edit":false
+},
+
+// MAX USER VARIABLES ALLOWED
+{
+	"name":"maxAllowedVariables",
+	"label":"Maximum # of user variables",
+	"tooltip":"---TBD---",
+	"category":"Runtime user settings",
+	"type":"NumericStepper",
+	"value":{$BasicValue=user.maxAllowedVariables},
+	"componentParams":
+	{
+		"minimum":0,
+		"maximum":2147483647
+	}
+},
+
+// PRIVILEGE ID
+{
+	"name":"adminHelper.privilegeId",
+	"label":"Profile ID",
+	"tooltip":"The profile's identifier assigned to the user among the available profiles in the Privilege Manager (see zone configuration)",
+	"category":"Runtime user settings",
+	"type":"NumericStepper",
+	"value":{$BasicValue=user.privilegeId},
+	"componentParams":
+	{
+		"minimum":0,
+		"maximum":65535
+	}
+},
+
+// BAD WORDS WARNINGS
+{
+	"name":"badWordsWarnings",
+	"label":"'Bad word' warnings received",
+	"tooltip":"---TBD---",
+	"category":"Runtime user settings",
+	"type":"NumericStepper",
+	"value":{$BasicValue=user.badWordsWarnings},
+	"edit":false
+},
+
+// FLOOD WARNINGS
+{
+	"name":"floodWarnings",
+	"label":"'Flooding' warnings received",
+	"tooltip":"---TBD---",
+	"category":"Runtime user settings",
+	"type":"NumericStepper",
+	"value":{$BasicValue=user.floodWarnings},
+	"edit":false
+},
+
+// LAST REQUEST TIME
+{
+	"name":"lastRequestTime",
+	"label":"Elapsed time since last request",
+	"tooltip":"---TBD---",
+	"category":"Runtime user settings",
+	"type":"TextInput",
+	"value":"{$BasicValue=helper.lastRequestTime}",
+	"edit":false
+},
+
+// RECONNECTION SECONDS
+{
+	"name":"reconnectionSeconds",
+	"label":"Reconnection seconds",
+	"tooltip":"---TBD---",
+	"category":"Runtime user settings",
+	"type":"TextInput",
+	"value":"{$BasicValue=user.reconnectionSeconds}",
+	"edit":false
+},
+
+//-------------------------------------------
+// USER ROOMS
+//-------------------------------------------
+
+// LAST JOINED ROOM
+{
+	"name":"lastJoinedRoom",
+	"label":"Last joined room",
+	"tooltip":"---TBD---",
+	"category":"Rooms and groups",
+	"type":"TextInput",
+	"value":"{$BasicValue=user.lastJoinedRoom}",
+	"edit":false
+},
+
+// JOINED ROOMS
+{
+	"name":"joinedRoom",
+	"label":"Joined rooms",
+	"tooltip":"---TBD---",
+	"category":"Rooms and groups",
+	"type":"DataGrid",
+	"componentParams":
+	{
+		"height":100
+	},
+	"defaultListItem":
+	[
+		{
+			"name":"id",
+			"label":"ID",
+			"tooltip":"The room identification number",
+			"type":"TextInput",
+			"value":""
+		},
+		{
+			"name":"name",
+			"label":"Name",
+			"tooltip":"The room name",
+			"type":"TextInput",
+			"value":""
+		},
+		{
+			"name":"groupId",
+			"label":"Group ID",
+			"tooltip":"The group to which the room belongs",
+			"type":"TextInput",
+			"value":""
+		},
+		{
+			"name":"game",
+			"label":"Is game",
+			"tooltip":"---TBD---",
+			"type":"CheckBox",
+			"value":false
+		}
+	],
+	"listValues":{$List=joinedRooms, instance=user, fields=id;name;groupId;game},
+	"edit":false
+},
+
+// CREATED ROOMS
+{
+	"name":"createdRoom",
+	"label":"Created rooms",
+	"tooltip":"---TBD---",
+	"category":"Rooms and groups",
+	"componentParams":
+	{
+		"height":100
+	},
+	"type":"DataGrid",
+	"defaultListItem":
+	[
+		{
+			"name":"id",
+			"label":"ID",
+			"tooltip":"The room identification number",
+			"type":"TextInput",
+			"value":""
+		},
+		{
+			"name":"name",
+			"label":"Name",
+			"tooltip":"The room name",
+			"type":"TextInput",
+			"value":""
+		},
+		{
+			"name":"groupId",
+			"label":"Group ID",
+			"tooltip":"The group to which the room belongs",
+			"type":"TextInput",
+			"value":""
+		},
+		{
+			"name":"game",
+			"label":"Is game",
+			"tooltip":"---TBD---",
+			"type":"CheckBox",
+			"value":false
+		}
+	],
+	"listValues":{$List=createdRooms, instance=user, fields=id;name;groupId;game},
+	"edit":false
+},
+
+// SUBSCRIBED GROUPS
+{
+	"name":"subscribedGroups",
+	"label":"Subscribed groups",
+	"tooltip":"---TBD---",
+	"category":"Rooms and groups",
+	"type":"DataGrid",
+	"componentParams":
+	{
+		"height":100
+	},
+	"defaultListItem":
+	[
+		{
+			"name":"groupId",
+			"label":"Group ID",
+			"tooltip":"---TBD---",
+			"type":"TextInput",
+			"value":""
+		}
+	],
+	"listValues":{$List=subscribedGroups, instance=user, createField=groupId},
+	"edit":false
+},
+
+//-------------------------------------------
+// RUNTIME USER VARIABLES
+//-------------------------------------------
+
+// USER VARIABLES
+{
+	"name":"userVariables",
+	"label":"User variables",
+	"tooltip":"---TBD---",
+	"category":"Runtime user variables",
+	"type":"DataGrid",
+	"componentParams":
+	{
+		"height":200
+	},
+	"defaultListItem":
+	[
+		{
+			"name":"name",
+			"label":"Name",
+			"tooltip":"Name",
+			"type":"TextInput",
+			"value":"",
+			"validator":"notNull"
+		},
+		{
+			"name":"type",
+			"label":"Type",
+			"tooltip":"---TBD---",
+			"type":"ComboBox",
+			"value":"STRING",
+			"componentParams":
+			{
+				"dataProvider":"BOOLEAN,INT,DOUBLE,STRING,OBJECT,ARRAY"
+			}
+		},
+		{
+			"name":"hidden",
+			"label":"Hidden",
+			"tooltip":"---TBD---",
+			"type":"CheckBox",
+			"value":false
+		},
+		{
+			"name":"value",
+			"label":"Value",
+			"tooltip":"Primitive value or JSON block",
+			"type":"TextInput",
+			"value":"",
+			"validator":"notNull"
+		}
+	],
+	"listValues":{$List=variables, instance=user, fields=name;type;hidden;value},
+	"edit":false
+},
+
+//-------------------------------------------
+// BUDDY PROPERTIES
+//-------------------------------------------
+
+// IS INITED
+{
+	"name":"buddyInited",
+	"label":"Buddylist initialized",
+	"tooltip":"---TBD---",
+	"category":"Buddy properties",
+	"type":"CheckBox",
+	"value":{$BasicValue=buddyProps.inited},
+	"edit":false
+},
+
+// NICKNAME
+{
+	"name":"buddyNickName",
+	"label":"User nickname",
+	"tooltip":"---TBD---",
+	"category":"Buddy properties",
+	"type":"TextInput",
+	"value":"{$BasicValue=buddyProps.nickName}",
+	"edit":false
+},
+
+// IS ONLINE
+{
+	"name":"buddyOnline",
+	"label":"User is online as buddy",
+	"tooltip":"---TBD---",
+	"category":"Buddy properties",
+	"type":"CheckBox",
+	"value":{$BasicValue=buddyProps.online},
+	"edit":false
+},
+
+// CUSTOM STATE
+{
+	"name":"buddyState",
+	"label":"Custom state",
+	"tooltip":"---TBD---",
+	"category":"Buddy properties",
+	"type":"TextInput",
+	"value":"{$BasicValue=buddyProps.state}",
+	"edit":false
+},
+
+// BUDDY VARIABLES
+{
+	"name":"buddyVariables",
+	"label":"User buddy variables",
+	"tooltip":"---TBD---",
+	"category":"Buddy properties",
+	"type":"DataGrid",
+	"componentParams":
+	{
+		"height":200
+	},
+	"defaultListItem":
+	[
+		{
+			"name":"name",
+			"label":"Name",
+			"tooltip":"Name",
+			"type":"TextInput",
+			"value":"",
+			"validator":"notNull"
+		},
+		{
+			"name":"type",
+			"label":"Type",
+			"tooltip":"---TBD---",
+			"type":"ComboBox",
+			"value":"STRING",
+			"componentParams":
+			{
+				"dataProvider":"BOOLEAN,INT,DOUBLE,STRING,OBJECT,ARRAY"
+			}
+		},
+		{
+			"name":"offline",
+			"label":"Offline",
+			"tooltip":"---TBD---",
+			"type":"CheckBox",
+			"value":false
+		},
+		{
+			"name":"value",
+			"label":"Value",
+			"tooltip":"Primitive value or JSON block",
+			"type":"TextInput",
+			"value":"",
+			"validator":"notNull"
+		}
+	],
+	"listValues":{$List=variables, instance=buddyProps, fields=name;type;offline;value},
+	"edit":false
+},
+
+// USER BUDDIES
+{
+	"name":"buddyList",
+	"label":"User buddies",
+	"tooltip":"List of the user buddies; this list is populated only if the user has requested its initialization",
+	"category":"Buddy properties",
+	"type":"DataGrid",
+	"componentParams":
+	{
+		"height":200
+	},
+	"defaultListItem":
+	[
+		{
+			"name":"name",
+			"label":"Name",
+			"tooltip":"Name",
+			"type":"TextInput",
+			"value":"",
+			"validator":"notNull"
+		},
+		{
+			"name":"blocked",
+			"label":"Blocked",
+			"tooltip":"---TBD---",
+			"type":"CheckBox",
+			"value":false
+		},
+		{
+			"name":"temp",
+			"label":"Temp",
+			"tooltip":"---TBD---",
+			"type":"CheckBox",
+			"value":false
+		}
+	],
+	"listValues":{$List=buddyList, instance=helper, fields=name;blocked;temp},
+	"edit":false
+}
