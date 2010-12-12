@@ -1,18 +1,9 @@
 package com.pikitus.games.chess;
 
-import MoveModel;
-
 import java.util.HashMap;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Map;
-
-import ChessBoard.MoveGenerator;
-
-import com.smartfoxserver.v2.entities.data.ISFSArray;
-import com.smartfoxserver.v2.entities.data.ISFSObject;
-import com.smartfoxserver.v2.entities.data.SFSArray;
-import com.smartfoxserver.v2.entities.data.SFSObject;
 
 public class ChessBoard 
 {
@@ -454,44 +445,7 @@ public class ChessBoard
 	 * End of interface
 	 */
 	
-	/**
-	 * Get the board array
-	 * @return (ISFSObject) I should name each one
-	 */
-	public ISFSObject getBoardArray() 
-	{
-		ISFSArray boardArray = new SFSArray();
-		
-		Iterator<String> iterator = mBoard.keySet().iterator();
-		while( iterator.hasNext() ) {
-		  String key   = iterator.next();
-		  Long value = mBoard.get(key);
-		  boardArray.addLong(value);
-		}
-		ISFSObject obj = new SFSObject();
-		obj.putSFSArray("boardArray", boardArray);
-		return obj;
-	}
-	
-	/**
-	 * Get valid move array
-	 * @return
-	 */
-	public ISFSObject getValidMoveArray()
-	{
-		ISFSArray out = new SFSArray();
-		ArrayList<MoveModel> validMoves = getLegalMovesArray();
-		
-		for ( int i = 0; i < validMoves.size(); i++ ) 
-		{
-			out.add(validMoves.get(i));
-		}
-		
-		ISFSObject obj = new SFSObject();
-		obj.putSFSArray("validMovesArray", out);
-		return obj;
-	}
-	
+
 	private class MoveGenerator
 	{
 		public MoveGenerator()
