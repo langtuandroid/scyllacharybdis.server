@@ -1,18 +1,14 @@
 package com.pikitus.games.chess;
 
-import MoveModel;
-
 import java.util.HashMap;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Map;
-
-import ChessBoard.MoveGenerator;
-
 import com.smartfoxserver.v2.entities.data.ISFSArray;
 import com.smartfoxserver.v2.entities.data.ISFSObject;
 import com.smartfoxserver.v2.entities.data.SFSArray;
 import com.smartfoxserver.v2.entities.data.SFSObject;
+import com.pikitus.games.chess.MoveModel;
 
 public class ChessBoard 
 {
@@ -425,16 +421,16 @@ public class ChessBoard
 	 */
 	public ISFSObject getBoardArray() 
 	{
-		ISFSArray boardArray = new SFSArray();
+		ISFSObject boardArray = new SFSObject();
 		
-		Iterator<String> iterator = mBoard.keySet().iterator();
+		Iterator<String> iterator = mPieceBoards.keySet().iterator();
 		while( iterator.hasNext() ) {
 		  String key   = iterator.next();
-		  Long value = mBoard.get(key);
-		  boardArray.addLong(value);
+		  Long value = mPieceBoards.get(key);
+		  boardArray.putLong(key, value);
 		}
 		ISFSObject obj = new SFSObject();
-		obj.putSFSArray("boardArray", boardArray);
+		obj.putSFSObject("boardArray", boardArray);
 		return obj;
 	}
 	
@@ -442,10 +438,10 @@ public class ChessBoard
 	 * Get valid move array
 	 * @return
 	 */
-	public ISFSObject getValidMoveArray()
+	public ISFSObject getValidMoveArray(int color)
 	{
 		ISFSArray out = new SFSArray();
-		ArrayList<MoveModel> validMoves = getLegalMovesArray();
+		ArrayList<MoveModel> validMoves = getLegalMovesArray(color);
 		
 		for ( int i = 0; i < validMoves.size(); i++ ) 
 		{
