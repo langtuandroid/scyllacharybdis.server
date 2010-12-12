@@ -67,7 +67,7 @@ public class SFSChess extends SFSExtension
 		mGameStarted = true;
 		
 		// Reset the board
-		mGameBoard.resetBoard();
+		mGameBoard.initializeBoard();
 		
 		// Get the users by the location they entered the game
 		mPlayer1 = getParentRoom().getUserByPlayerId(1);
