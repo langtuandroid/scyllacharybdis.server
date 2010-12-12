@@ -21,7 +21,7 @@ public class ChessBoard
 	private final String BLACK_KING = "black_king";
 	private final String WHITE_PIECES = "white_pieces";
 	private final String BLACK_PIECES = "black_pieces";
-	//private final String ALL_SQUARES = "all_squares";
+	private final String ALL_SQUARES = "all_squares";
 	
 	// An array of bit boards, each representing a single square
 	private ArrayList<Long> mSquareArray = new ArrayList<Long>();
