@@ -16,10 +16,10 @@ public class ValidMoveHandler extends BaseClientRequestHandler
 	public void handleClientRequest(User user, ISFSObject params)
 	{
 		SFSChess gameExt = (SFSChess) getParentExtension();
-		sendPossibleMoves( gameExt, user );
+		sendPossibleMoves( gameExt );
 	}
 	
-	public void sendPossibleMoves(SFSChess sfsChess, User user) 
+	public void sendPossibleMoves(SFSChess sfsChess) 
 	{
 		ArrayList<MoveModel> moves = sfsChess.getGameBoard().getLegalMovesArray();
 		ISFSObject movesArray = new SFSObject();
