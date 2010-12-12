@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<workbench progressCount="34" version="2.0">
+<workbench progressCount="37" version="2.0">
 <workbenchAdvisor/>
 <window height="768" maximized="true" width="1024" x="60" y="60">
 <fastViewData fastViewLocation="1024"/>
@@ -42,7 +42,7 @@
 </editorArea>
 <editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="SFSChess.java" partName="SFSChess.java" path="C:/Development/server/sfsChess/src/com/pikitus/games/chess/SFSChess.java" title="SFSChess.java" tooltip="sfsChess/src/com/pikitus/games/chess/SFSChess.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/sfsChess/src/com/pikitus/games/chess/SFSChess.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1193" selectionTopPixel="252"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1227" selectionTopPixel="252"/>
 </editor>
 <editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ValidMoveHandler.java" partName="ValidMoveHandler.java" path="C:/Development/server/sfsChess/src/com/pikitus/games/chess/handlers/ValidMoveHandler.java" title="ValidMoveHandler.java" tooltip="sfsChess/src/com/pikitus/games/chess/handlers/ValidMoveHandler.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/sfsChess/src/com/pikitus/games/chess/handlers/ValidMoveHandler.java"/>
