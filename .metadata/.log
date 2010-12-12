@@ -1,0 +1,16 @@
+!SESSION 2010-12-12 19:10:08.076 -----------------------------------------------
+eclipse.buildId=M20100909-0800
+java.version=1.6.0_22
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.java.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.java.product
+
+!ENTRY com.google.gdt.eclipse.suite 1 0 2010-12-12 19:10:10.967
+!MESSAGE Registering: com.google.appengine.eclipse.sdkbundle.1.3.8_1.3.8.v201010161055
+
+!ENTRY com.google.gdt.eclipse.suite 1 0 2010-12-12 19:10:11.327
+!MESSAGE Registering: com.google.gwt.eclipse.sdkbundle.2.1.0_2.1.0.v201010280102
+
+!ENTRY com.google.gdt.eclipse.suite 1 0 2010-12-12 19:10:11.558
+!MESSAGE Registering: com.google.appengine.eclipse.sdkbundle.1.4.0_1.4.0.v201012021502
