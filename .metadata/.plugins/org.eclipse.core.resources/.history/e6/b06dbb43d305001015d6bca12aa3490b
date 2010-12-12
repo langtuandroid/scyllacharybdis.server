@@ -34,6 +34,6 @@ public class ValidMoveHandler extends BaseClientRequestHandler
 			movesArray.getSFSArray(model.from).addUtfString(model.to);
 			
 		}
-		sfsChess.sendSFSObject( "GET_VALID_MOVES_RESULTS", movesArray, user );
+		sfsChess.sendSFSObject( "VALID_MOVES", movesArray, user );
 	}
 }
