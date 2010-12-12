@@ -94,7 +94,8 @@ public class ChessBoard
 	    }
 	    
 	    // All squares are represented by -1 (Java uses signed 64-bit integers)
-	    mPieceBoards.put(ALL_SQUARES, -1L);
+	    // Do I need this?
+	    //mPieceBoards.put(ALL_SQUARES, -1L);
 	    
 	    // Setup the boards for the pieces of each color 
 	    mPieceBoards.put(WHITE_ROOKS, 	mSquareMap.get("a1") |
@@ -409,15 +410,49 @@ public class ChessBoard
 		return false;
 	}	
 	
+	// This is for debugging, not sending down the wire
 	public HashMap<String, ArrayList<MoveModel>> getLegalMovesMap()
 	{
 		return new MoveGenerator().getLegalMovesMap();
 	}
 	
-	public ArrayList<MoveModel> getLegalMovesArray( int color )
+	/*
+	 * Interface for the networking layer
+	 */
+	
+	public ArrayList<MoveModel> getLegalMovesArray( )
 	{
-		return new MoveGenerator().getLegalMovesArray( color );
+		return new MoveGenerator().getLegalMovesArray( currentPlayer );
 	}
+	
+	public HashMap<String, Long> getPieces()
+	{
+		HashMap<String, Long> out = new HashMap<String, Long>();
+		
+		out.put( WHITE_PAWNS, mPieceBoards.get(WHITE_PAWNS) );
+		out.put( WHITE_ROOKS, mPieceBoards.get(WHITE_ROOKS) );
+		out.put( WHITE_KNIGHTS, mPieceBoards.get(WHITE_KNIGHTS) );
+		out.put( WHITE_BISHOPS, mPieceBoards.get(WHITE_BISHOPS) );
+		out.put( WHITE_QUEEN, mPieceBoards.get(WHITE_QUEEN) );
+		out.put( WHITE_KING, mPieceBoards.get(WHITE_KING) );
+		out.put( BLACK_PAWNS, mPieceBoards.get(BLACK_PAWNS) );
+		out.put( BLACK_ROOKS, mPieceBoards.get(BLACK_ROOKS) );
+		out.put( BLACK_KNIGHTS, mPieceBoards.get(BLACK_KNIGHTS) );
+		out.put( BLACK_BISHOPS, mPieceBoards.get(BLACK_BISHOPS) );
+		out.put( BLACK_QUEEN, mPieceBoards.get(BLACK_QUEEN) );
+		out.put( BLACK_KING, mPieceBoards.get(BLACK_KING) );
+		
+		return out;
+	}
+	
+	public MoveModel getLastMove()
+	{
+		return mLastMove;
+	}
+	
+	/*
+	 * End of interface
+	 */
 	
 	/**
 	 * Get the board array
