@@ -2,8 +2,7 @@ package com.pikitus.games.chess;
 
 import java.util.HashMap;
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Map;
+import com.pikitus.games.chess.models.MoveModel;
 
 public class ChessBoard 
 {

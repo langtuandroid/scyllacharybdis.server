@@ -5,6 +5,7 @@ import com.smartfoxserver.v2.entities.data.ISFSObject;
 import com.smartfoxserver.v2.entities.data.SFSObject;
 import com.smartfoxserver.v2.extensions.BaseClientRequestHandler;
 import com.pikitus.games.chess.SFSChess;
+import com.pikitus.games.chess.models.MoveModel;
 
 public class MoveHandler extends BaseClientRequestHandler
 {
@@ -39,8 +40,11 @@ public class MoveHandler extends BaseClientRequestHandler
 	public void movePiece( SFSChess sfsChess, User user, String to, String from ) 
 	{
 		ISFSObject resObj = new SFSObject();
-		boolean valid = sfsChess.getGameBoard().movePiece( to, from );
+		
+		boolean valid = sfsChess.getGameBoard().movePiece( new MoveModel( from, to ) );
 		resObj.putBool("valid", valid );
+		resObj.putUtfString("from", from);
+		resObj.putUtfString("to", to);
 		
 		// Is it a valid move
 		if ( valid ) 

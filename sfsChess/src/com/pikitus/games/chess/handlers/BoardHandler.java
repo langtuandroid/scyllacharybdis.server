@@ -1,8 +1,11 @@
 package com.pikitus.games.chess.handlers;
 
+import java.util.HashMap;
+import java.util.Iterator;
 import com.pikitus.games.chess.SFSChess;
 import com.smartfoxserver.v2.entities.User;
 import com.smartfoxserver.v2.entities.data.ISFSObject;
+import com.smartfoxserver.v2.entities.data.SFSObject;
 import com.smartfoxserver.v2.extensions.BaseClientRequestHandler;
 
 public class BoardHandler extends BaseClientRequestHandler 
@@ -16,6 +19,20 @@ public class BoardHandler extends BaseClientRequestHandler
 	
 	public void sendValidMoves(SFSChess sfsChess, User user) 
 	{
-		sfsChess.sendSFSObject("CHESS_BOARD", sfsChess.getGameBoard().getBoardArray(), user);
+		HashMap<String, Long> board = sfsChess.getGameBoard().getPieces();
+
+		ISFSObject boardArray = new SFSObject();
+			
+		Iterator<String> iterator = board.keySet().iterator();
+		while( iterator.hasNext() ) 
+		{
+			String key   = iterator.next();
+			Long value = board.get(key);
+			boardArray.putLong(key, value);
+		}
+		
+		ISFSObject obj = new SFSObject();
+		obj.putSFSObject("boardArray", boardArray);
+		sfsChess.sendSFSObject("CHESS_BOARD", obj, user);
 	}
 }
