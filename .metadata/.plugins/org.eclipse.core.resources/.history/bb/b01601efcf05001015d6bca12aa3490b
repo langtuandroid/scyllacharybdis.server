@@ -29,7 +29,7 @@ public class SFSChess extends SFSExtension
 		mGameBoard = new ChessBoard();
 		
 	    addRequestHandler("PLAYER_JOINED", PlayerJoinedHandler.class);
-	    addRequestHandler("GET_BOARD", BoardHandler.class);
+	    addRequestHandler("REQUEST_BOARD", BoardHandler.class);
 	    addRequestHandler("GET_VALID_MOVES", ValidMoveHandler.class);
 	    addRequestHandler("MOVE_PIECE", MoveHandler.class);
 	    

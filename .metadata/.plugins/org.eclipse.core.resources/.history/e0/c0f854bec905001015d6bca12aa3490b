@@ -33,6 +33,6 @@ public class BoardHandler extends BaseClientRequestHandler
 		
 		ISFSObject obj = new SFSObject();
 		obj.putSFSObject("boardArray", boardArray);
-		sfsChess.sendSFSObject("GET_BOARD_RESULTS", obj, user);
+		sfsChess.sendSFSObject("CHESS_BOARD", obj, user);
 	}
 }

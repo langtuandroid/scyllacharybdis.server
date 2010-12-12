@@ -49,11 +49,11 @@ public class MoveHandler extends BaseClientRequestHandler
 		// Is it a valid move
 		if ( valid ) 
 		{
-			sfsChess.sendSFSObject("MOVE_PIECE_RESULTS", resObj);
+			sfsChess.sendSFSObject("MOVE_RESULTS", resObj);
 		} 
 		else 
 		{
-			sfsChess.sendSFSObject("MOVE_PIECE_RESULTS", resObj, user);
+			sfsChess.sendSFSObject("MOVE_RESULTS", resObj, user);
 		}
 	}	
 }
