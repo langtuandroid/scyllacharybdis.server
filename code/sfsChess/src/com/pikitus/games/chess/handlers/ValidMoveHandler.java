@@ -1,6 +1,7 @@
 package com.pikitus.games.chess.handlers;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import com.pikitus.games.chess.SFSChess;
 import com.pikitus.games.chess.models.MoveModel;
@@ -21,17 +22,15 @@ public class ValidMoveHandler extends BaseClientRequestHandler
 	
 	public void sendPossibleMoves(SFSChess sfsChess, User user) 
 	{
-		ArrayList<MoveModel> moves = sfsChess.getGameBoard().getLegalMovesArray();
+		HashMap<Long, Long> moves = sfsChess.getGameBoard().getLegalMovesMap();
+
 		ISFSObject movesArray = new SFSObject();
-		Iterator<MoveModel> iterator = moves.iterator();
+		Iterator<Long> iterator = moves.keySet().iterator();
 		while( iterator.hasNext() ) 
 		{
-			MoveModel model = iterator.next();
-			if ( ! movesArray.containsKey(model.from) )
-			{
-				movesArray.putSFSArray(model.from, new SFSArray() );
-			}
-			movesArray.getSFSArray(model.from).addUtfString(model.to);
+			Long key   = iterator.next();
+			Long value = moves.get(key);
+			movesArray.putLong(key, value);
 			
 		}
 		sfsChess.sendSFSObject( "GET_VALID_MOVES_RESULTS", movesArray, user );
