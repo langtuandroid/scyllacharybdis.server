@@ -72,9 +72,9 @@
     </room>
   </rooms>
   <disabledSystemEvents/>
-  <privilegeManager active="false">
+  <privilegeManager active="true">
     <profiles>
-      <profile id="1">
+      <profile id="0">
         <name>StandardUser</name>
         <deniedRequests/>
         <permissionFlags class="java.util.Arrays$ArrayList">
