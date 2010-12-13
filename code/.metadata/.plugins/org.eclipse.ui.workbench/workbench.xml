@@ -38,6 +38,7 @@
 <part id="1"/>
 <part id="2"/>
 <part id="3"/>
+<part id="4"/>
 </presentation>
 </folder>
 </info>
@@ -54,16 +55,19 @@
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/sfsChess/src/com/pikitus/games/chess/ChessBoard.java"/>
 <editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="950" selectionTopPixel="960"/>
 </editor>
-<editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="OnUserGoneHandler.java" partName="OnUserGoneHandler.java" path="C:/Development/server/code/sfsLogin/src/com/pikitus/login/OnUserGoneHandler.java" title="OnUserGoneHandler.java" tooltip="sfsLogin/src/com/pikitus/login/OnUserGoneHandler.java" workbook="DefaultEditorWorkbook">
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="OnUserGoneHandler.java" partName="OnUserGoneHandler.java" path="C:/Development/server/code/sfsLogin/src/com/pikitus/login/OnUserGoneHandler.java" title="OnUserGoneHandler.java" tooltip="sfsLogin/src/com/pikitus/login/OnUserGoneHandler.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/sfsLogin/src/com/pikitus/login/OnUserGoneHandler.java"/>
 <editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="351" selectionTopPixel="0"/>
+</editor>
+<editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="SFSLogin.java" partName="SFSLogin.java" path="C:/Development/server/code/sfsLogin/src/com/pikitus/login/SFSLogin.java" title="SFSLogin.java" tooltip="sfsLogin/src/com/pikitus/login/SFSLogin.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/sfsLogin/src/com/pikitus/login/SFSLogin.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="409" selectionTopPixel="72"/>
 </editor>
 </editors>
 <views>
 <view id="org.eclipse.ui.views.ProblemView" partName="Problems">
 <viewState PRIMARY_SORT_FIELD="org.eclipse.ui.ide.severityAndDescriptionField" categoryGroup="org.eclipse.ui.ide.severity" markerContentGenerator="org.eclipse.ui.ide.problemsGenerator" partName="Problems">
-<expanded>
-<category IMemento.internal.id="Warnings (3 items)"/>
+<expanded>&#x0A;<category IMemento.internal.id="Warnings (3 items)"/>
 </expanded>
 <columnWidths org.eclipse.ui.ide.locationField="0" org.eclipse.ui.ide.markerType="0" org.eclipse.ui.ide.pathField="0" org.eclipse.ui.ide.resourceField="0" org.eclipse.ui.ide.severityAndDescriptionField="0"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.severityAndDescriptionField"/>
@@ -280,10 +284,8 @@
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/sfsChess/src/com/pikitus/games/chess/handlers/PlayerJoinedHandler.java"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/sfsChess/src/com/pikitus/games/chess/ChessBoard.java"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/sfsLogin/src/com/pikitus/login/OnUserGoneHandler.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/sfsLogin/src/com/pikitus/login/SFSLogin.java"/>
 </editors>
-<item historyLabel="BoardHandler.java" index="2">
-<position/>
-</item>
 <item historyLabel="SFSChess.java" index="1">
 <position info="not_deleted" x="1061" y="0"/>
 </item>
@@ -428,7 +430,10 @@
 <item historyLabel="SFSChess.java" index="1">
 <position info="not_deleted" x="809" y="0"/>
 </item>
-<item active="true" historyLabel="OnUserGoneHandler.java" index="8">
+<item historyLabel="OnUserGoneHandler.java" index="8">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item active="true" historyLabel="SFSLogin.java" index="9">
 <position info="not_deleted" x="0" y="0"/>
 </item>
 </navigationHistory>
@@ -449,6 +454,9 @@
 </trimLayout>
 </window>
 <mruList>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="SFSLogin.java" tooltip="sfsLogin/src/com/pikitus/login/SFSLogin.java">
+<persistable path="/sfsLogin/src/com/pikitus/login/SFSLogin.java"/>
+</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="OnUserGoneHandler.java" tooltip="sfsLogin/src/com/pikitus/login/OnUserGoneHandler.java">
 <persistable path="/sfsLogin/src/com/pikitus/login/OnUserGoneHandler.java"/>
 </file>
@@ -490,9 +498,6 @@
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.google.gwt.eclipse.core.editors.gwtJavaEditor" name="GameService.java" tooltip="Pikitus/src/com/pikitus/client/GameService.java">
 <persistable path="/Pikitus/src/com/pikitus/client/GameService.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.google.gwt.eclipse.core.editors.gwtJavaEditor" name="ChessWidget.java" tooltip="Pikitus/src/com/pikitus/client/ChessWidget.java">
-<persistable path="/Pikitus/src/com/pikitus/client/ChessWidget.java"/>
 </file>
 </mruList>
 </workbench>
