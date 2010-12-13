@@ -400,19 +400,15 @@ public class ChessBoard
 		return false;
 	}	
 	
-	// This is for debugging, not sending down the wire
-	public HashMap<String, ArrayList<MoveModel>> getLegalMovesMap()
-	{
-		return new MoveGenerator().getLegalMovesMap();
-	}
+	
 	
 	/*
 	 * Interface for the networking layer
 	 */
 	
-	public ArrayList<MoveModel> getLegalMovesArray( )
+	public HashMap<Long, Long> getLegalMovesMap()
 	{
-		return new MoveGenerator().getLegalMovesArray( currentPlayer );
+		return new MoveGenerator().getLegalMovesMap();
 	}
 	
 	public HashMap<String, Long> getPieces()
@@ -453,71 +449,85 @@ public class ChessBoard
 		}
 		
 		/**
-		 * For debugging
-		 * @return HashMap of moves indexed by piece type
+		 * For going out to the server
+		 * @return HashMap of moves indexed by square
 		 */
-		public HashMap<String, ArrayList<MoveModel>> getLegalMovesMap( )
+		public HashMap<Long, Long> getLegalMovesMap()
 		{
-			HashMap<String, ArrayList<MoveModel>> legalMoves = new HashMap<String, ArrayList<MoveModel>>();
+			HashMap<Long, Long> legalMoves = new HashMap<Long, Long>();
 			
-			legalMoves.putAll( getWhiteLegalMoves() );
-			legalMoves.putAll( getBlackLegalMoves() );
+			long playersPieces = ( currentPlayer == BLACK ) ? mPieceBoards.get(BLACK_PIECES) : mPieceBoards.get(WHITE_PIECES);
 
+			for( long square:mSquareArray )
+			{
+				if ( (square & playersPieces) != 0 )
+				{
+					legalMoves.put( square, getLegalMovesForSquare(square) );
+				}
+			}
 			
 			return legalMoves;	
 		}
 		
-		/**
-		 * For going out to the server
-		 * @return An array list of all possible moves
-		 */
-		public ArrayList<MoveModel> getLegalMovesArray( int color )
+		private Long getLegalMovesForSquare(long square)
 		{
-			HashMap<String, ArrayList<MoveModel>> legalMoves = new HashMap<String, ArrayList<MoveModel>>();
-			
-			legalMoves.putAll( (color == WHITE) ? getWhiteLegalMoves() : getBlackLegalMoves() );
-			
-			ArrayList<MoveModel> out = new ArrayList<MoveModel>();
-			
-			for( ArrayList<MoveModel> moves : legalMoves.values() )
+			if ( (square & mPieceBoards.get(WHITE_PAWNS)) != 0 )
 			{
-				out.addAll( moves );
+				return getWhitePawnAttacks(square);
 			}
-			
-			return out;
+			else if ( (square & mPieceBoards.get(WHITE_ROOKS)) != 0 )
+			{
+				return getWhiteRookAttacks(square);
+			}
+			else if ( (square & mPieceBoards.get(WHITE_KNIGHTS)) != 0 )
+			{
+				return getWhiteKnightAttacks(square);
+			}
+			else if ( (square & mPieceBoards.get(WHITE_BISHOPS)) != 0 )
+			{
+				return getWhiteBishopAttacks(square);
+			}
+			else if ( (square & mPieceBoards.get(WHITE_QUEEN)) != 0 )
+			{
+				return getWhiteQueenAttacks(square);
+			}
+			else if ( (square & mPieceBoards.get(WHITE_KING)) != 0 )
+			{
+				return getWhiteKingAttacks(square);
+			}
+			else if ( (square & mPieceBoards.get(BLACK_PAWNS)) != 0 )
+			{
+				return getBlackPawnAttacks(square);
+			}
+			else if ( (square & mPieceBoards.get(BLACK_ROOKS)) != 0 )
+			{
+				return getBlackRookAttacks(square);
+			}
+			else if ( (square & mPieceBoards.get(BLACK_BISHOPS)) != 0 )
+			{
+				return getBlackBishopAttacks(square);
+			}
+			else if ( (square & mPieceBoards.get(BLACK_KNIGHTS)) != 0 )
+			{
+				return getBlackKnightAttacks(square);
+			}
+			else if ( (square & mPieceBoards.get(BLACK_QUEEN)) != 0 )
+			{
+				return getBlackQueenAttacks( square );
+			}
+			else if ( (square & mPieceBoards.get(BLACK_KING)) != 0 )
+			{
+				return getBlackKingAttacks(square);
+			}
+			else 
+			{
+				return 0L;
+			}
 		}
 		
-		private HashMap<String, ArrayList<MoveModel>> getWhiteLegalMoves()
+		private long getWhitePawnAttacks( long square )
 		{
-			HashMap<String, ArrayList<MoveModel>> legalMoves = new HashMap<String, ArrayList<MoveModel>>();
-			
-			legalMoves.put(WHITE_PAWNS, getWhitePawnAttacks( ) );
-			legalMoves.put(WHITE_ROOKS, getWhiteRookAttacks( ) );
-			legalMoves.put(WHITE_KNIGHTS, getWhiteKnightAttacks( ) );
-			legalMoves.put(WHITE_BISHOPS, getWhiteBishopAttacks( ) );
-			legalMoves.put(WHITE_QUEEN, getWhiteQueenAttacks( ) );
-			legalMoves.put(WHITE_KING, getWhiteKingAttacks( ) );
-			
-			return legalMoves;
-		}
-		
-		private HashMap<String, ArrayList<MoveModel>> getBlackLegalMoves()
-		{
-			HashMap<String, ArrayList<MoveModel>> legalMoves = new HashMap<String, ArrayList<MoveModel>>();
-			
-			legalMoves.put(BLACK_PAWNS, getBlackPawnAttacks( ) );
-			legalMoves.put(BLACK_ROOKS, getBlackRookAttacks( ) );
-			legalMoves.put(BLACK_KNIGHTS, getBlackKnightAttacks( ) );
-			legalMoves.put(BLACK_BISHOPS, getBlackBishopAttacks( ) );
-			legalMoves.put(BLACK_QUEEN, getBlackQueenAttacks( ) );
-			legalMoves.put(BLACK_KING, getBlackKingAttacks( ) );
-			
-			return legalMoves;
-		}
-		
-		private ArrayList<MoveModel> getWhitePawnAttacks()
-		{
-			ArrayList<MoveModel> moves = new ArrayList<MoveModel>();
+			long moves = 0;
 			
 			// Get piece boards for each team
 			long opposingPieces = mPieceBoards.get(BLACK_PIECES);
@@ -525,289 +535,269 @@ public class ChessBoard
 			
 			long piece = mPieceBoards.get(WHITE_PAWNS);
 			
-			for( long square:mSquareArray )
+			// Get the index of the square
+			int squareIndex = mSquareArray.indexOf(square);
+			
+			// Go north one square
+			int i = squareIndex + 8; 
+			if( i < 64 )
 			{
-				if ( (square & piece) != 0 )
+				// If we're not colliding with an ally piece
+				if ( (mSquareArray.get(i) & allyPieces) == 0 )
 				{
-					// Get the index of the square
-					int squareIndex = mSquareArray.indexOf(square);
-					
-					// Go north one square
-					int i = squareIndex + 8; 
-					if( i < 64 )
-					{
-						// If we're not colliding with an ally piece
-						if ( (mSquareArray.get(i) & allyPieces) == 0 )
-						{
-							// Add the move
-							moves.add( new MoveModel( mSquareLabels[squareIndex], mSquareLabels[i] ) );
-						}
-					}
-					
-					// Go northeast one square
-					i = squareIndex + 9;
-					if ( i % 8 != 0 && i / 8 < 8 && i < 64 )
-					{
-					    // If we're capturing an enemy piece				
-						if ( (mSquareArray.get(i) & opposingPieces) != 0 )  
-						{
-							// Add the move
-							moves.add( new MoveModel( mSquareLabels[squareIndex], mSquareLabels[i], MoveModel.CAPTURE ) );
-						}		  
-						// Or it's an en passant
-						else if( ((mLastMove.type & MoveModel.PAWN_MOVE_TWO) != 0 &&
-							  	 (mSquareMap.get(mLastMove.to) & mPieceBoards.get(BLACK_PAWNS) & mSquareArray.get(squareIndex + 1) ) != 0))
-						{
-							// Add the move
-							moves.add( new MoveModel( mSquareLabels[squareIndex], mSquareLabels[i],(byte)(MoveModel.CAPTURE | MoveModel.EN_PASSANT)));
-						}
-					}
-					
-					
-					// Go northwest one square
-					i = squareIndex + 7; 
-					if( i % 8 != 7 && i / 8 < 8 && i < 64 )
-					{
-						// If we're capturing an enemy piece
-						if ( (mSquareArray.get(i) & opposingPieces) != 0 )
-						{
-							// Add the move
-							moves.add( new MoveModel( mSquareLabels[squareIndex], mSquareLabels[i], MoveModel.CAPTURE ) );
-						}
-						// Or it's an en passant
-						else if( ((mLastMove.type & MoveModel.PAWN_MOVE_TWO) != 0 &&
-							  	 (mSquareMap.get(mLastMove.to) & mPieceBoards.get(BLACK_PAWNS) & mSquareArray.get(squareIndex - 1) ) != 0))
-						{
-							// Add the move
-							moves.add( new MoveModel( mSquareLabels[squareIndex], mSquareLabels[i],(byte)(MoveModel.CAPTURE | MoveModel.EN_PASSANT)));
-						}
-					}
-					
-					// Go north twice if still on starting line
-					i = squareIndex + 16;
-					if( i < 64 && ( ( mSquareArray.get(squareIndex) & mRows[1] ) != 0) )
-					{
-						// If we're not colliding with any other piece
-						if ( (mSquareArray.get(i) & allyPieces) == 0 && (mSquareArray.get(i) & opposingPieces) == 0)
-						{
-							// Add the move
-							moves.add( new MoveModel( mSquareLabels[squareIndex], mSquareLabels[i], MoveModel.PAWN_MOVE_TWO ) );
-						}
-					}
+					moves = ( moves | mSquareArray.get(i) ) ;
 				}
 			}
+			
+			// Go northeast one square
+			i = squareIndex + 9;
+			if ( i % 8 != 0 && i / 8 < 8 && i < 64 )
+			{
+			    // If we're capturing an enemy piece				
+				if ( (mSquareArray.get(i) & opposingPieces) != 0 )  
+				{
+					// Add the move
+					moves = ( moves | mSquareArray.get(i) ) ;
+				}		  
+				// Or it's an en passant
+				else if( ((mLastMove.type & MoveModel.PAWN_MOVE_TWO) != 0 &&
+					  	 (mSquareMap.get(mLastMove.to) & mPieceBoards.get(BLACK_PAWNS) & mSquareArray.get(squareIndex + 1) ) != 0))
+				{
+					// Add the move
+					moves = ( moves | mSquareArray.get(i) ) ;
+				}
+			}
+			
+			
+			// Go northwest one square
+			i = squareIndex + 7; 
+			if( i % 8 != 7 && i / 8 < 8 && i < 64 )
+			{
+				// If we're capturing an enemy piece
+				if ( (mSquareArray.get(i) & opposingPieces) != 0 )
+				{
+					// Add the move
+					moves = ( moves | mSquareArray.get(i) ) ;
+				}
+				// Or it's an en passant
+				else if( ((mLastMove.type & MoveModel.PAWN_MOVE_TWO) != 0 &&
+					  	 (mSquareMap.get(mLastMove.to) & mPieceBoards.get(BLACK_PAWNS) & mSquareArray.get(squareIndex - 1) ) != 0))
+				{
+					// Add the move
+					moves = ( moves | mSquareArray.get(i) ) ;
+				}
+			}
+			
+			// Go north twice if still on starting line
+			i = squareIndex + 16;
+			if( i < 64 && ( ( mSquareArray.get(squareIndex) & mRows[1] ) != 0) )
+			{
+				// If we're not colliding with any other piece
+				if ( (mSquareArray.get(i) & allyPieces) == 0 && (mSquareArray.get(i) & opposingPieces) == 0)
+				{
+					// Add the move
+					moves = ( moves | mSquareArray.get(i) ) ;
+				}
+			}
+		
 			return moves;
 		}
 		
-		private ArrayList<MoveModel> getBlackPawnAttacks()
+		private long getBlackPawnAttacks( long square )
 		{
-			ArrayList<MoveModel> moves = new ArrayList<MoveModel>();
+			long moves = 0;
 			
 			// Get piece boards for each team
 			long opposingPieces = mPieceBoards.get(WHITE_PIECES);
 			long allyPieces = mPieceBoards.get(BLACK_PIECES);
 			
-			long piece = mPieceBoards.get(BLACK_PAWNS);
+			// Get the index of the square
+			int squareIndex = mSquareArray.indexOf(square);
 			
-			for( long square:mSquareArray )
+			// Go south one square
+			int i = squareIndex - 8; 
+			if( i >= 0 )
 			{
-				if ( (square & piece) != 0 )
+				// If we're not colliding with an ally piece
+				if ( (mSquareArray.get(i) & allyPieces) == 0 )
 				{
-					// Get the index of the square
-					int squareIndex = mSquareArray.indexOf(square);
-					
-					// Go south one square
-					int i = squareIndex - 8; 
-					if( i >= 0 )
-					{
-						// If we're not colliding with an ally piece
-						if ( (mSquareArray.get(i) & allyPieces) == 0 )
-						{
-							// Add the move
-							moves.add( new MoveModel( mSquareLabels[squareIndex], mSquareLabels[i] ) );
-						}
-					}
-					
-					// Go southeast one square
-					i = squareIndex - 7; 
-					if( i % 8 != 0 && i / 8 >= 0 && i >= 0 )
-					{
-						// If we're taking an enemy piece
-						if ( (mSquareArray.get(i) & opposingPieces) != 0 )
-						{
-							// Add the move
-							moves.add( new MoveModel( mSquareLabels[squareIndex], mSquareLabels[i], MoveModel.CAPTURE ) );	
-						}
-						// Or it's an en passant
-						else if( ((mLastMove.type & MoveModel.PAWN_MOVE_TWO) != 0 &&
-							  	 (mSquareMap.get(mLastMove.to) & mPieceBoards.get(WHITE_PAWNS) & mSquareArray.get(squareIndex + 1) ) != 0))
-						{
-							// Add the move
-							moves.add( new MoveModel( mSquareLabels[squareIndex], mSquareLabels[i],(byte)(MoveModel.CAPTURE | MoveModel.EN_PASSANT)));
-						}
-					}
-					
-					// Go southwest one square
-					i = squareIndex - 9; 
-					if ( i % 8 != 7 && i / 8 >= 0 && i >= 0 )
-					{
-						// If we're taking an enemy piece
-						if ( (mSquareArray.get(i) & opposingPieces) != 0 )
-						{
-							// Add the move
-							moves.add( new MoveModel( mSquareLabels[squareIndex], mSquareLabels[i], MoveModel.CAPTURE ) );
-						}
-						// Or it's an en passant
-						else if( ((mLastMove.type & MoveModel.PAWN_MOVE_TWO) != 0 &&
-							  	 (mSquareMap.get(mLastMove.to) & mPieceBoards.get(WHITE_PAWNS) & mSquareArray.get(squareIndex - 1) ) != 0))
-						{
-							// Add the move
-							moves.add( new MoveModel( mSquareLabels[squareIndex], mSquareLabels[i],(byte)(MoveModel.CAPTURE | MoveModel.EN_PASSANT)));
-						}
-					}
-					
-					// Go south twice if still on starting line
-					i = squareIndex - 16;
-					if( i >= 0 && ( ( mSquareArray.get(squareIndex) & mRows[6] ) != 0) )
-					{
-						// If we're not colliding with any other piece
-						if ( (mSquareArray.get(i) & allyPieces) == 0 && (mSquareArray.get(i) & opposingPieces) == 0)
-						{
-							// Add the move
-							moves.add( new MoveModel( mSquareLabels[squareIndex], mSquareLabels[i], MoveModel.PAWN_MOVE_TWO ) );
-						}
-					}
+					// Add the move
+					moves = ( moves | mSquareArray.get(i) ) ;
 				}
 			}
+			
+			// Go southeast one square
+			i = squareIndex - 7; 
+			if( i % 8 != 0 && i / 8 >= 0 && i >= 0 )
+			{
+				// If we're taking an enemy piece
+				if ( (mSquareArray.get(i) & opposingPieces) != 0 )
+				{
+					// Add the move
+					moves = ( moves | mSquareArray.get(i) ) ;	
+				}
+				// Or it's an en passant
+				else if( ((mLastMove.type & MoveModel.PAWN_MOVE_TWO) != 0 &&
+					  	 (mSquareMap.get(mLastMove.to) & mPieceBoards.get(WHITE_PAWNS) & mSquareArray.get(squareIndex + 1) ) != 0))
+				{
+					// Add the move
+					moves = ( moves | mSquareArray.get(i) ) ;
+				}
+			}
+			
+			// Go southwest one square
+			i = squareIndex - 9; 
+			if ( i % 8 != 7 && i / 8 >= 0 && i >= 0 )
+			{
+				// If we're taking an enemy piece
+				if ( (mSquareArray.get(i) & opposingPieces) != 0 )
+				{
+					// Add the move
+					moves = ( moves | mSquareArray.get(i) ) ;
+				}
+				// Or it's an en passant
+				else if( ((mLastMove.type & MoveModel.PAWN_MOVE_TWO) != 0 &&
+					  	 (mSquareMap.get(mLastMove.to) & mPieceBoards.get(WHITE_PAWNS) & mSquareArray.get(squareIndex - 1) ) != 0))
+				{
+					// Add the move
+					moves = ( moves | mSquareArray.get(i) ) ;
+				}
+			}
+			
+			// Go south twice if still on starting line
+			i = squareIndex - 16;
+			if( i >= 0 && ( ( mSquareArray.get(squareIndex) & mRows[6] ) != 0) )
+			{
+				// If we're not colliding with any other piece
+				if ( (mSquareArray.get(i) & allyPieces) == 0 && (mSquareArray.get(i) & opposingPieces) == 0)
+				{
+					// Add the move
+					moves = ( moves | mSquareArray.get(i) ) ;
+				}
+			}
+			
+			
 			return moves;
 		}
 		
-		private ArrayList<MoveModel> getWhiteRookAttacks()
+		private long getWhiteRookAttacks( long square )
 		{
-			return getRookAttacks(mPieceBoards.get(WHITE_ROOKS), WHITE);
+			return getRookAttacks(square, WHITE);
 		}
 		
-		private ArrayList<MoveModel> getBlackRookAttacks()
+		private long getBlackRookAttacks( long square )
 		{
-			return getRookAttacks(mPieceBoards.get(BLACK_ROOKS), BLACK);
+			return getRookAttacks(square, BLACK);
 		}
 		
-		private ArrayList<MoveModel> getRookAttacks( long piece, int color )
+		private long getRookAttacks( long square, int color )
 		{
-			ArrayList<MoveModel> moves = new ArrayList<MoveModel>();
+			long moves = 0;
 			
 			// Get piece boards for each team
 			long opposingPieces = ( color == WHITE ) ? mPieceBoards.get(BLACK_PIECES) : mPieceBoards.get(WHITE_PIECES);
 			long allyPieces = ( color == BLACK ) ? mPieceBoards.get(BLACK_PIECES) : mPieceBoards.get(WHITE_PIECES);
 			
-			// Iterate through each square
-			for ( long square:mSquareArray )
+			// Get the index of the square
+			int squareIndex = mSquareArray.indexOf(square);
+			
+			// Go left from position until you hit something or the end of the board
+			for ( int i = squareIndex - 1; i >= (squareIndex / 8) * 8; i-- )
 			{
-				// If the square has a rook
-				if( (square & piece) != 0 )
+				// If we're not colliding with an ally piece
+				if ( (mSquareArray.get(i) & allyPieces) == 0 )
 				{
-					// Get the index of the square
-					int squareIndex = mSquareArray.indexOf(square);
-					
-					// Go left from position until you hit something or the end of the board
-					for ( int i = squareIndex - 1; i >= (squareIndex / 8) * 8; i-- )
+					// If we're capturing an opposing piece
+					if ( (mSquareArray.get(i) & opposingPieces) != 0 )
 					{
-						// If we're not colliding with an ally piece
-						if ( (mSquareArray.get(i) & allyPieces) == 0 )
-						{
-							// If we're capturing an opposing piece
-							if ( (mSquareArray.get(i) & opposingPieces) != 0 )
-							{
-								// Terminate loop since we're stopping to capture the piece
-								moves.add( new MoveModel( mSquareLabels[squareIndex], mSquareLabels[i], MoveModel.CAPTURE ) );
-								break;
-							}
-							else
-							{
-								// Add the move
-								moves.add( new MoveModel( mSquareLabels[squareIndex], mSquareLabels[i] ) );
-							}
-						}
-						else
-						{
-							break;
-						}
+						// Terminate loop since we're stopping to capture the piece
+						moves = ( moves | mSquareArray.get(i) ) ;
+						break;
 					}
-					
-					// Go right from position until you hit something or the end of the board
-					for ( int i = squareIndex + 1; i < (squareIndex / 8 + 1) * 8; i++ )
+					else
 					{
-						// If we're not colliding with a white piece
-						if ( (mSquareArray.get(i) & allyPieces) == 0 )
-						{
-							// If we're capturing an opposing piece
-							if ( (mSquareArray.get(i) & opposingPieces) != 0 )
-							{
-								// Terminate loop since we're stopping to capture the piece
-								moves.add( new MoveModel( mSquareLabels[squareIndex], mSquareLabels[i], MoveModel.CAPTURE ) );
-								break;
-							}
-							else
-							{
-								// Add the move
-								moves.add( new MoveModel( mSquareLabels[squareIndex], mSquareLabels[i] ) );
-							}
-						}
-						else
-						{
-							break;
-						}
+						// Add the move
+						moves = ( moves | mSquareArray.get(i) ) ;
 					}
-					
-					// Go up from position until you hit something or the end of the board
-					for ( int i = squareIndex + 8; i < 64; i += 8)
+				}
+				else
+				{
+					break;
+				}
+			}
+			
+			// Go right from position until you hit something or the end of the board
+			for ( int i = squareIndex + 1; i < (squareIndex / 8 + 1) * 8; i++ )
+			{
+				// If we're not colliding with a white piece
+				if ( (mSquareArray.get(i) & allyPieces) == 0 )
+				{
+					// If we're capturing an opposing piece
+					if ( (mSquareArray.get(i) & opposingPieces) != 0 )
 					{
-						// If we're not colliding with a white piece
-						if ( (mSquareArray.get(i) & allyPieces) == 0 )
-						{
-							// If we're capturing an opposing piece
-							if ( (mSquareArray.get(i) & opposingPieces) != 0 )
-							{
-								// Terminate loop since we're stopping to capture the piece
-								moves.add( new MoveModel( mSquareLabels[squareIndex], mSquareLabels[i], MoveModel.CAPTURE ) );
-								break;
-							}
-							else
-							{
-								// Add the move
-								moves.add( new MoveModel( mSquareLabels[squareIndex], mSquareLabels[i] ) );
-							}
-						}
-						else
-						{
-							break;
-						}
+						// Terminate loop since we're stopping to capture the piece
+						moves = ( moves | mSquareArray.get(i) ) ;
+						break;
 					}
-					
-					// Go down from position until you hit something or the end of the board
-					for ( int i = squareIndex - 8; i >= 0; i -= 8)
+					else
 					{
-						// If we're not colliding with a white piece
-						if ( (mSquareArray.get(i) & allyPieces) == 0 )
-						{
-							// If we're capturing an opposing piece
-							if ( (mSquareArray.get(i) & opposingPieces) != 0 )
-							{
-								// Terminate loop since we're stopping to capture the piece
-								moves.add( new MoveModel( mSquareLabels[squareIndex], mSquareLabels[i], MoveModel.CAPTURE ) );
-								break;
-							}
-							else
-							{
-								// Add the move
-								moves.add( new MoveModel( mSquareLabels[squareIndex], mSquareLabels[i] ) );
-							}
-						}
-						else
-						{
-							break;
-						}
+						// Add the move
+						moves = ( moves | mSquareArray.get(i) ) ;
 					}
+				}
+				else
+				{
+					break;
+				}
+			}
+			
+			// Go up from position until you hit something or the end of the board
+			for ( int i = squareIndex + 8; i < 64; i += 8)
+			{
+				// If we're not colliding with a white piece
+				if ( (mSquareArray.get(i) & allyPieces) == 0 )
+				{
+					// If we're capturing an opposing piece
+					if ( (mSquareArray.get(i) & opposingPieces) != 0 )
+					{
+						// Terminate loop since we're stopping to capture the piece
+						moves = ( moves | mSquareArray.get(i) ) ;
+						break;
+					}
+					else
+					{
+						// Add the move
+						moves = ( moves | mSquareArray.get(i) ) ;
+					}
+				}
+				else
+				{
+					break;
+				}
+			}
+			
+			// Go down from position until you hit something or the end of the board
+			for ( int i = squareIndex - 8; i >= 0; i -= 8)
+			{
+				// If we're not colliding with a white piece
+				if ( (mSquareArray.get(i) & allyPieces) == 0 )
+				{
+					// If we're capturing an opposing piece
+					if ( (mSquareArray.get(i) & opposingPieces) != 0 )
+					{
+						// Terminate loop since we're stopping to capture the piece
+						moves = ( moves | mSquareArray.get(i) ) ;
+						break;
+					}
+					else
+					{
+						// Add the move
+						moves = ( moves | mSquareArray.get(i) ) ;
+					}
+				}
+				else
+				{
+					break;
 				}
 			}
 
@@ -815,132 +805,124 @@ public class ChessBoard
 
 		}
 		
-		private ArrayList<MoveModel> getWhiteBishopAttacks()
+		private long getWhiteBishopAttacks( long square)
 		{
-			return getBishopAttacks( mPieceBoards.get(WHITE_BISHOPS), WHITE );
+			return getBishopAttacks( square, WHITE );
 		}
 		
-		private ArrayList<MoveModel> getBlackBishopAttacks()
+		private long getBlackBishopAttacks( long square)
 		{
-			return getBishopAttacks( mPieceBoards.get(BLACK_BISHOPS), BLACK );
+			return getBishopAttacks( square, BLACK );
 		}
 		
-		private ArrayList<MoveModel> getBishopAttacks( long piece, int color )
+		private long getBishopAttacks( long square, int color )
 		{
-			ArrayList<MoveModel> moves = new ArrayList<MoveModel>();
+			long moves = 0;
 			
 			// Get piece boards for each team
 			long opposingPieces = ( color == WHITE ) ? mPieceBoards.get(BLACK_PIECES) : mPieceBoards.get(WHITE_PIECES);
 			long allyPieces = ( color == BLACK ) ? mPieceBoards.get(BLACK_PIECES) : mPieceBoards.get(WHITE_PIECES);
 			
-			// Iterate through each square
-			for ( long square:mSquareArray )
+			// Get the index of the square
+			int squareIndex = mSquareArray.indexOf(square);
+			
+			// Go northeast from position until you hit something or the end of the board
+			for ( int i = squareIndex + 9; i % 8 != 0 && i / 8 < 8 && i < 64; i += 9 )
 			{
-				// If the square has a bishop
-				if( (square & piece) != 0 )
+				// If we're not colliding with an ally piece
+				if ( (mSquareArray.get(i) & allyPieces) == 0 )
 				{
-					// Get the index of the square
-					int squareIndex = mSquareArray.indexOf(square);
-					
-					// Go northeast from position until you hit something or the end of the board
-					for ( int i = squareIndex + 9; i % 8 != 0 && i / 8 < 8 && i < 64; i += 9 )
+					// If we're capturing an opposing piece
+					if ( (mSquareArray.get(i) & opposingPieces) != 0 )
 					{
-						// If we're not colliding with an ally piece
-						if ( (mSquareArray.get(i) & allyPieces) == 0 )
-						{
-							// If we're capturing an opposing piece
-							if ( (mSquareArray.get(i) & opposingPieces) != 0 )
-							{
-								// Terminate loop since we're stopping to capture the piece
-								moves.add( new MoveModel( mSquareLabels[squareIndex], mSquareLabels[i], MoveModel.CAPTURE ) );
-								break;
-							}
-							else
-							{
-								// Add the move
-								moves.add( new MoveModel( mSquareLabels[squareIndex], mSquareLabels[i] ) );
-							}
-						}
-						else
-						{
-							break;
-						}
+						// Terminate loop since we're stopping to capture the piece
+						moves = ( moves | mSquareArray.get(i) ) ;
+						break;
 					}
-					
-					// Go northwest from position until you hit something or the end of the board
-					for ( int i = squareIndex + 7; i % 8 != 7 && i / 8 < 8 && i < 64; i += 7 )
+					else
 					{
-						// If we're not colliding with a white piece
-						if ( (mSquareArray.get(i) & allyPieces) == 0 )
-						{
-							// If we're capturing an opposing piece
-							if ( (mSquareArray.get(i) & opposingPieces) != 0 )
-							{
-								// Terminate loop since we're stopping to capture the piece
-								moves.add( new MoveModel( mSquareLabels[squareIndex], mSquareLabels[i], MoveModel.CAPTURE ) );
-								break;
-							}
-							else
-							{
-								// Add the move
-								moves.add( new MoveModel( mSquareLabels[squareIndex], mSquareLabels[i] ) );
-							}
-						}
-						else
-						{
-							break;
-						}
+						// Add the move
+						moves = ( moves | mSquareArray.get(i) ) ;
 					}
-					
-					// Go southeast from position until you hit something or the end of the board
-					for ( int i = squareIndex - 7; i % 8 != 0 && i / 8 >= 0 && i >= 0; i -= 7)
+				}
+				else
+				{
+					break;
+				}
+			}
+			
+			// Go northwest from position until you hit something or the end of the board
+			for ( int i = squareIndex + 7; i % 8 != 7 && i / 8 < 8 && i < 64; i += 7 )
+			{
+				// If we're not colliding with a white piece
+				if ( (mSquareArray.get(i) & allyPieces) == 0 )
+				{
+					// If we're capturing an opposing piece
+					if ( (mSquareArray.get(i) & opposingPieces) != 0 )
 					{
-						// If we're not colliding with a white piece
-						if ( (mSquareArray.get(i) & allyPieces) == 0 )
-						{
-							// If we're capturing an opposing piece
-							if ( (mSquareArray.get(i) & opposingPieces) != 0 )
-							{
-								// Terminate loop since we're stopping to capture the piece
-								moves.add( new MoveModel( mSquareLabels[squareIndex], mSquareLabels[i], MoveModel.CAPTURE ) );
-								break;
-							}
-							else
-							{
-								// Add the move
-								moves.add( new MoveModel( mSquareLabels[squareIndex], mSquareLabels[i] ) );
-							}
-						}
-						else
-						{
-							break;
-						}
+						// Terminate loop since we're stopping to capture the piece
+						moves = ( moves | mSquareArray.get(i) ) ;
+						break;
 					}
-					
-					// Go southwest from position until you hit something or the end of the board
-					for ( int i = squareIndex - 9; i % 8 != 7 && i / 8 >= 0 && i >= 0; i -= 9)
+					else
 					{
-						// If we're not colliding with a white piece
-						if ( (mSquareArray.get(i) & allyPieces) == 0 )
-						{
-							// If we're capturing an opposing piece
-							if ( (mSquareArray.get(i) & opposingPieces) != 0 )
-							{
-								// Terminate loop since we're stopping to capture the piece
-								moves.add( new MoveModel( mSquareLabels[squareIndex], mSquareLabels[i], MoveModel.CAPTURE ) );
-								break;
-							}
-							else
-							{
-								// Add the move
-								moves.add( new MoveModel( mSquareLabels[squareIndex], mSquareLabels[i] ) );
-							}
-						}
-						else
-						{
-							break;
-						}
+						// Add the move
+						moves = ( moves | mSquareArray.get(i) ) ;
 					}
+				}
+				else
+				{
+					break;
+				}
+			}
+			
+			// Go southeast from position until you hit something or the end of the board
+			for ( int i = squareIndex - 7; i % 8 != 0 && i / 8 >= 0 && i >= 0; i -= 7)
+			{
+				// If we're not colliding with a white piece
+				if ( (mSquareArray.get(i) & allyPieces) == 0 )
+				{
+					// If we're capturing an opposing piece
+					if ( (mSquareArray.get(i) & opposingPieces) != 0 )
+					{
+						// Terminate loop since we're stopping to capture the piece
+						moves = ( moves | mSquareArray.get(i) ) ;
+						break;
+					}
+					else
+					{
+						// Add the move
+						moves = ( moves | mSquareArray.get(i) ) ;
+					}
+				}
+				else
+				{
+					break;
+				}
+			}
+			
+			// Go southwest from position until you hit something or the end of the board
+			for ( int i = squareIndex - 9; i % 8 != 7 && i / 8 >= 0 && i >= 0; i -= 9)
+			{
+				// If we're not colliding with a white piece
+				if ( (mSquareArray.get(i) & allyPieces) == 0 )
+				{
+					// If we're capturing an opposing piece
+					if ( (mSquareArray.get(i) & opposingPieces) != 0 )
+					{
+						// Terminate loop since we're stopping to capture the piece
+						moves = ( moves | mSquareArray.get(i) ) ;
+						break;
+					}
+					else
+					{
+						// Add the move
+						moves = ( moves | mSquareArray.get(i) ) ;
+					}
+				}
+				else
+				{
+					break;
 				}
 			}
 
@@ -948,375 +930,354 @@ public class ChessBoard
 
 		}
 		
-		private ArrayList<MoveModel> getWhiteQueenAttacks()
+		private long getWhiteQueenAttacks( long square )
 		{
-			return getQueenAttacks( mPieceBoards.get(WHITE_QUEEN), WHITE);
+			return getQueenAttacks( square, WHITE);
 		}
 		
-		private ArrayList<MoveModel> getBlackQueenAttacks()
+		private long getBlackQueenAttacks( long square )
 		{
-			return getQueenAttacks( mPieceBoards.get(BLACK_QUEEN), BLACK);
+			return getQueenAttacks( square, BLACK);
 		}
 		
-		private ArrayList<MoveModel> getQueenAttacks( long piece, int color )
+		private long getQueenAttacks( long square, int color )
 		{
-			ArrayList<MoveModel> moves = new ArrayList<MoveModel>();
-			
-			moves.addAll(getRookAttacks( piece, color));
-			moves.addAll(getBishopAttacks( piece, color));
-			
-			return moves;
+			return (getBishopAttacks( square, color) | getRookAttacks( square, color ) );
 		}
 		
-		private ArrayList<MoveModel> getWhiteKingAttacks()
+		private long getWhiteKingAttacks( long square )
 		{
-			return getKingAttacks( mPieceBoards.get(WHITE_KING), WHITE);
+			return getKingAttacks( square, WHITE);
 		}
 		
-		private ArrayList<MoveModel> getBlackKingAttacks()
+		private long getBlackKingAttacks( long square )
 		{
-			return getKingAttacks( mPieceBoards.get(BLACK_KING), BLACK);
+			return getKingAttacks( square, BLACK);
 		}
 		
-		private ArrayList<MoveModel> getKingAttacks( long piece, int color )
+		private long getKingAttacks( long square, int color )
 		{
-			ArrayList<MoveModel> moves = new ArrayList<MoveModel>();
+			long moves = 0;
 			
 			// Get piece boards for each team
 			//long opposingPieces = ( color == WHITE ) ? mPieceBoards.get(BLACK_PIECES) : mPieceBoards.get(WHITE_PIECES);
 			long allyPieces = ( color == BLACK ) ? mPieceBoards.get(BLACK_PIECES) : mPieceBoards.get(WHITE_PIECES);
 			long opposingPieces = ( color == WHITE ) ? mPieceBoards.get(BLACK_PIECES) : mPieceBoards.get(WHITE_PIECES);
 			
-			// Iterate through each square
-			for ( long square:mSquareArray )
+			// Get the index of the square
+			int squareIndex = mSquareArray.indexOf(square);
+			
+			// Go northeast one square
+			int i = squareIndex + 9;
+			if ( i % 8 != 0 && i / 8 < 8 && i < 64 )
 			{
-				// If the square has a king
-				if( (square & piece) != 0 )
+				// If we're capturing an opposing piece
+				if ( (mSquareArray.get(i) & opposingPieces) != 0 )
 				{
-					// Get the index of the square
-					int squareIndex = mSquareArray.indexOf(square);
-					
-					// Go northeast one square
-					int i = squareIndex + 9;
-					if ( i % 8 != 0 && i / 8 < 8 && i < 64 )
-					{
-						// If we're capturing an opposing piece
-						if ( (mSquareArray.get(i) & opposingPieces) != 0 )
-						{
-							// Add the move
-							moves.add( new MoveModel( mSquareLabels[squareIndex], mSquareLabels[i], MoveModel.CAPTURE ) );
-						}
-						// If we're not colliding with an ally piece
-						else if ( (mSquareArray.get(i) & allyPieces) == 0 )
-						{
-							// Add the move
-							moves.add( new MoveModel( mSquareLabels[squareIndex], mSquareLabels[i] ) );
-						}
-					}
-					
-					
-					// Go northwest one square
-					i = squareIndex + 7; 
-					if( i % 8 != 7 && i / 8 < 8 && i < 64 )
-					{
-						// If we're capturing an opposing piece
-						if ( (mSquareArray.get(i) & opposingPieces) != 0 )
-						{
-							// Add the move
-							moves.add( new MoveModel( mSquareLabels[squareIndex], mSquareLabels[i], MoveModel.CAPTURE ) );
-						}
-						// If we're not colliding with an ally piece
-						else if ( (mSquareArray.get(i) & allyPieces) == 0 )
-						{
-							// Add the move
-							moves.add( new MoveModel( mSquareLabels[squareIndex], mSquareLabels[i] ) );
-						}
-					}
-					
-					// Go southeast one square
-					i = squareIndex - 7; 
-					if( i % 8 != 0 && i / 8 >= 0 && i >= 0 )
-					{
-						// If we're capturing an opposing piece
-						if ( (mSquareArray.get(i) & opposingPieces) != 0 )
-						{
-							// Add the move
-							moves.add( new MoveModel( mSquareLabels[squareIndex], mSquareLabels[i], MoveModel.CAPTURE ) );
-						}
-						// If we're not colliding with an ally piece
-						else if ( (mSquareArray.get(i) & allyPieces) == 0 )
-						{
-							// Add the move
-							moves.add( new MoveModel( mSquareLabels[squareIndex], mSquareLabels[i] ) );
-						}
-					}
-					
-					// Go southwest one square
-					i = squareIndex - 9; 
-					if ( i % 8 != 7 && i / 8 >= 0 && i >= 0 )
-					{
-						// If we're capturing an opposing piece
-						if ( (mSquareArray.get(i) & opposingPieces) != 0 )
-						{
-							// Add the move
-							moves.add( new MoveModel( mSquareLabels[squareIndex], mSquareLabels[i], MoveModel.CAPTURE ) );
-						}
-						// If we're not colliding with an ally piece
-						else if ( (mSquareArray.get(i) & allyPieces) == 0 )
-						{
-							// Add the move
-							moves.add( new MoveModel( mSquareLabels[squareIndex], mSquareLabels[i] ) );
-						}
-					}
-					
-					// Go left one square
-					i = squareIndex - 1; 
-					if( i >= (squareIndex / 8) * 8)
-					{
-						// If we're capturing an opposing piece
-						if ( (mSquareArray.get(i) & opposingPieces) != 0 )
-						{
-							// Add the move
-							moves.add( new MoveModel( mSquareLabels[squareIndex], mSquareLabels[i], MoveModel.CAPTURE ) );
-						}
-						// If we're not colliding with an ally piece
-						else if ( (mSquareArray.get(i) & allyPieces) == 0 )
-						{
-							// Add the move
-							moves.add( new MoveModel( mSquareLabels[squareIndex], mSquareLabels[i] ) );
-						}
-					}
-					
-					// Go right one square
-					i = squareIndex + 1; 
-					if ( i < (squareIndex / 8 + 1) * 8 )
-					{
-						// If we're capturing an opposing piece
-						if ( (mSquareArray.get(i) & opposingPieces) != 0 )
-						{
-							// Add the move
-							moves.add( new MoveModel( mSquareLabels[squareIndex], mSquareLabels[i], MoveModel.CAPTURE ) );
-						}
-						// If we're not colliding with an ally piece
-						else if ( (mSquareArray.get(i) & allyPieces) == 0 )
-						{
-							// Add the move
-							moves.add( new MoveModel( mSquareLabels[squareIndex], mSquareLabels[i] ) );
-						}
-					}
-					
-					// Go north one square
-					i = squareIndex + 8; 
-					if ( i < 64 )
-					{
-						// If we're capturing an opposing piece
-						if ( (mSquareArray.get(i) & opposingPieces) != 0 )
-						{
-							// Add the move
-							moves.add( new MoveModel( mSquareLabels[squareIndex], mSquareLabels[i], MoveModel.CAPTURE ) );
-						}
-						// If we're not colliding with an ally piece
-						else if ( (mSquareArray.get(i) & allyPieces) == 0 )
-						{
-							// Add the move
-							moves.add( new MoveModel( mSquareLabels[squareIndex], mSquareLabels[i] ) );
-						}
-					}
-					
-					// Go south one square
-					i = squareIndex - 8; 
-					if( i >= 0 )
-					{
-						// If we're capturing an opposing piece
-						if ( (mSquareArray.get(i) & opposingPieces) != 0 )
-						{
-							// Add the move
-							moves.add( new MoveModel( mSquareLabels[squareIndex], mSquareLabels[i], MoveModel.CAPTURE ) );
-						}
-						// If we're not colliding with an ally piece
-						else if ( (mSquareArray.get(i) & allyPieces) == 0 )
-						{
-							// Add the move
-							moves.add( new MoveModel( mSquareLabels[squareIndex], mSquareLabels[i] ) );
-						}
-					}
+					// Add the move
+					moves = ( moves | mSquareArray.get(i) ) ;
+				}
+				// If we're not colliding with an ally piece
+				else if ( (mSquareArray.get(i) & allyPieces) == 0 )
+				{
+					// Add the move
+					moves = ( moves | mSquareArray.get(i) ) ;
 				}
 			}
 			
+			
+			// Go northwest one square
+			i = squareIndex + 7; 
+			if( i % 8 != 7 && i / 8 < 8 && i < 64 )
+			{
+				// If we're capturing an opposing piece
+				if ( (mSquareArray.get(i) & opposingPieces) != 0 )
+				{
+					// Add the move
+					moves = ( moves | mSquareArray.get(i) ) ;
+				}
+				// If we're not colliding with an ally piece
+				else if ( (mSquareArray.get(i) & allyPieces) == 0 )
+				{
+					// Add the move
+					moves = ( moves | mSquareArray.get(i) ) ;
+				}
+			}
+			
+			// Go southeast one square
+			i = squareIndex - 7; 
+			if( i % 8 != 0 && i / 8 >= 0 && i >= 0 )
+			{
+				// If we're capturing an opposing piece
+				if ( (mSquareArray.get(i) & opposingPieces) != 0 )
+				{
+					// Add the move
+					moves = ( moves | mSquareArray.get(i) ) ;
+				}
+				// If we're not colliding with an ally piece
+				else if ( (mSquareArray.get(i) & allyPieces) == 0 )
+				{
+					// Add the move
+					moves = ( moves | mSquareArray.get(i) ) ;
+				}
+			}
+			
+			// Go southwest one square
+			i = squareIndex - 9; 
+			if ( i % 8 != 7 && i / 8 >= 0 && i >= 0 )
+			{
+				// If we're capturing an opposing piece
+				if ( (mSquareArray.get(i) & opposingPieces) != 0 )
+				{
+					// Add the move
+					moves = ( moves | mSquareArray.get(i) ) ;
+				}
+				// If we're not colliding with an ally piece
+				else if ( (mSquareArray.get(i) & allyPieces) == 0 )
+				{
+					// Add the move
+					moves = ( moves | mSquareArray.get(i) ) ;
+				}
+			}
+			
+			// Go left one square
+			i = squareIndex - 1; 
+			if( i >= (squareIndex / 8) * 8)
+			{
+				// If we're capturing an opposing piece
+				if ( (mSquareArray.get(i) & opposingPieces) != 0 )
+				{
+					// Add the move
+					moves = ( moves | mSquareArray.get(i) ) ;
+				}
+				// If we're not colliding with an ally piece
+				else if ( (mSquareArray.get(i) & allyPieces) == 0 )
+				{
+					// Add the move
+					moves = ( moves | mSquareArray.get(i) ) ;
+				}
+			}
+			
+			// Go right one square
+			i = squareIndex + 1; 
+			if ( i < (squareIndex / 8 + 1) * 8 )
+			{
+				// If we're capturing an opposing piece
+				if ( (mSquareArray.get(i) & opposingPieces) != 0 )
+				{
+					// Add the move
+					moves = ( moves | mSquareArray.get(i) ) ;
+				}
+				// If we're not colliding with an ally piece
+				else if ( (mSquareArray.get(i) & allyPieces) == 0 )
+				{
+					// Add the move
+					moves = ( moves | mSquareArray.get(i) ) ;
+				}
+			}
+			
+			// Go north one square
+			i = squareIndex + 8; 
+			if ( i < 64 )
+			{
+				// If we're capturing an opposing piece
+				if ( (mSquareArray.get(i) & opposingPieces) != 0 )
+				{
+					// Add the move
+					moves = ( moves | mSquareArray.get(i) ) ;
+				}
+				// If we're not colliding with an ally piece
+				else if ( (mSquareArray.get(i) & allyPieces) == 0 )
+				{
+					// Add the move
+					moves = ( moves | mSquareArray.get(i) ) ;
+				}
+			}
+			
+			// Go south one square
+			i = squareIndex - 8; 
+			if( i >= 0 )
+			{
+				// If we're capturing an opposing piece
+				if ( (mSquareArray.get(i) & opposingPieces) != 0 )
+				{
+					// Add the move
+					moves = ( moves | mSquareArray.get(i) ) ;
+				}
+				// If we're not colliding with an ally piece
+				else if ( (mSquareArray.get(i) & allyPieces) == 0 )
+				{
+					// Add the move
+					moves = ( moves | mSquareArray.get(i) ) ;
+				}
+			}
+	
 			return moves;
 		}
 		
-		private ArrayList<MoveModel> getWhiteKnightAttacks()
+		private long getWhiteKnightAttacks( long square )
 		{
-			return getKnightAttacks( mPieceBoards.get(WHITE_KNIGHTS), WHITE );
+			return getKnightAttacks( square, WHITE );
 		}
 		
-		private ArrayList<MoveModel> getBlackKnightAttacks()
+		private long getBlackKnightAttacks( long square )
 		{
-			return getKnightAttacks( mPieceBoards.get( BLACK_KNIGHTS ), BLACK );
+			return getKnightAttacks( square, BLACK );
 		}
 		
-		private ArrayList<MoveModel> getKnightAttacks( long piece, int color )
+		private long getKnightAttacks( long square, int color )
 		{
-			ArrayList<MoveModel> moves = new ArrayList<MoveModel>();
+			long moves = 0;
 			
 			// Get piece boards for each team
 			//long opposingPieces = ( color == WHITE ) ? mPieceBoards.get(BLACK_PIECES) : mPieceBoards.get(WHITE_PIECES);
 			long allyPieces = ( color == BLACK ) ? mPieceBoards.get(BLACK_PIECES) : mPieceBoards.get(WHITE_PIECES);
 			long opposingPieces = ( color == WHITE ) ? mPieceBoards.get(BLACK_PIECES) : mPieceBoards.get(WHITE_PIECES);
 			
-			// Iterate through each square
-			for ( long square:mSquareArray )
+			// Get the index of the square
+			int squareIndex = mSquareArray.indexOf(square);
+			
+			// Go north-northwest
+			int i = squareIndex + 15;
+			if ( i % 8 != 7 && i < 64 )
 			{
-				// If the square has a knight
-				if( (square & piece) != 0 )
+				// If we're capturing an opposing piece
+				if ( (mSquareArray.get(i) & opposingPieces) != 0 )
 				{
-					// Get the index of the square
-					int squareIndex = mSquareArray.indexOf(square);
-					
-					// Go north-northwest
-					int i = squareIndex + 15;
-					if ( i % 8 != 7 && i < 64 )
-					{
-						// If we're capturing an opposing piece
-						if ( (mSquareArray.get(i) & opposingPieces) != 0 )
-						{
-							// Add the move
-							moves.add( new MoveModel( mSquareLabels[squareIndex], mSquareLabels[i], MoveModel.CAPTURE ) );
-						}
-						// If we're not colliding with an ally piece
-						else if ( (mSquareArray.get(i) & allyPieces) == 0 )
-						{
-							// Add the move
-							moves.add( new MoveModel( mSquareLabels[squareIndex], mSquareLabels[i] ) );
-						}
-					}
-					
-					// Go north-northeast
-					i = squareIndex + 17;
-					if ( i % 8 != 0 && i < 64 )
-					{
-						// If we're capturing an opposing piece
-						if ( (mSquareArray.get(i) & opposingPieces) != 0 )
-						{
-							// Add the move
-							moves.add( new MoveModel( mSquareLabels[squareIndex], mSquareLabels[i], MoveModel.CAPTURE ) );
-						}
-						// If we're not colliding with an ally piece
-						else if ( (mSquareArray.get(i) & allyPieces) == 0 )
-						{
-							// Add the move
-							moves.add( new MoveModel( mSquareLabels[squareIndex], mSquareLabels[i] ) );
-						}
-					}
-					
-					// Go west-northwest
-					i = squareIndex + 6;
-					if ( i % 8 != 7 && i < 64 )
-					{
-						// If we're capturing an opposing piece
-						if ( (mSquareArray.get(i) & opposingPieces) != 0 )
-						{
-							// Add the move
-							moves.add( new MoveModel( mSquareLabels[squareIndex], mSquareLabels[i], MoveModel.CAPTURE ) );
-						}
-						// If we're not colliding with an ally piece
-						else if ( (mSquareArray.get(i) & allyPieces) == 0 )
-						{
-							// Add the move
-							moves.add( new MoveModel( mSquareLabels[squareIndex], mSquareLabels[i] ) );
-						}
-					}
-					
-					// Go west-southwest
-					i = squareIndex - 10;
-					if ( i % 8 != 7 && i >= 0 )
-					{
-						// If we're capturing an opposing piece
-						if ( (mSquareArray.get(i) & opposingPieces) != 0 )
-						{
-							// Add the move
-							moves.add( new MoveModel( mSquareLabels[squareIndex], mSquareLabels[i], MoveModel.CAPTURE ) );
-						}
-						// If we're not colliding with an ally piece
-						else if ( (mSquareArray.get(i) & allyPieces) == 0 )
-						{
-							// Add the move
-							moves.add( new MoveModel( mSquareLabels[squareIndex], mSquareLabels[i] ) );
-						}
-					}
-					
-					// Go south-southwest
-					i = squareIndex - 17;
-					if ( i % 8 != 7 && i >= 0 )
-					{
-						// If we're capturing an opposing piece
-						if ( (mSquareArray.get(i) & opposingPieces) != 0 )
-						{
-							// Add the move
-							moves.add( new MoveModel( mSquareLabels[squareIndex], mSquareLabels[i], MoveModel.CAPTURE ) );
-						}
-						// If we're not colliding with an ally piece
-						else if ( (mSquareArray.get(i) & allyPieces) == 0 )
-						{
-							// Add the move
-							moves.add( new MoveModel( mSquareLabels[squareIndex], mSquareLabels[i] ) );
-						}
-					}
-					
-					// Go south-southeast
-					i = squareIndex - 15;
-					if ( i % 8 != 0 && i >= 0 )
-					{
-						// If we're capturing an opposing piece
-						if ( (mSquareArray.get(i) & opposingPieces) != 0 )
-						{
-							// Add the move
-							moves.add( new MoveModel( mSquareLabels[squareIndex], mSquareLabels[i], MoveModel.CAPTURE ) );
-						}
-						// If we're not colliding with an ally piece
-						else if ( (mSquareArray.get(i) & allyPieces) == 0 )
-						{
-							// Add the move
-							moves.add( new MoveModel( mSquareLabels[squareIndex], mSquareLabels[i] ) );
-						}
-					}
-					
-					// Go east-southeast
-					i = squareIndex - 6;
-					if ( i % 8 != 0 && i >= 0 )
-					{
-						// If we're capturing an opposing piece
-						if ( (mSquareArray.get(i) & opposingPieces) != 0 )
-						{
-							// Add the move
-							moves.add( new MoveModel( mSquareLabels[squareIndex], mSquareLabels[i], MoveModel.CAPTURE ) );
-						}
-						// If we're not colliding with an ally piece
-						else if ( (mSquareArray.get(i) & allyPieces) == 0 )
-						{
-							// Add the move
-							moves.add( new MoveModel( mSquareLabels[squareIndex], mSquareLabels[i] ) );
-						}
-					}
-					
-					// Go east-northeast
-					i = squareIndex + 10;
-					if ( i % 8 != 0 && i < 64 )
-					{
-						// If we're capturing an opposing piece
-						if ( (mSquareArray.get(i) & opposingPieces) != 0 )
-						{
-							// Add the move
-							moves.add( new MoveModel( mSquareLabels[squareIndex], mSquareLabels[i], MoveModel.CAPTURE ) );
-						}
-						// If we're not colliding with an ally piece
-						else if ( (mSquareArray.get(i) & allyPieces) == 0 )
-						{
-							// Add the move
-							moves.add( new MoveModel( mSquareLabels[squareIndex], mSquareLabels[i] ) );
-						}
-					}
+					// Add the move
+					moves = ( moves | mSquareArray.get(i) ) ;
+				}
+				// If we're not colliding with an ally piece
+				else if ( (mSquareArray.get(i) & allyPieces) == 0 )
+				{
+					// Add the move
+					moves = ( moves | mSquareArray.get(i) ) ;
+				}
+			}
+			
+			// Go north-northeast
+			i = squareIndex + 17;
+			if ( i % 8 != 0 && i < 64 )
+			{
+				// If we're capturing an opposing piece
+				if ( (mSquareArray.get(i) & opposingPieces) != 0 )
+				{
+					// Add the move
+					moves = ( moves | mSquareArray.get(i) ) ;
+				}
+				// If we're not colliding with an ally piece
+				else if ( (mSquareArray.get(i) & allyPieces) == 0 )
+				{
+					// Add the move
+					moves = ( moves | mSquareArray.get(i) ) ;
+				}
+			}
+			
+			// Go west-northwest
+			i = squareIndex + 6;
+			if ( i % 8 != 7 && i < 64 )
+			{
+				// If we're capturing an opposing piece
+				if ( (mSquareArray.get(i) & opposingPieces) != 0 )
+				{
+					// Add the move
+					moves = ( moves | mSquareArray.get(i) ) ;
+				}
+				// If we're not colliding with an ally piece
+				else if ( (mSquareArray.get(i) & allyPieces) == 0 )
+				{
+					// Add the move
+					moves = ( moves | mSquareArray.get(i) ) ;
+				}
+			}
+			
+			// Go west-southwest
+			i = squareIndex - 10;
+			if ( i % 8 != 7 && i >= 0 )
+			{
+				// If we're capturing an opposing piece
+				if ( (mSquareArray.get(i) & opposingPieces) != 0 )
+				{
+					// Add the move
+					moves = ( moves | mSquareArray.get(i) ) ;
+				}
+				// If we're not colliding with an ally piece
+				else if ( (mSquareArray.get(i) & allyPieces) == 0 )
+				{
+					// Add the move
+					moves = ( moves | mSquareArray.get(i) ) ;
+				}
+			}
+			
+			// Go south-southwest
+			i = squareIndex - 17;
+			if ( i % 8 != 7 && i >= 0 )
+			{
+				// If we're capturing an opposing piece
+				if ( (mSquareArray.get(i) & opposingPieces) != 0 )
+				{
+					// Add the move
+					moves = ( moves | mSquareArray.get(i) ) ;
+				}
+				// If we're not colliding with an ally piece
+				else if ( (mSquareArray.get(i) & allyPieces) == 0 )
+				{
+					// Add the move
+					moves = ( moves | mSquareArray.get(i) ) ;
+				}
+			}
+			
+			// Go south-southeast
+			i = squareIndex - 15;
+			if ( i % 8 != 0 && i >= 0 )
+			{
+				// If we're capturing an opposing piece
+				if ( (mSquareArray.get(i) & opposingPieces) != 0 )
+				{
+					// Add the move
+					moves = ( moves | mSquareArray.get(i) ) ;
+				}
+				// If we're not colliding with an ally piece
+				else if ( (mSquareArray.get(i) & allyPieces) == 0 )
+				{
+					// Add the move
+					moves = ( moves | mSquareArray.get(i) ) ;
+				}
+			}
+			
+			// Go east-southeast
+			i = squareIndex - 6;
+			if ( i % 8 != 0 && i >= 0 )
+			{
+				// If we're capturing an opposing piece
+				if ( (mSquareArray.get(i) & opposingPieces) != 0 )
+				{
+					// Add the move
+					moves = ( moves | mSquareArray.get(i) ) ;
+				}
+				// If we're not colliding with an ally piece
+				else if ( (mSquareArray.get(i) & allyPieces) == 0 )
+				{
+					// Add the move
+					moves = ( moves | mSquareArray.get(i) ) ;
+				}
+			}
+			
+			// Go east-northeast
+			i = squareIndex + 10;
+			if ( i % 8 != 0 && i < 64 )
+			{
+				// If we're capturing an opposing piece
+				if ( (mSquareArray.get(i) & opposingPieces) != 0 )
+				{
+					// Add the move
+					moves = ( moves | mSquareArray.get(i) ) ;
+				}
+				// If we're not colliding with an ally piece
+				else if ( (mSquareArray.get(i) & allyPieces) == 0 )
+				{
+					// Add the move
+					moves = ( moves | mSquareArray.get(i) ) ;
 				}
 			}
 			
