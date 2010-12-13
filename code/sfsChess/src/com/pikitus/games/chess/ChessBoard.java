@@ -406,7 +406,7 @@ public class ChessBoard
 	 * Interface for the networking layer
 	 */
 	
-	public HashMap<Long, Long> getLegalMovesMap()
+	public HashMap<String, Long> getLegalMovesMap()
 	{
 		return new MoveGenerator().getLegalMovesMap();
 	}
@@ -452,9 +452,9 @@ public class ChessBoard
 		 * For going out to the server
 		 * @return HashMap of moves indexed by square
 		 */
-		public HashMap<Long, Long> getLegalMovesMap()
+		public HashMap<String, Long> getLegalMovesMap()
 		{
-			HashMap<Long, Long> legalMoves = new HashMap<Long, Long>();
+			HashMap<String, Long> legalMoves = new HashMap<String, Long>();
 			
 			long playersPieces = ( currentPlayer == BLACK ) ? mPieceBoards.get(BLACK_PIECES) : mPieceBoards.get(WHITE_PIECES);
 
@@ -462,7 +462,7 @@ public class ChessBoard
 			{
 				if ( (square & playersPieces) != 0 )
 				{
-					legalMoves.put( square, getLegalMovesForSquare(square) );
+					legalMoves.put( mLabelMap.get(square), getLegalMovesForSquare(square) );
 				}
 			}
 			

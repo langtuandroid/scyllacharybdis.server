@@ -22,14 +22,14 @@ public class ValidMoveHandler extends BaseClientRequestHandler
 	
 	public void sendPossibleMoves(SFSChess sfsChess, User user) 
 	{
-		HashMap<Long, Long> moves = sfsChess.getGameBoard().getLegalMovesMap();
+		HashMap<String, Long> moves = sfsChess.getGameBoard().getLegalMovesMap();
 
 		ISFSObject movesArray = new SFSObject();
-		Iterator<Long> iterator = moves.keySet().iterator();
+		Iterator<String> iterator = moves.keySet().iterator();
 		while( iterator.hasNext() ) 
 		{
-			Long key   = iterator.next();
-			Long value = moves.get(key);
+			String key   = iterator.next();
+			long value = moves.get(key);
 			movesArray.putLong(key, value);
 			
 		}
