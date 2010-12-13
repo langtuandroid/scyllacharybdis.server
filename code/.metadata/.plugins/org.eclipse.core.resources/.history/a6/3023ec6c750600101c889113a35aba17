@@ -533,7 +533,7 @@ public class ChessBoard
 			long opposingPieces = mPieceBoards.get(BLACK_PIECES);
 			long allyPieces = mPieceBoards.get(WHITE_PIECES);
 			
-			//long piece = mPieceBoards.get(WHITE_PAWNS);
+			long piece = mPieceBoards.get(WHITE_PAWNS);
 			
 			// Get the index of the square
 			int squareIndex = mSquareArray.indexOf(square);
