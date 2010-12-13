@@ -1,6 +1,6 @@
-06 Nov 2010 15:46:19,310 INFO  [main] bootLogger     - SmartFoxServer 2X
-06 Nov 2010 15:46:19,311 INFO  [main] bootLogger     - BitSwarmEngine version: 3.2.7-M5 { main }
-06 Nov 2010 15:46:19,312 INFO  [main] bootLogger     - System Info:
+12 Dec 2010 21:48:39,525 INFO  [main] bootLogger     - SmartFoxServer 2X
+12 Dec 2010 21:48:39,527 INFO  [main] bootLogger     - BitSwarmEngine version: 3.3.0 { main }
+12 Dec 2010 21:48:39,528 INFO  [main] bootLogger     - System Info:
 	Processor(s): 8
 	VM Max. memory: 714MB
 	os.name: Windows 7
@@ -16,7 +16,7 @@
 	java.io.tmpdir: C:\Users\ben\AppData\Local\Temp\
 	Default charset: UTF-8
 
-06 Nov 2010 15:46:19,330 INFO  [main] bootLogger     - Network Info:
+12 Dec 2010 21:48:39,534 INFO  [main] bootLogger     - Network Info:
 	Card: Software Loopback Interface 1
 		 ->0:0:0:0:0:0:0:1
 		 ->127.0.0.1
@@ -33,14 +33,15 @@
 		 ->fe80:0:0:0:5dd7:dcca:b0da:6285%11
 	Card: Marvell Yukon 88E8056 PCI-E Gigabit Ethernet Controller #2
 		 ->fe80:0:0:0:edeb:56c6:a540:f5e9%12
+		 ->192.168.0.148
 	Card: Realtek RTL8192u 802.11n Wireless LAN USB 2.0 Network Adapter
-		 ->fe80:0:0:0:8d2e:26a3:6d62:6821%13
-		 ->192.168.0.197
 	Card: Teredo Tunneling Pseudo-Interface
-		 ->2001:0:4137:9e76:28b4:22d2:71bb:ebe
-		 ->fe80:0:0:0:28b4:22d2:71bb:ebe%14
+		 ->2001:0:4137:9e76:383e:325:71bb:c3c
+		 ->fe80:0:0:0:383e:325:71bb:c3c%14
 	Card: Microsoft ISATAP Adapter
-		 ->fe80:0:0:0:0:5efe:c0a8:c5%15
+	Card: Microsoft ISATAP Adapter #2
+		 ->fe80:0:0:0:0:5efe:c0a8:94%16
+	Card: Microsoft ISATAP Adapter #3
 	Card: Marvell Yukon 88E8056 PCI-E Gigabit Ethernet Controller #2-QoS Packet Scheduler-0000
 	Card: Marvell Yukon 88E8056 PCI-E Gigabit Ethernet Controller #2-WFP LightWeight Filter-0000
 	Card: Marvell Yukon 88E8056 PCI-E Gigabit Ethernet Controller-QoS Packet Scheduler-0000
@@ -48,21 +49,17 @@
 	Card: WAN Miniport (Network Monitor)-QoS Packet Scheduler-0000
 	Card: WAN Miniport (IP)-QoS Packet Scheduler-0000
 	Card: WAN Miniport (IPv6)-QoS Packet Scheduler-0000
-	Card: Realtek RTL8192u 802.11n Wireless LAN USB 2.0 Network Adapter-Native WiFi Filter Driver-0000
-	Card: Realtek RTL8192u 802.11n Wireless LAN USB 2.0 Network Adapter-QoS Packet Scheduler-0000
-	Card: Realtek RTL8192u 802.11n Wireless LAN USB 2.0 Network Adapter-WFP LightWeight Filter-0000
-	Card: Realtek RTL8192u 802.11n Wireless LAN USB 2.0 Network Adapter-Virtual WiFi Filter Driver-0000
 
-06 Nov 2010 15:46:19,335 INFO  [main] bootLogger     - Session manager ready: com.smartfoxserver.bitswarm.sessions.DefaultSessionManager@3c48403
-06 Nov 2010 15:46:19,340 INFO  [main] bootLogger     - ReaderSelector opened
-06 Nov 2010 15:46:19,347 INFO  [main] bootLogger     - AcceptSelector opened
-06 Nov 2010 15:46:19,349 INFO  [main] bootLogger     - Added bound tcp socket --> 127.0.0.1:9933
-06 Nov 2010 15:46:19,350 INFO  [main] bootLogger     - Controller started: com.smartfoxserver.v2.controllers.SystemController -- Queue: 0/20000
-06 Nov 2010 15:46:19,350 INFO  [main] bootLogger     - Controller started: com.smartfoxserver.v2.controllers.ExtensionController -- Queue: 0/20000
-06 Nov 2010 15:46:19,350 INFO  [main] bootLogger     - IOHandler: com.smartfoxserver.v2.protocol.SFSIoHandler@8763c3c
-06 Nov 2010 15:46:19,350 INFO  [main] bootLogger     - SocketReader started
-06 Nov 2010 15:46:19,351 INFO  [main] bootLogger     - SocketAcceptor initialized
-06 Nov 2010 15:46:19,351 INFO  [main] bootLogger     - Socket Writer started (pool size:1)
-06 Nov 2010 15:46:19,351 INFO  [Scheduler1-thread-1] bootLogger     - Scheduler started: scheduler
-06 Nov 2010 15:46:19,352 INFO  [main] bootLogger     - Security Manager started
-06 Nov 2010 15:46:19,354 INFO  [main] bootLogger     - [[[ ===--- Boot sequence complete ---=== ]]]
+12 Dec 2010 21:48:39,539 INFO  [main] bootLogger     - Session manager ready: com.smartfoxserver.bitswarm.sessions.DefaultSessionManager@43a63a1c
+12 Dec 2010 21:48:39,544 INFO  [main] bootLogger     - ReaderSelector opened
+12 Dec 2010 21:48:39,552 INFO  [main] bootLogger     - AcceptSelector opened
+12 Dec 2010 21:48:39,554 INFO  [main] bootLogger     - Added bound tcp socket --> 127.0.0.1:9933
+12 Dec 2010 21:48:39,555 INFO  [main] bootLogger     - Controller started: com.smartfoxserver.v2.controllers.SystemController -- Queue: 0/20000
+12 Dec 2010 21:48:39,555 INFO  [main] bootLogger     - Controller started: com.smartfoxserver.v2.controllers.ExtensionController -- Queue: 0/20000
+12 Dec 2010 21:48:39,555 INFO  [main] bootLogger     - IOHandler: com.smartfoxserver.v2.protocol.SFSIoHandler@1f18e146
+12 Dec 2010 21:48:39,556 INFO  [main] bootLogger     - SocketReader started
+12 Dec 2010 21:48:39,556 INFO  [main] bootLogger     - SocketAcceptor initialized
+12 Dec 2010 21:48:39,556 INFO  [main] bootLogger     - Socket Writer started (pool size:1)
+12 Dec 2010 21:48:39,556 INFO  [Scheduler1-thread-1] bootLogger     - Scheduler started: scheduler
+12 Dec 2010 21:48:39,557 INFO  [main] bootLogger     - Security Manager started
+12 Dec 2010 21:48:39,559 INFO  [main] bootLogger     - [[[ ===--- Boot sequence complete ---=== ]]]
