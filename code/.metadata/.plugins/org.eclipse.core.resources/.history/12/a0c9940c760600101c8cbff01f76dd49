@@ -94,7 +94,7 @@ public class SFSChess extends SFSExtension
 		resObj.putInt("player2Id", mPlayer2.getId());
 		
 		// Send information to all the clients
-		this.sendSFSObject( "START_GAME", resObj );		
+		this.sendSFSObject( "start", resObj );		
 	}	
 	
 	/**
