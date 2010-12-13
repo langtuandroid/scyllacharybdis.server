@@ -2,7 +2,6 @@ package com.pikitus.client;
 
 import pl.rmalinowski.gwt2swf.client.ui.SWFWidget;
 import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.VerticalPanel;
 
 public class ChessWidget extends Composite 
 {
