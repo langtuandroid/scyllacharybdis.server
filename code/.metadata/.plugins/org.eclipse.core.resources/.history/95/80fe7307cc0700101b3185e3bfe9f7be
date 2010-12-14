@@ -1,0 +1,6 @@
+package com.pikitus.login.handlers;
+
+public class RandomGameHandler 
+{
+	
+}
