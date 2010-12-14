@@ -1,1 +1,1 @@
-@java -cp "./;lib/*;lib/Jetty/*;extensions/__lib__/*" -Dfile.encoding=UTF-8 com.smartfoxserver.v2.Main $1 $2 $3
+@java -cp "./;lib/*;lib/Jetty/*;extensions/__lib__/*" -Dfile.encoding=UTF-8 com.smartfoxserver.v2.Main $1 $2 $3 -Xdebug -Xnoagent -Xrunjdwp:transport=dt_socket,address=8787,server=y,suspend=n
