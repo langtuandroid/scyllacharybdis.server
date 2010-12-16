@@ -1,5 +1,6 @@
 package com.pikitus.games.chess.handlers;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import com.pikitus.games.chess.SFSChess;
@@ -27,9 +28,13 @@ public class ValidMoveHandler extends BaseClientRequestHandler
 		{
 			String key   = iterator.next();
 			long value = moves.get(key);
-			movesArray.putLong(key, value);
 			
+			ArrayList<Long> valueArray = new ArrayList<Long>();
+			valueArray.add( value & -1 );
+			valueArray.add( ( value >> 32 ) & -1 );
+			movesArray.putLongArray( key, valueArray );
 		}
+		
 		sfsChess.sendSFSObject( "GET_VALID_MOVES_RESULTS", movesArray, user );
 	}
 }

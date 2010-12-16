@@ -1,5 +1,6 @@
 package com.pikitus.games.chess.handlers;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import com.pikitus.games.chess.SFSChess;
@@ -28,7 +29,12 @@ public class BoardHandler extends BaseClientRequestHandler
 		{
 			String key   = iterator.next();
 			Long value = board.get(key);
-			boardArray.putLong(key, value);
+			
+			ArrayList<Long> valueArray = new ArrayList<Long>();
+			valueArray.add( value & -1 );
+			valueArray.add( ( value >> 32 ) & -1 );
+			
+			boardArray.putLongArray(key, valueArray);
 		}
 		
 		ISFSObject obj = new SFSObject();
