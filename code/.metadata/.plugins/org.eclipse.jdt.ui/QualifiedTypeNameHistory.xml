@@ -25,7 +25,6 @@
 <fullyQualifiedTypeName name="com.smartfoxserver.v2.core.SFSEventParam"/>
 <fullyQualifiedTypeName name="com.smartfoxserver.v2.entities.variables.SFSUserVariable"/>
 <fullyQualifiedTypeName name="com.restfb.types.User"/>
-<fullyQualifiedTypeName name="com.smartfoxserver.v2.entities.User"/>
 <fullyQualifiedTypeName name="com.smartfoxserver.v2.entities.variables.UserVariable"/>
 <fullyQualifiedTypeName name="java.util.Arrays"/>
 <fullyQualifiedTypeName name="com.pikitus.login.handlers.ZoneJoinEventHandler"/>
@@ -45,4 +44,10 @@
 <fullyQualifiedTypeName name="com.smartfoxserver.v2.entities.match.StringMatch"/>
 <fullyQualifiedTypeName name="com.smartfoxserver.v2.entities.match.RoomProperties"/>
 <fullyQualifiedTypeName name="com.smartfoxserver.v2.entities.match.BoolMatch"/>
+<fullyQualifiedTypeName name="com.smartfoxserver.v2.extensions.SFSExtension"/>
+<fullyQualifiedTypeName name="com.smartfoxserver.v2.entities.data.ISFSObject"/>
+<fullyQualifiedTypeName name="com.smartfoxserver.v2.entities.User"/>
+<fullyQualifiedTypeName name="com.pikitus.games.go.SFSGo"/>
+<fullyQualifiedTypeName name="com.pikitus.games.go.handlers.PlayerJoinedHandler"/>
+<fullyQualifiedTypeName name="java.lang.reflect.Array"/>
 </qualifiedTypeNameHistroy>

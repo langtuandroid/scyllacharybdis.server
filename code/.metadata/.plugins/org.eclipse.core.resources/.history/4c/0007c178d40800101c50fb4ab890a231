@@ -1,0 +1,5 @@
+package com.pikitus.games.go;
+
+public class GoBoard {
+
+}
