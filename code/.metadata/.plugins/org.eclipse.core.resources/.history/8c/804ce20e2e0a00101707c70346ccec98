@@ -1,0 +1,5 @@
+package com.pikitus.login.models;
+
+public class RandomGameModel {
+
+}

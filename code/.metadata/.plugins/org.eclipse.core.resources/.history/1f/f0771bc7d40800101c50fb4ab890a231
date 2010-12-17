@@ -1,0 +1,34 @@
+package com.pikitus.games.go;
+
+import com.smartfoxserver.v2.entities.User;
+import com.smartfoxserver.v2.entities.data.ISFSObject;
+
+//import com.smartfoxserver.v2.entities.data.SFSObject;
+//import com.smartfoxserver.v2.extensions.SFSExtension;
+
+
+
+public class GoBoard 
+{
+	/**
+	* Send a sfs object to all the clients in the room
+	* @param name (String) Event name the client receives
+	* @param object (ISFSObject) The object being sent to the client
+	*/
+	public void sendSFSObject(String name, ISFSObject object)
+	{
+		send( name, object, getParentRoom().getUserList() );
+	}
+
+	/**
+	* Send a sfsobject to a user in the room
+	* @param name (String) Event name the client receives
+	* @param object (ISFSObject) The object being sent to the client
+	* @param user (User) The user to send the object too
+	*/
+	public void sendSFSObject(String name, ISFSObject object, User user)
+	{
+		send( name, object, user );
+	}
+
+}

@@ -1,0 +1,4 @@
+#Sun Dec 12 19:10:15 AST 2010
+addedNewWizardActions1.2_org.eclipse.jdt.ui.JavaPerspective=com.google.gdt.eclipse.suite.wizards.newProjectWizard|com.google.gwt.eclipse.core.newModuleWizard|com.google.gwt.eclipse.core.newHostPageWizard|com.google.gwt.eclipse.core.newEntryPointWizard|com.google.gwt.eclipse.core.newClientBundleWizard|com.google.gwt.eclipse.core.newUiBinderWizard
+SdkRegistrants_1288496020460=com.google.appengine.eclipse.sdkbundle.1.3.8_1.3.8.v201010161055,com.google.gwt.eclipse.sdkbundle.2.1.0_2.1.0.v201010280102,com.google.appengine.eclipse.sdkbundle.1.4.0_1.4.0.v201012021502
+eclipse.preferences.version=1

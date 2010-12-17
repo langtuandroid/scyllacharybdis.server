@@ -1,0 +1,5 @@
+glob:sfs2x/lib/cachedir/*
+glob:sfs2x/logs/boot/*
+glob:sfs2x/logs/http/20*
+glob:sfs2x/logs/smartfox*
+glob:sfs2x/zones/_backups/*
