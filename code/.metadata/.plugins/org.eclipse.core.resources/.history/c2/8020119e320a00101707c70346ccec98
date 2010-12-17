@@ -6,7 +6,6 @@ import com.smartfoxserver.v2.entities.data.ISFSObject;
 import com.smartfoxserver.v2.extensions.SFSExtension;
 import com.pikitus.login.handlers.LoginEventHandler;
 import com.pikitus.login.handlers.OnUserGoneHandler;
-import com.pikitus.login.handlers.RandomGameHandler;
 import com.pikitus.login.handlers.ZoneJoinEventHandler;
 
 public class SFSLogin extends SFSExtension 
@@ -24,9 +23,10 @@ public class SFSLogin extends SFSExtension
 	    addEventHandler(SFSEventType.USER_DISCONNECT, OnUserGoneHandler.class);
 	    addEventHandler(SFSEventType.USER_LEAVE_ROOM, OnUserGoneHandler.class);
 	    
-	    // Add custom event handlers
-	    addRequestHandler("JOIN_RANDOM_ROOM", RandomGameHandler.class);
-	    addRequestHandler("GET_FACEBOOK_FRIENDS", FriendsList.class);
+	    addEventHandler("JOIN_RANDOM_ROOM", RandomGameRoom.class)
+
+	    // Get facebook friends
+	    addRequestHandler("getFriends", FriendsList.class);
 	}
 
 	public void sendSFSObject(String name, ISFSObject object)
