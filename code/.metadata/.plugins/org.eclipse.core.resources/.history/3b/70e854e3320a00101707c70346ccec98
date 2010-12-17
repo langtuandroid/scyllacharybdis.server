@@ -13,7 +13,7 @@ public class ZoneJoinEventHandler extends BaseServerEventHandler
     @Override
     public void handleServerEvent(ISFSEvent event) throws SFSException
     {
-    	trace ("Joining the lobby");
+    	trace ("Joining the lobby")
         User theUser = (User) event.getParameter(SFSEventParam.USER);
          
         // Join the user

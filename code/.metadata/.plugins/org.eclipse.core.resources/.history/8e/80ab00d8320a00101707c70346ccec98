@@ -13,8 +13,18 @@ public class ZoneJoinEventHandler extends BaseServerEventHandler
     @Override
     public void handleServerEvent(ISFSEvent event) throws SFSException
     {
-    	trace ("Joining the lobby");
         User theUser = (User) event.getParameter(SFSEventParam.USER);
+         
+        // dbid is a hidden UserVariable, available only server side
+        //UserVariable uv_dbId = new SFSUserVariable("dbid", theUser.getProperty(DBLogin.DATABASE_ID));
+        //uv_dbId.setHidden(true);
+         
+        // The avatar UserVariable is a regular UserVariable
+        //UserVariable uv_avatar = new SFSUserVariable("avatar", "avatar_" + theUser.getName() + ".jpg");
+         
+        // Set the variables
+        //List<UserVariable> vars = Arrays.asList(uv_dbId, uv_avatar);
+        //getApi().setUserVariables(theUser, vars);
          
         // Join the user
         Room lobby = getParentExtension().getParentZone().getRoomByName("The Lobby");

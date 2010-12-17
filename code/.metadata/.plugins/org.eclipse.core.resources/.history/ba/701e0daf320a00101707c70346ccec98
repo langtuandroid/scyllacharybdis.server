@@ -24,8 +24,9 @@ public class SFSLogin extends SFSExtension
 	    addEventHandler(SFSEventType.USER_DISCONNECT, OnUserGoneHandler.class);
 	    addEventHandler(SFSEventType.USER_LEAVE_ROOM, OnUserGoneHandler.class);
 	    
-	    // Add custom event handlers
-	    addRequestHandler("JOIN_RANDOM_ROOM", RandomGameHandler.class);
+	    addEventHandler("JOIN_RANDOM_ROOM", RandomGameHandler.class);
+
+	    // Get facebook friends
 	    addRequestHandler("GET_FACEBOOK_FRIENDS", FriendsList.class);
 	}
 
