@@ -11,17 +11,15 @@ public class PlayerJoinedHandler extends BaseClientRequestHandler
 	@Override
 	public void handleClientRequest(User user, ISFSObject params)
 	{
-//		SFSGo gameExt = (SFSGo) getParentExtension();
-//		
-//		if (user.isPlayer())
-//		{
-//			//gameExt.sendBoard(user);
-//
-//			// Checks if two players are available and start game
-//			if (gameExt.getParentRoom().getSize().getUserCount() == 1){
-//				gameExt.startGame();
-//			}
-//			
-//		}
+		SFSGo gameExt = (SFSGo) getParentExtension();
+		
+		if (user.isPlayer())
+		{
+
+			// Checks if two players are available and start game
+			if (gameExt.getParentRoom().getSize().getUserCount() == 1){
+				gameExt.startGame();
+			}
+		}
 	}
 }

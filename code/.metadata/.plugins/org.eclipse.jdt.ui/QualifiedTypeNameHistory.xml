@@ -48,6 +48,11 @@
 <fullyQualifiedTypeName name="com.smartfoxserver.v2.entities.data.ISFSObject"/>
 <fullyQualifiedTypeName name="com.smartfoxserver.v2.entities.User"/>
 <fullyQualifiedTypeName name="com.pikitus.games.go.SFSGo"/>
-<fullyQualifiedTypeName name="com.pikitus.games.go.handlers.PlayerJoinedHandler"/>
 <fullyQualifiedTypeName name="java.lang.reflect.Array"/>
+<fullyQualifiedTypeName name="com.pikitus.games.go.handlers.PlayerJoinedHandler"/>
+<fullyQualifiedTypeName name="com.pikitus.games.go.handlers.BoardHandler"/>
+<fullyQualifiedTypeName name="com.pikitus.games.go.handlers.ValidMoveHandler"/>
+<fullyQualifiedTypeName name="com.pikitus.games.go.handlers.MoveHandler"/>
+<fullyQualifiedTypeName name="com.pikitus.games.go.models.BoardModel"/>
+<fullyQualifiedTypeName name="com.pikitus.games.go.models.MoveModel"/>
 </qualifiedTypeNameHistroy>
