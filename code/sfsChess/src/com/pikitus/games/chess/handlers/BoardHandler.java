@@ -15,10 +15,10 @@ public class BoardHandler extends BaseClientRequestHandler
 	public void handleClientRequest(User user, ISFSObject params)
 	{
 		SFSChess gameExt = (SFSChess) getParentExtension();
-		sendValidMoves( gameExt, user );
+		sendBoard( gameExt, user );
 	}
 	
-	public void sendValidMoves(SFSChess sfsChess, User user) 
+	public void sendBoard(SFSChess sfsChess, User user) 
 	{
 		HashMap<String, Long> board = sfsChess.getGameBoard().getPieces();
 

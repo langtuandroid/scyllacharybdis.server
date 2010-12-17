@@ -1,0 +1,18 @@
+package com.pikitus.games.go.models;
+
+import com.smartfoxserver.v2.protocol.serialization.SerializableSFSType;
+
+public class BoardModel implements SerializableSFSType
+{
+	private int[][] mBoard;
+	
+	public int[][] GetBoard()
+	{
+		return mBoard;
+	}
+	
+	public void SetBoard( int[][] board )
+	{
+		mBoard = board;
+	}
+}
