@@ -1,0 +1,5 @@
+package com.pikitus.login.handlers;
+
+public class ZoneJoinEventHandler {
+
+}
