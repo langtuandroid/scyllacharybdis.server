@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<workbench progressCount="38" version="2.0">
+<workbench progressCount="40" version="2.0">
 <workbenchAdvisor/>
 <window height="768" maximized="true" width="1024" x="60" y="60">
 <fastViewData fastViewLocation="1024"/>
@@ -24,7 +24,7 @@
 <coolItem id="org.eclipse.wst.xml.ui.internal.tabletree.XMLMultiPageEditorPart" itemType="typePlaceholder" x="-1" y="-1"/>
 <coolItem id="com.google.gwt.eclipse.core.editors.gwtJavaEditor" itemType="typeToolBarContribution" x="-1" y="-1"/>
 <coolItem id="org.eclipse.ui.DefaultTextEditor" itemType="typePlaceholder" x="-1" y="-1"/>
-<coolItem id="org.eclipse.jdt.ui.CompilationUnitEditor" itemType="typeToolBarContribution" x="-1" y="-1"/>
+<coolItem id="org.eclipse.jdt.ui.CompilationUnitEditor" itemType="typePlaceholder" x="-1" y="-1"/>
 <coolItem id="group.help" itemType="typeGroupMarker"/>
 <coolItem id="org.eclipse.ui.workbench.help" itemType="typeToolBarContribution" x="-1" y="-1"/>
 </coolbarLayout>
@@ -33,37 +33,15 @@
 <editorArea activeWorkbook="DefaultEditorWorkbook">
 <info part="DefaultEditorWorkbook">
 <folder appearance="1" expanded="2">
-<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
-<part id="0"/>
-<part id="1"/>
-<part id="2"/>
-<part id="3"/>
-</presentation>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
 </folder>
 </info>
 </editorArea>
-<editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="RandomGameHandler.java" partName="RandomGameHandler.java" path="C:/Development/server/code/sfsLogin/src/com/pikitus/login/handlers/RandomGameHandler.java" title="RandomGameHandler.java" tooltip="sfsLogin/src/com/pikitus/login/handlers/RandomGameHandler.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/sfsLogin/src/com/pikitus/login/handlers/RandomGameHandler.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="3208" selectionTopPixel="240"/>
-</editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ZoneJoinEventHandler.java" partName="ZoneJoinEventHandler.java" path="C:/Development/server/code/sfsLogin/src/com/pikitus/login/handlers/ZoneJoinEventHandler.java" title="ZoneJoinEventHandler.java" tooltip="sfsLogin/src/com/pikitus/login/handlers/ZoneJoinEventHandler.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/sfsLogin/src/com/pikitus/login/handlers/ZoneJoinEventHandler.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="37" selectionOffset="1209" selectionTopPixel="0"/>
-</editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="OnUserGoneHandler.java" partName="OnUserGoneHandler.java" path="C:/Development/server/code/sfsLogin/src/com/pikitus/login/handlers/OnUserGoneHandler.java" title="OnUserGoneHandler.java" tooltip="sfsLogin/src/com/pikitus/login/handlers/OnUserGoneHandler.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/sfsLogin/src/com/pikitus/login/handlers/OnUserGoneHandler.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
-</editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="MoveHandler.java" partName="MoveHandler.java" path="C:/Development/server/code/sfsChess/src/com/pikitus/games/chess/handlers/MoveHandler.java" title="MoveHandler.java" tooltip="sfsChess/src/com/pikitus/games/chess/handlers/MoveHandler.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/sfsChess/src/com/pikitus/games/chess/handlers/MoveHandler.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="32" selectionOffset="387" selectionTopPixel="0"/>
-</editor>
 </editors>
 <views>
 <view id="org.eclipse.ui.views.ProblemView" partName="Problems">
 <viewState PRIMARY_SORT_FIELD="org.eclipse.ui.ide.severityAndDescriptionField" categoryGroup="org.eclipse.ui.ide.severity" markerContentGenerator="org.eclipse.ui.ide.problemsGenerator" partName="Problems">
 <expanded>
-<category IMemento.internal.id="Warnings (1 item)"/>
 <category IMemento.internal.id="Warnings"/>
 <category IMemento.internal.id="Errors"/>
 </expanded>
@@ -132,7 +110,7 @@
 </view>
 <view id="org.eclipse.jdt.ui.JavadocView" partName="Javadoc"/>
 </views>
-<perspectives activePart="org.eclipse.jdt.ui.CompilationUnitEditor" activePerspective="org.eclipse.jdt.ui.JavaPerspective">
+<perspectives activePart="org.eclipse.jdt.ui.PackageExplorer" activePerspective="org.eclipse.jdt.ui.JavaPerspective">
 <perspective editorAreaTrimState="2" editorAreaVisible="1" fixed="0" version="0.016">
 <descriptor class="org.eclipse.jdt.internal.ui.JavaPerspectiveFactory" id="org.eclipse.jdt.ui.JavaPerspective" label="Java"/>
 <alwaysOnActionSet id="org.eclipse.mylyn.context.ui.actionSet"/>
@@ -271,170 +249,7 @@
 </perspective>
 </perspectives>
 <workingSets/>
-<navigationHistory>
-<editors>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/sfsLogin/src/com/pikitus/login/SFSLogin.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/sfsLogin/src/com/pikitus/login/handlers/RandomGameHandler.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/sfsLogin/src/com/pikitus/login/handlers/LoginEventHandler.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/sfsLogin/src/com/pikitus/login/handlers/ZoneJoinEventHandler.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/sfsLogin/src/com/pikitus/login/handlers/RandomGameHandler.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/sfsLogin/src/com/pikitus/login/handlers/ZoneJoinEventHandler.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/sfsLogin/src/com/pikitus/login/handlers/OnUserGoneHandler.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/sfsLogin/src/com/pikitus/login/handlers/LoginEventHandler.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/sfsChess/src/com/pikitus/games/chess/handlers/BoardHandler.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/sfsChess/src/com/pikitus/games/chess/handlers/MoveHandler.java"/>
-</editors>
-<item historyLabel="RandomGameHandler.java" index="1">
-<position info="not_deleted" x="78" y="0"/>
-</item>
-<item historyLabel="LoginEventHandler.java" index="2">
-<position info="not_deleted" x="966" y="0"/>
-</item>
-<item historyLabel="ZoneJoinEventHandler.java" index="3">
-<position info="not_deleted" x="1539" y="0"/>
-</item>
-<item historyLabel="ZoneJoinEventHandler.java" index="3">
-<position info="not_deleted" x="1531" y="0"/>
-</item>
-<item historyLabel="SFSLogin.java" index="0">
-<position info="not_deleted" x="763" y="0"/>
-</item>
-<item historyLabel="ZoneJoinEventHandler.java" index="3">
-<position info="not_deleted" x="362" y="20"/>
-</item>
-<item historyLabel="SFSLogin.java" index="0">
-<position info="not_deleted" x="949" y="0"/>
-</item>
-<item historyLabel="RandomGameHandler.java" index="1">
-<position info="not_deleted" x="76" y="0"/>
-</item>
-<item historyLabel="ZoneJoinEventHandler.java" index="3">
-<position info="not_deleted" x="383" y="30"/>
-</item>
-<item historyLabel="RandomGameHandler.java" index="4">
-<position info="not_deleted" x="1241" y="0"/>
-</item>
-<item historyLabel="ZoneJoinEventHandler.java" index="5">
-<position info="not_deleted" x="418" y="94"/>
-</item>
-<item historyLabel="RandomGameHandler.java" index="4">
-<position/>
-</item>
-<item historyLabel="ZoneJoinEventHandler.java" index="5">
-<position info="not_deleted" x="1495" y="9"/>
-</item>
-<item historyLabel="RandomGameHandler.java" index="4">
-<position info="not_deleted" x="407" y="0"/>
-</item>
-<item historyLabel="RandomGameHandler.java" index="4">
-<position/>
-</item>
-<item historyLabel="RandomGameHandler.java" index="4">
-<position/>
-</item>
-<item historyLabel="ZoneJoinEventHandler.java" index="5">
-<position info="not_deleted" x="1209" y="37"/>
-</item>
-<item historyLabel="RandomGameHandler.java" index="4">
-<position/>
-</item>
-<item historyLabel="RandomGameHandler.java" index="4">
-<position/>
-</item>
-<item historyLabel="OnUserGoneHandler.java" index="6">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="LoginEventHandler.java" index="7">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="ZoneJoinEventHandler.java" index="5">
-<position info="not_deleted" x="1209" y="37"/>
-</item>
-<item historyLabel="BoardHandler.java" index="8">
-<position info="not_deleted" x="496" y="0"/>
-</item>
-<item historyLabel="LoginEventHandler.java" index="7">
-<position info="not_deleted" x="528" y="0"/>
-</item>
-<item historyLabel="BoardHandler.java" index="8">
-<position info="not_deleted" x="444" y="61"/>
-</item>
-<item historyLabel="RandomGameHandler.java" index="4">
-<position info="not_deleted" x="553" y="0"/>
-</item>
-<item historyLabel="MoveHandler.java" index="9">
-<position info="not_deleted" x="387" y="32"/>
-</item>
-<item historyLabel="BoardHandler.java" index="8">
-<position info="not_deleted" x="444" y="61"/>
-</item>
-<item historyLabel="MoveHandler.java" index="9">
-<position info="not_deleted" x="387" y="32"/>
-</item>
-<item historyLabel="OnUserGoneHandler.java" index="6">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="ZoneJoinEventHandler.java" index="5">
-<position info="not_deleted" x="1209" y="37"/>
-</item>
-<item historyLabel="RandomGameHandler.java" index="4">
-<position info="not_deleted" x="1323" y="0"/>
-</item>
-<item historyLabel="RandomGameHandler.java" index="4">
-<position info="not_deleted" x="1141" y="0"/>
-</item>
-<item historyLabel="RandomGameHandler.java" index="4">
-<position/>
-</item>
-<item historyLabel="RandomGameHandler.java" index="4">
-<position/>
-</item>
-<item historyLabel="RandomGameHandler.java" index="4">
-<position info="not_deleted" x="900" y="0"/>
-</item>
-<item historyLabel="RandomGameHandler.java" index="4">
-<position info="not_deleted" x="1481" y="0"/>
-</item>
-<item historyLabel="RandomGameHandler.java" index="4">
-<position info="not_deleted" x="1391" y="0"/>
-</item>
-<item historyLabel="RandomGameHandler.java" index="4">
-<position info="not_deleted" x="2416" y="0"/>
-</item>
-<item historyLabel="RandomGameHandler.java" index="4">
-<position/>
-</item>
-<item historyLabel="RandomGameHandler.java" index="4">
-<position/>
-</item>
-<item historyLabel="RandomGameHandler.java" index="4">
-<position info="not_deleted" x="2016" y="0"/>
-</item>
-<item historyLabel="RandomGameHandler.java" index="4">
-<position/>
-</item>
-<item historyLabel="RandomGameHandler.java" index="4">
-<position/>
-</item>
-<item historyLabel="RandomGameHandler.java" index="4">
-<position info="not_deleted" x="2955" y="0"/>
-</item>
-<item historyLabel="RandomGameHandler.java" index="4">
-<position info="not_deleted" x="3485" y="0"/>
-</item>
-<item historyLabel="RandomGameHandler.java" index="4">
-<position/>
-</item>
-<item historyLabel="RandomGameHandler.java" index="4">
-<position/>
-</item>
-<item historyLabel="RandomGameHandler.java" index="4">
-<position/>
-</item>
-<item active="true" historyLabel="RandomGameHandler.java" index="4">
-<position/>
-</item>
-</navigationHistory>
+<navigationHistory/>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
 </page>
 <workbenchWindowAdvisor/>
@@ -452,50 +267,50 @@
 </trimLayout>
 </window>
 <mruList>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="MoveHandler.java" tooltip="sfsChess/src/com/pikitus/games/chess/handlers/MoveHandler.java">
-<persistable path="/sfsChess/src/com/pikitus/games/chess/handlers/MoveHandler.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="BoardHandler.java" tooltip="sfsChess/src/com/pikitus/games/chess/handlers/BoardHandler.java">
-<persistable path="/sfsChess/src/com/pikitus/games/chess/handlers/BoardHandler.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="LoginEventHandler.java" tooltip="sfsLogin/src/com/pikitus/login/handlers/LoginEventHandler.java">
-<persistable path="/sfsLogin/src/com/pikitus/login/handlers/LoginEventHandler.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="OnUserGoneHandler.java" tooltip="sfsLogin/src/com/pikitus/login/handlers/OnUserGoneHandler.java">
-<persistable path="/sfsLogin/src/com/pikitus/login/handlers/OnUserGoneHandler.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ZoneJoinEventHandler.java" tooltip="sfsLogin/src/com/pikitus/login/handlers/ZoneJoinEventHandler.java">
-<persistable path="/sfsLogin/src/com/pikitus/login/handlers/ZoneJoinEventHandler.java"/>
-</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="RandomGameHandler.java" tooltip="sfsLogin/src/com/pikitus/login/handlers/RandomGameHandler.java">
 <persistable path="/sfsLogin/src/com/pikitus/login/handlers/RandomGameHandler.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="FriendsList.java" tooltip="sfsLogin/src/com/pikitus/login/FriendsList.java">
-<persistable path="/sfsLogin/src/com/pikitus/login/FriendsList.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="FriendListResult.java" tooltip="sfsLogin/src/com/pikitus/login/FriendListResult.java">
-<persistable path="/sfsLogin/src/com/pikitus/login/FriendListResult.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="FBFriends.java" tooltip="sfsLogin/src/com/pikitus/login/FBFriends.java">
-<persistable path="/sfsLogin/src/com/pikitus/login/FBFriends.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="LoginEventHandler.java" tooltip="sfsLogin/src/com/pikitus/login/LoginEventHandler.java">
-<persistable path="/sfsLogin/src/com/pikitus/login/LoginEventHandler.java"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="SFSLogin.java" tooltip="sfsLogin/src/com/pikitus/login/SFSLogin.java">
 <persistable path="/sfsLogin/src/com/pikitus/login/SFSLogin.java"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Tile.java" tooltip="sfsTris/src/sfs2x/extensions/games/tris/Tile.java">
-<persistable path="/sfsTris/src/sfs2x/extensions/games/tris/Tile.java"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="PlayerJoinedHandler.java" tooltip="sfsGo/src/com/pikitus/games/go/handlers/PlayerJoinedHandler.java">
+<persistable path="/sfsGo/src/com/pikitus/games/go/handlers/PlayerJoinedHandler.java"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="TrisGameBoard.java" tooltip="sfsTris/src/sfs2x/extensions/games/tris/TrisGameBoard.java">
-<persistable path="/sfsTris/src/sfs2x/extensions/games/tris/TrisGameBoard.java"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="SFSGo.java" tooltip="sfsGo/src/com/pikitus/games/go/SFSGo.java">
+<persistable path="/sfsGo/src/com/pikitus/games/go/SFSGo.java"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="OnUserGoneHandler.java" tooltip="sfsTris/src/sfs2x/extensions/games/tris/OnUserGoneHandler.java">
-<persistable path="/sfsTris/src/sfs2x/extensions/games/tris/OnUserGoneHandler.java"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="BoardHandler.java" tooltip="sfsGo/src/com/pikitus/games/go/handlers/BoardHandler.java">
+<persistable path="/sfsGo/src/com/pikitus/games/go/handlers/BoardHandler.java"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="OnSpectatorToPlayerHandler.java" tooltip="sfsTris/src/sfs2x/extensions/games/tris/OnSpectatorToPlayerHandler.java">
-<persistable path="/sfsTris/src/sfs2x/extensions/games/tris/OnSpectatorToPlayerHandler.java"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="MoveHandler.java" tooltip="sfsGo/src/com/pikitus/games/go/handlers/MoveHandler.java">
+<persistable path="/sfsGo/src/com/pikitus/games/go/handlers/MoveHandler.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ValidMoveHandler.java" tooltip="sfsGo/src/com/pikitus/games/go/handlers/ValidMoveHandler.java">
+<persistable path="/sfsGo/src/com/pikitus/games/go/handlers/ValidMoveHandler.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="SFSChess.java" tooltip="sfsChess/src/com/pikitus/games/chess/SFSChess.java">
+<persistable path="/sfsChess/src/com/pikitus/games/chess/SFSChess.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ValidMoveHandler.java" tooltip="sfsChess/src/com/pikitus/games/chess/handlers/ValidMoveHandler.java">
+<persistable path="/sfsChess/src/com/pikitus/games/chess/handlers/ValidMoveHandler.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="BoardHandler.java" tooltip="sfsChess/src/com/pikitus/games/chess/handlers/BoardHandler.java">
+<persistable path="/sfsChess/src/com/pikitus/games/chess/handlers/BoardHandler.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="MoveHandler.java" tooltip="sfsChess/src/com/pikitus/games/chess/handlers/MoveHandler.java">
+<persistable path="/sfsChess/src/com/pikitus/games/chess/handlers/MoveHandler.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ChessBoard.java" tooltip="sfsChess/src/com/pikitus/games/chess/ChessBoard.java">
+<persistable path="/sfsChess/src/com/pikitus/games/chess/ChessBoard.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="GoBoard.java" tooltip="sfsGo/src/com/pikitus/games/go/GoBoard.java">
+<persistable path="/sfsGo/src/com/pikitus/games/go/GoBoard.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="MoveModel.java" tooltip="sfsGo/src/com/pikitus/games/go/models/MoveModel.java">
+<persistable path="/sfsGo/src/com/pikitus/games/go/models/MoveModel.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="BoardModel.java" tooltip="sfsGo/src/com/pikitus/games/go/models/BoardModel.java">
+<persistable path="/sfsGo/src/com/pikitus/games/go/models/BoardModel.java"/>
 </file>
 </mruList>
 </workbench>

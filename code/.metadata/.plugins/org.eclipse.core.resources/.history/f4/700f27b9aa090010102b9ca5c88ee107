@@ -1,0 +1,8 @@
+package com.pikitus.games.go;
+
+
+public class GoBoard 
+{
+	private int[][] mBoardModel = new int[19][19];
+
+}
