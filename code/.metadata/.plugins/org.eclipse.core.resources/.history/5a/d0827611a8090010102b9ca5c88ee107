@@ -1,0 +1,6 @@
+package com.pikitus.games.go.models;
+
+public class BoardModel 
+{
+	private var mBoardModel[][];
+}

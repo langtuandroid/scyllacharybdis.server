@@ -29,14 +29,15 @@ public class RandomGameHandler extends BaseClientRequestHandler
     @Override
     public void handleClientRequest(User user, ISFSObject params)
     {
+    	String game = params.getUtfString("game");
     	String difficulty = params.getUtfString("difficulty");
-    	if ( ! findGame( user, difficulty ) ) 
+    	if ( ! findGame( user, difficulty, game ) ) 
     	{
-    		createRoom( user, difficulty );
+    		createRoom( user, difficulty, game );
     	}
     }
     
-    public void createRoom(User user, String difficulty)
+    public void createRoom(User user, String difficulty, String game)
     {
     	// Get the game api and zone
     	ISFSGameApi gameApi = SmartFoxServer.getInstance().getAPIManager().getGameApi();
@@ -45,13 +46,26 @@ public class RandomGameHandler extends BaseClientRequestHandler
     	// Create a difficult variable for the room
         List<RoomVariable> roomVariablelist = new ArrayList<RoomVariable>();
         roomVariablelist.add(new SFSRoomVariable("difficulty", difficulty, false, true, false));
+        roomVariablelist.add(new SFSRoomVariable("game", game, false, true, false));
 
         // Create the extension settings
-        RoomExtensionSettings extensionSetting = new RoomExtensionSettings("sfsChess", "com.pikitus.games.chess.SFSChess");
+        RoomExtensionSettings extensionSetting;
+        if ( game == "sfsGo") 
+        {
+        	extensionSetting = new RoomExtensionSettings("sfsGo", "com.pikitus.games.go.SFSGo");
+        } 
+        else if ( game == "sfsChess" )
+        {
+        	extensionSetting = new RoomExtensionSettings("sfsChess", "com.pikitus.games.chess.SFSChess");
+        } 
+        else 
+        {
+        	extensionSetting = new RoomExtensionSettings("sfsChess", "com.pikitus.games.chess.SFSChess");
+        }
     	
         // Create the game settings
         CreateSFSGameSettings roomSettings = new CreateSFSGameSettings();
-        roomSettings.setName("ChessGame" + mNextGameID++); 
+        roomSettings.setName("Game" + mNextGameID++); 
         roomSettings.setInvitationExpiryTime(30); 
         roomSettings.setDynamic(true);
         roomSettings.setGame(true);
@@ -75,13 +89,14 @@ public class RandomGameHandler extends BaseClientRequestHandler
 		}
     }  
     
-    public boolean findGame(User user, String difficulty)
+    public boolean findGame(User user, String difficulty, String game)
     {
     	Zone zone = getParentExtension().getParentZone();
     	
     	MatchExpression exp = new MatchExpression(RoomProperties.IS_GAME, BoolMatch.EQUALS, true)
     		.and(RoomProperties.HAS_FREE_PLAYER_SLOTS, BoolMatch.EQUALS, true)
-    		.and("difficulty", StringMatch.EQUALS, difficulty);
+    		.and("difficulty", StringMatch.EQUALS, difficulty)
+    		.and("game", StringMatch.EQUALS, game);
     	List<Room> joinableRooms = getApi().findRooms(zone.getRoomList(), exp, 0);
     	if ( joinableRooms.size() == 0)
     	{
