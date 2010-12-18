@@ -3,7 +3,8 @@ package com.pikitus.login.handlers;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.pikitus.login.models.RandomGameModel;
+import models.RandomGameModel;
+
 import com.smartfoxserver.v2.SmartFoxServer;
 import com.smartfoxserver.v2.api.CreateRoomSettings.RoomExtensionSettings;
 import com.smartfoxserver.v2.api.ISFSGameApi;
@@ -31,14 +32,14 @@ public class RandomGameHandler extends BaseClientRequestHandler
     @Override
     public void handleClientRequest(User user, ISFSObject params)
     {
-    	mRandomGameModel = (RandomGameModel) params.getClass("RandomGameModel");
+    	mRandomGameModel = (RandomGameModel) params.getClass("JOIN_RANDOM_ROOM");
     	if ( ! findGame( user ) ) 
     	{
     		createRoom( user );
     	}
     }
     
-    public void createRoom(User user, String difficulty, String game)
+    public void createRoom(User user)
     {
     	// Get the game api and zone
     	ISFSGameApi gameApi = SmartFoxServer.getInstance().getAPIManager().getGameApi();
@@ -49,23 +50,10 @@ public class RandomGameHandler extends BaseClientRequestHandler
         roomVariablelist.add(new SFSRoomVariable("gameType", mRandomGameModel.getGameType(), false, true, false));
         roomVariablelist.add(new SFSRoomVariable("gameDifficulty", mRandomGameModel.getDifficulty(), false, true, false));
         roomVariablelist.add(new SFSRoomVariable("gameArea", mRandomGameModel.getArea(), false, true, false));
-		.and("gameType", StringMatch.EQUALS, mRandomGameModel.getGameType())
-		.and("gameDifficulty", StringMatch.EQUALS, mRandomGameModel.getDifficulty())
-		.and("gameArea", StringMatch.EQUALS, mRandomGameModel.getArea());
+
         // Create the extension settings
-        RoomExtensionSettings extensionSetting  new RoomExtensionSettings("sfsGo", "com.pikitus.games.go.SFSGo");
-        if ( game == "sfsGo") 
-        {
-        	extensionSetting = new RoomExtensionSettings("sfsGo", "com.pikitus.games.go.SFSGo");
-        } 
-        else if ( game == "sfsChess" )
-        {
-        	extensionSetting = new RoomExtensionSettings("sfsChess", "com.pikitus.games.chess.SFSChess");
-        } 
-        else 
-        {
-        	extensionSetting = new RoomExtensionSettings("sfsChess", "com.pikitus.games.chess.SFSChess");
-        }
+        //RoomExtensionSettings extensionSetting = new RoomExtensionSettings("sfsGo", "com.pikitus.games.go.SFSGo");
+        RoomExtensionSettings extensionSetting = new RoomExtensionSettings(mRandomGameModel.getGameType(), mRandomGameModel.getGameExtension());
     	
         // Create the game settings
         CreateSFSGameSettings roomSettings = new CreateSFSGameSettings();
@@ -84,7 +72,7 @@ public class RandomGameHandler extends BaseClientRequestHandler
         
         try 
         {
-        	// Create the room
+        	trace("creating the game room");
         	gameApi.createGame(zone, roomSettings, user);
 		} 
         catch (SFSCreateRoomException e) 
@@ -102,14 +90,19 @@ public class RandomGameHandler extends BaseClientRequestHandler
     		.and("gameType", StringMatch.EQUALS, mRandomGameModel.getGameType())
     		.and("gameDifficulty", StringMatch.EQUALS, mRandomGameModel.getDifficulty())
     		.and("gameArea", StringMatch.EQUALS, mRandomGameModel.getArea());
+    	
+    	// Get a list of rooms
     	List<Room> joinableRooms = getApi().findRooms(zone.getRoomList(), exp, 0);
     	if ( joinableRooms.size() == 0)
     	{
+    		trace("No games found");
     		return false;
     	}
-    	
+
+    	// Try to join the room
     	try 
     	{
+    		trace("Joining the first game");
 			getApi().joinRoom(user, joinableRooms.get(0));
 		} 
     	catch (SFSJoinRoomException e) 

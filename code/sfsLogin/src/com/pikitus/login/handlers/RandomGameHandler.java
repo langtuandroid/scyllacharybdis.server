@@ -32,7 +32,7 @@ public class RandomGameHandler extends BaseClientRequestHandler
     @Override
     public void handleClientRequest(User user, ISFSObject params)
     {
-    	mRandomGameModel = (RandomGameModel) params.getClass("JOIN_RANDOM_ROOM");
+    	mRandomGameModel = (RandomGameModel) params.getClass("RandomGameModel");
     	if ( ! findGame( user ) ) 
     	{
     		createRoom( user );
