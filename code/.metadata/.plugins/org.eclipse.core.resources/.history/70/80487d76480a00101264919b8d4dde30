@@ -51,7 +51,11 @@ public class RandomGameHandler extends BaseClientRequestHandler
     	trace(mRandomGameModel.getGameType());
     	trace(mRandomGameModel.getGameExtension());
     	trace("**********************************************");
-
+    	
+    	if ( user != null ) {
+    		return;
+    	}    	
+    	
     	// Get the game api and zone
     	ISFSGameApi gameApi = SmartFoxServer.getInstance().getAPIManager().getGameApi();
     	Zone zone = getParentExtension().getParentZone();
@@ -95,6 +99,10 @@ public class RandomGameHandler extends BaseClientRequestHandler
     public boolean findGame(User user)
     {
     	trace("Finding the game");
+    	
+    	if ( user != null ) {
+    		return false;
+    	}
 
     	Zone zone = getParentExtension().getParentZone();
     	
