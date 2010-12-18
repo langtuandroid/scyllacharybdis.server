@@ -55,4 +55,5 @@
 <fullyQualifiedTypeName name="com.pikitus.games.go.handlers.MoveHandler"/>
 <fullyQualifiedTypeName name="com.pikitus.games.go.models.BoardModel"/>
 <fullyQualifiedTypeName name="com.pikitus.games.go.models.MoveModel"/>
+<fullyQualifiedTypeName name="com.pikitus.login.models.RandomGameModel"/>
 </qualifiedTypeNameHistroy>
