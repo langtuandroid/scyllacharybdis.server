@@ -4,3 +4,7 @@
 1292696619117	Encapsulate field 'from'
 1292696625189	Encapsulate field 'to'
 1292696632508	Encapsulate field 'valid'
+1292697066964	Copy compilation unit
+1292699678783	Encapsulate field 'player1'
+1292699685532	Encapsulate field 'player2'
+1292699693638	Encapsulate field 'whoseTurn'
