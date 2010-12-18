@@ -41,17 +41,6 @@ public class RandomGameHandler extends BaseClientRequestHandler
     
     public void createRoom(User user)
     {
-
-    	
-    	trace("**********************************************");
-    	trace("createRoom");
-    	trace("**********************************************");
-    	trace(mRandomGameModel.getArea());
-    	trace(mRandomGameModel.getDifficulty());
-    	trace(mRandomGameModel.getGameType());
-    	trace(mRandomGameModel.getGameExtension());
-    	trace("**********************************************");
-
     	// Get the game api and zone
     	ISFSGameApi gameApi = SmartFoxServer.getInstance().getAPIManager().getGameApi();
     	Zone zone = getParentExtension().getParentZone();
@@ -94,16 +83,7 @@ public class RandomGameHandler extends BaseClientRequestHandler
     
     public boolean findGame(User user)
     {
-    	trace("Finding the game");
-
     	Zone zone = getParentExtension().getParentZone();
-    	
-    	trace("**********************************************");
-    	trace(mRandomGameModel.getArea());
-    	trace(mRandomGameModel.getDifficulty());
-    	trace(mRandomGameModel.getGameType());
-    	trace(mRandomGameModel.getGameExtension());
-    	trace("**********************************************");
     	
     	MatchExpression exp = new MatchExpression(RoomProperties.IS_GAME, BoolMatch.EQUALS, true)
     		.and(RoomProperties.HAS_FREE_PLAYER_SLOTS, BoolMatch.EQUALS, true)

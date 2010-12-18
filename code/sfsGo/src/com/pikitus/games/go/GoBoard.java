@@ -1,7 +1,8 @@
 package com.pikitus.games.go;
 
-import com.pikitus.games.go.models.BoardModel;
-import com.pikitus.games.go.models.MoveModel;
+import models.go.BoardModel;
+import models.go.MoveModel;
+
 
 public class GoBoard 
 {

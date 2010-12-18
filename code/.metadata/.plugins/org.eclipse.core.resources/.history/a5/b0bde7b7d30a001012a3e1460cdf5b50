@@ -1,0 +1,13 @@
+package models.chess;
+
+public class MoveModel {
+	private String from;
+	private String to;
+	private String valid;
+
+	public MoveModel()
+	{
+		
+	}
+	
+}
