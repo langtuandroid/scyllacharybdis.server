@@ -1,2 +1,6 @@
 1292631853046	Delete element
 1292632002660	Delete element
+1292696314673	Copy compilation unit
+1292696619117	Encapsulate field 'from'
+1292696625189	Encapsulate field 'to'
+1292696632508	Encapsulate field 'valid'

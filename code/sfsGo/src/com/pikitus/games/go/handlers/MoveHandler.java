@@ -1,12 +1,12 @@
 package com.pikitus.games.go.handlers;
 
+import models.go.MoveModel;
+
 import com.smartfoxserver.v2.entities.User;
 import com.smartfoxserver.v2.entities.data.ISFSObject;
 import com.smartfoxserver.v2.entities.data.SFSObject;
 import com.smartfoxserver.v2.extensions.BaseClientRequestHandler;
 import com.pikitus.games.go.SFSGo;
-import com.pikitus.games.go.models.MoveModel;
-//import com.pikitus.games.go.models.MoveModel;
 
 public class MoveHandler extends BaseClientRequestHandler
 {

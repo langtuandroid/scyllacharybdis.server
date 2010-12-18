@@ -7,5 +7,6 @@
 	<classpathentry kind="lib" path="../../sfs2x/lib/sfs2x-core.jar"/>
 	<classpathentry kind="lib" path="../../sfs2x/lib/slf4j-api-1.5.10.jar"/>
 	<classpathentry kind="lib" path="../../sfs2x/lib/slf4j-log4j12.jar"/>
+	<classpathentry kind="src" path="/sfsModels"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
