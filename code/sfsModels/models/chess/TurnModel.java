@@ -1,27 +1,26 @@
 package models.chess;
 
-import com.smartfoxserver.v2.entities.User;
 import com.smartfoxserver.v2.protocol.serialization.SerializableSFSType;
 
 public class TurnModel  implements SerializableSFSType
 {
-	User turn;
+	int turn;
 	
 	public TurnModel()
 	{
 	}
 	
-	public TurnModel( User turn )
+	public TurnModel( int turn )
 	{
 		this.turn = turn;
 	}
 	
-	public User getTurn()
+	public int getTurn()
 	{
 		return this.turn;
 	}
 	
-	public void setTurn( User turn )
+	public void setTurn( int turn )
 	{
 		this.turn = turn;
 	}

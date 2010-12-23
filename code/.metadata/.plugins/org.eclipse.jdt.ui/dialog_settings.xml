@@ -56,8 +56,8 @@
 		<item value="false" key="jarOptionsWizardPage.STORE_USE_SRC_FOLDERS"/>
 		<item value="" key="jarOptionsWizardPage.DESCRIPTION_LOCATION"/>
 		<list key="JarPackageWizardPage.DESTINATION_NAMES_ID">
-			<item value="C:\Development\server\sfs2x\extensions\__lib__\sfsModels.jar"/>
 			<item value="C:\Development\server\sfs2x\extensions\sfsChess\sfsChess.jar"/>
+			<item value="C:\Development\server\sfs2x\extensions\__lib__\sfsModels.jar"/>
 			<item value="C:\Development\server\sfs2x\extensions\sfsLogin\sfsLogin.jar"/>
 			<item value="C:\Development\server\sfs2x\extensions\sfsTris\SFSTris2x.jar"/>
 			<item value="sfsChess\bin\sfsChess.jar"/>
