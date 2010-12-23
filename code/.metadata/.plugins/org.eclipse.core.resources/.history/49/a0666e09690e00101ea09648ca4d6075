@@ -1,0 +1,201 @@
+package com.pikitus.games.chess;
+
+import models.chess.PlayersModel;
+import models.chess.TurnModel;
+
+import com.smartfoxserver.v2.entities.User;
+import com.smartfoxserver.v2.entities.data.ISFSObject;
+import com.smartfoxserver.v2.entities.data.SFSObject;
+import com.smartfoxserver.v2.extensions.SFSExtension;
+import com.pikitus.games.chess.ChessBoard;
+import com.pikitus.games.chess.handlers.MoveHandler;
+import com.pikitus.games.chess.handlers.PlayerJoinedHandler;
+
+public class SFSChess extends SFSExtension 
+{
+	private final String version = "0.1";
+	private ChessBoard mGameBoard;
+	private volatile boolean mGameStarted = false;
+	private PlayersModel mPlayers;
+	private TurnModel mTurn;
+	
+	@Override
+	public void init() 
+	{
+		// Trace the version
+		trace("SFSChess Extension started, rel. " + version);
+		
+		// Add the handlers
+	    addRequestHandler("PLAYER_JOINED", PlayerJoinedHandler.class);
+	    addRequestHandler("MOVE_PIECE", MoveHandler.class);
+
+	    // Initialize the game
+	    initializeGame();
+	}
+	
+	public void initializeGame()
+	{
+		// Create a new chess board
+		mGameBoard = new ChessBoard();
+		mGameBoard.initializeBoard();
+		
+		// Create the models
+		mPlayers = new PlayersModel();
+		mTurn = new TurnModel();		
+	}
+	
+	/**
+	 * Get the game board
+	 * @return (ChessBoard) 
+	 */
+	public ChessBoard getGameBoard() 
+	{
+		return mGameBoard;
+	}
+
+	
+	public void playerJoined( User user )
+	{
+		// Check to make sure something didn't go horrible wrong
+		if ( mPlayers.getPlayer1() != null && mPlayers.getPlayer2() != null ) 
+		{
+			throw new IllegalStateException("Already have 2 players!");
+		}
+		
+		if ( mPlayers.getPlayer1() == null ) 
+		{
+			mPlayers.setPlayer1(user);
+			
+			// Send the valid moves just to player 1
+			sendValidMoves( user );
+			
+		} 
+		else 
+		{
+			mPlayers.setPlayer2(user);
+		}
+
+		// Send the board to the player
+		sendBoard( user );
+
+		// Send the players
+		sendPlayers();
+
+		// Check to see if we have 2 players
+		if ( mPlayers.getPlayer1() != null && mPlayers.getPlayer2() != null )
+		{
+			sendTurn();
+		}
+	}
+	
+	/**
+	 * Player left the game
+	 * @param user (User) The user that left
+	 * @param connectionDroped (boolean) Did the connection drop.
+	 */
+	public void playerLeft( User user, boolean connectionDroped ) 
+	{
+		if ( user.getId() == mPlayers.getPlayer1().getId() ) {
+			sendWinner( mPlayer2 );
+			gameOver();
+			return;
+		} else if ( user.getId() == mPlayers.getPlayer2() .getId() ) {
+			sendWinner( mPlayer1 );
+			gameOver();
+			return;
+		}
+	}	
+
+	/**
+	 * Has the game started yet
+	 * @return (Boolean) True if the game has started.
+	 */
+	public boolean isStarted()
+	{
+		return mGameStarted;
+	}
+	
+	/**
+	 * Start the game
+	 */
+	public void startGame() 
+	{
+		// Check to make sure the game hasn't already started
+		if (mGameStarted) 
+		{
+			// Throw an exception
+			throw new IllegalStateException("Game is already started!");
+		}
+
+		// Mark the game started
+		mGameStarted = true;
+		
+		sendTurn();
+	}	
+	
+	/**
+	 * Get who's turn it is
+	 * @return (User) The players id.
+	 */
+	public User getWhoseTurn()
+    {
+	    return mWhoseTurn;
+    }
+	
+	/**
+	 * Swap turn
+	 */
+	public void swapTurn()
+	{
+		if ( mWhoseTurn == mPlayer1) {
+			mWhoseTurn = mPlayer2;
+		} else { 
+			mWhoseTurn = mPlayer1;
+		}
+		sendBoard( user );
+		sendValidMoves( user );
+		sendTurn();
+	}
+
+	/**
+	 * Send all the users the player that won.
+	 * @param winner (User) The player that won.
+	 */
+	public void sendWinner( User winner ) 
+	{
+		ISFSObject resObj = new SFSObject();
+		resObj.putInt("winner", winner.getId() );
+		send("winner", resObj, getParentRoom().getUserList() );		
+		gameOver();
+	}
+	
+	/**
+	 * Send the user a game over command
+	 */
+	public void gameOver() 
+	{
+		this.sendSFSObject( "GAME_OVER", new SFSObject() );				
+	}
+	
+	
+	/**
+	 * Send a sfs object to all the clients in the room
+	 * @param name (String) Event name the client receives
+	 * @param object (ISFSObject) The object being sent to the client
+	 */
+	public void sendSFSObject(String name, ISFSObject object)
+	{
+		send( name, object, getParentRoom().getUserList() );
+	}
+
+	/**
+	 * Send a sfsobject to a user in the room
+	 * @param name (String) Event name the client receives
+	 * @param object (ISFSObject) The object being sent to the client
+	 * @param user (User) The user to send the object too
+	 */
+	public void sendSFSObject(String name, ISFSObject object, User user) 
+	{
+		send( name, object, user );
+	}
+}	

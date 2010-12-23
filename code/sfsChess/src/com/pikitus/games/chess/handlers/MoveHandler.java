@@ -1,11 +1,12 @@
 package com.pikitus.games.chess.handlers;
 
+import models.chess.MoveModel;
+
 import com.smartfoxserver.v2.entities.User;
 import com.smartfoxserver.v2.entities.data.ISFSObject;
 import com.smartfoxserver.v2.entities.data.SFSObject;
 import com.smartfoxserver.v2.extensions.BaseClientRequestHandler;
 import com.pikitus.games.chess.SFSChess;
-import com.pikitus.games.chess.models.MoveModel;
 
 public class MoveHandler extends BaseClientRequestHandler
 {
@@ -41,7 +42,7 @@ public class MoveHandler extends BaseClientRequestHandler
 	{
 		ISFSObject resObj = new SFSObject();
 		
-		boolean valid = sfsChess.getGameBoard().movePiece( new MoveModel( from, to ) );
+		boolean valid = sfsChess.getGameBoard().movePiece( new MoveModel( from, to, false ) );
 		resObj.putBool("valid", valid );
 		resObj.putUtfString("from", from);
 		resObj.putUtfString("to", to);

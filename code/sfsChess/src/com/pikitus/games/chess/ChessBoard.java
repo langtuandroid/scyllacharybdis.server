@@ -2,7 +2,10 @@ package com.pikitus.games.chess;
 
 import java.util.HashMap;
 import java.util.ArrayList;
-import com.pikitus.games.chess.models.MoveModel;
+
+import models.chess.BoardModel;
+import models.chess.MoveModel;
+import models.chess.ValidMoveModel;
 
 public class ChessBoard 
 {
@@ -220,7 +223,7 @@ public class ChessBoard
 				
 				for ( MoveModel move:moves )
 				{
-					if ( mSquareLabels[ i*8 + j ] == move.to )
+					if ( mSquareLabels[ i*8 + j ] == move.getTo() )
 					{
 						line += "**|";
 						isMove = true;
@@ -246,8 +249,8 @@ public class ChessBoard
 	 */
 	public boolean movePiece( MoveModel move ) 
 	{
-		long to = mSquareMap.get(move.to);
-		long from = mSquareMap.get(move.from);
+		long to = mSquareMap.get(move.getTo());
+		long from = mSquareMap.get(move.getFrom());
 		
 		// Get the label of the piece to move
 		String pieceToMove = getPieceLabel( from, currentPlayer );
@@ -560,8 +563,8 @@ public class ChessBoard
 					moves = ( moves | mSquareArray.get(i) ) ;
 				}		  
 				// Or it's an en passant
-				else if( ((mLastMove.type & MoveModel.PAWN_MOVE_TWO) != 0 &&
-					  	 (mSquareMap.get(mLastMove.to) & mPieceBoards.get(BLACK_PAWNS) & mSquareArray.get(squareIndex + 1) ) != 0))
+				else if( ((mLastMove.getType() & MoveModel.PAWN_MOVE_TWO) != 0 &&
+					  	 (mSquareMap.get(mLastMove.getTo()) & mPieceBoards.get(BLACK_PAWNS) & mSquareArray.get(squareIndex + 1) ) != 0))
 				{
 					// Add the move
 					moves = ( moves | mSquareArray.get(i) ) ;
@@ -580,8 +583,8 @@ public class ChessBoard
 					moves = ( moves | mSquareArray.get(i) ) ;
 				}
 				// Or it's an en passant
-				else if( ((mLastMove.type & MoveModel.PAWN_MOVE_TWO) != 0 &&
-					  	 (mSquareMap.get(mLastMove.to) & mPieceBoards.get(BLACK_PAWNS) & mSquareArray.get(squareIndex - 1) ) != 0))
+				else if( ((mLastMove.getType() & MoveModel.PAWN_MOVE_TWO) != 0 &&
+					  	 (mSquareMap.get(mLastMove.getTo()) & mPieceBoards.get(BLACK_PAWNS) & mSquareArray.get(squareIndex - 1) ) != 0))
 				{
 					// Add the move
 					moves = ( moves | mSquareArray.get(i) ) ;
@@ -637,8 +640,8 @@ public class ChessBoard
 					moves = ( moves | mSquareArray.get(i) ) ;	
 				}
 				// Or it's an en passant
-				else if( ((mLastMove.type & MoveModel.PAWN_MOVE_TWO) != 0 &&
-					  	 (mSquareMap.get(mLastMove.to) & mPieceBoards.get(WHITE_PAWNS) & mSquareArray.get(squareIndex + 1) ) != 0))
+				else if( ((mLastMove.getType() & MoveModel.PAWN_MOVE_TWO) != 0 &&
+					  	 (mSquareMap.get(mLastMove.getTo()) & mPieceBoards.get(WHITE_PAWNS) & mSquareArray.get(squareIndex + 1) ) != 0))
 				{
 					// Add the move
 					moves = ( moves | mSquareArray.get(i) ) ;
@@ -656,8 +659,8 @@ public class ChessBoard
 					moves = ( moves | mSquareArray.get(i) ) ;
 				}
 				// Or it's an en passant
-				else if( ((mLastMove.type & MoveModel.PAWN_MOVE_TWO) != 0 &&
-					  	 (mSquareMap.get(mLastMove.to) & mPieceBoards.get(WHITE_PAWNS) & mSquareArray.get(squareIndex - 1) ) != 0))
+				else if( ((mLastMove.getType() & MoveModel.PAWN_MOVE_TWO) != 0 &&
+					  	 (mSquareMap.get(mLastMove.getTo()) & mPieceBoards.get(WHITE_PAWNS) & mSquareArray.get(squareIndex - 1) ) != 0))
 				{
 					// Add the move
 					moves = ( moves | mSquareArray.get(i) ) ;
@@ -1283,6 +1286,18 @@ public class ChessBoard
 			
 			return moves;
 		}
+	}
+
+	public BoardModel getBoard() 
+	{
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public ValidMoveModel getValidMoves() 
+	{
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
 

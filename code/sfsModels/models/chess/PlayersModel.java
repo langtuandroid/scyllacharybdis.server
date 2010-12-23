@@ -5,19 +5,17 @@ import com.smartfoxserver.v2.protocol.serialization.SerializableSFSType;
 
 public class PlayersModel implements SerializableSFSType
 {
-	private User player1;
-	private User player2;
-	private User whoseTurn;
+	User player1;
+	User player2;
 	
-	PlayersModel() 
+	public PlayersModel() 
 	{
 	}
 
-	PlayersModel( User player1, User player2, User whoseTurn )
+	public PlayersModel( User player1, User player2)
 	{
 		this.setPlayer1(player1);
 		this.setPlayer2(player2);
-		this.whoseTurn = whoseTurn;
 	}
 
 	public void setPlayer1(User player1) {
@@ -36,12 +34,5 @@ public class PlayersModel implements SerializableSFSType
 		return player2;
 	}
 
-	public void setWhoseTurn(User whoseTurn) {
-		this.whoseTurn = whoseTurn;
-	}
-
-	public User getWhoseTurn() {
-		return whoseTurn;
-	}
 }
 

@@ -1,0 +1,6 @@
+package com.pikitus.games.chess;
+
+public class GameManager 
+{
+
+}
