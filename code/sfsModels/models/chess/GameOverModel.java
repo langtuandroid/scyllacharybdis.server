@@ -1,27 +1,26 @@
 package models.chess;
 
-import com.smartfoxserver.v2.entities.User;
 import com.smartfoxserver.v2.protocol.serialization.SerializableSFSType;
 
 public class GameOverModel  implements SerializableSFSType
 {
-	User winner;
+	int winner;
 	
 	public GameOverModel()
 	{
 	}
 	
-	public GameOverModel( User winner )
+	public GameOverModel( int winner )
 	{
 		this.winner = winner;
 	}
 	
-	public User getWinner()
+	public int getWinner()
 	{
 		return this.winner;
 	}
 	
-	public void setWinner( User winner )
+	public void setWinner( int winner )
 	{
 		this.winner = winner;
 	}

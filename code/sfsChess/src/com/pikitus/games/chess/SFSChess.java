@@ -64,32 +64,32 @@ public class SFSChess extends SFSExtension
 	public void playerJoined( User user )
 	{
 		// Check to make sure something didn't go horrible wrong
-		if ( mPlayers.getPlayer1() != null && mPlayers.getPlayer2() != null ) 
+		if ( mPlayers.getPlayer1() != 0 && mPlayers.getPlayer2() != 0 ) 
 		{
 			throw new IllegalStateException("Already have 2 players!");
 		}
 
 		// Send the board to the player
-		sendBoard( user );
+		sendBoard( user.getId() );
 		
-		if ( mPlayers.getPlayer1() == null ) 
+		if ( mPlayers.getPlayer1() == 0 ) 
 		{
-			mPlayers.setPlayer1(user);
+			mPlayers.setPlayer1(user.getId());
 			
 			// Send the valid moves just to player 1
-			sendValidMoves( user );
+			sendValidMoves( user.getId() );
 			
 		} 
 		else 
 		{
-			mPlayers.setPlayer2(user);
+			mPlayers.setPlayer2(user.getId());
 		}
 
 		// Send the players
 		sendPlayers();
 
 		// Check to see if we have 2 players
-		if ( mPlayers.getPlayer1() != null && mPlayers.getPlayer2() != null )
+		if ( mPlayers.getPlayer1() != 0 && mPlayers.getPlayer2() != 0 )
 		{
 			sendTurn();
 		}
@@ -107,12 +107,12 @@ public class SFSChess extends SFSExtension
 		if ( valid ) 
 		{
 			// Send the move back to the player if there is a problem
-			sendSFSObject("MOVE_PIECE_RESULTS", resObj);
+			sendSFSObject("CHESS_MOVE_RESULTS", resObj);
 		} 
 		else 
 		{
 			// Send the move results
-			sendSFSObject("MOVE_PIECE_RESULTS", resObj, user);
+			sendSFSObject("CHESS_MOVE_RESULTS", resObj, user);
 			
 			// Swap player turns
 			swapTurn();
@@ -126,11 +126,11 @@ public class SFSChess extends SFSExtension
 	 */
 	public void playerLeft( User user, boolean connectionDroped ) 
 	{
-		if ( user.getId() == mPlayers.getPlayer1().getId() ) 
+		if ( user.getId() == mPlayers.getPlayer1() ) 
 		{
 			sendGameOver( mPlayers.getPlayer2() );
 		} 
-		else if ( user.getId() == mPlayers.getPlayer2().getId() ) 
+		else if ( user.getId() == mPlayers.getPlayer2() ) 
 		{
 			sendGameOver( mPlayers.getPlayer1() );
 		}
@@ -138,9 +138,9 @@ public class SFSChess extends SFSExtension
 
 	/**
 	 * Get who's turn it is
-	 * @return (User) The players id.
+	 * @return (int) The players id.
 	 */
-	public User getWhoseTurn()
+	public int getWhoseTurn()
     {
 	    return mTurn.getTurn();
     }
@@ -165,16 +165,18 @@ public class SFSChess extends SFSExtension
 	}
 
 
-	private void sendBoard(User user) 
+	private void sendBoard(int userId) 
 	{
+		User user = getParentRoom().getUserById(userId);
 		ISFSObject board = SFSObject.newInstance();
 		board.putClass("BoardModel", mGameBoard.getBoard() );
 		sendSFSObject("CHESS_BOARD", board, user);
 		
 	}
 
-	private void sendValidMoves(User user) 
+	private void sendValidMoves(int userId) 
 	{
+		User user = getParentRoom().getUserById(userId);
 		ISFSObject validMoves = SFSObject.newInstance();
 		validMoves.putClass("ValidMovesModel", mGameBoard.getValidMoves() );
 		sendSFSObject("CHESS_VALID_MOVES", validMoves, user);
@@ -194,10 +196,10 @@ public class SFSChess extends SFSExtension
 		sendSFSObject("CHESS_TURN", turn );			
 	}
 	
-	private void sendGameOver(User winner) 
+	private void sendGameOver(int winnerId) 
 	{
 		ISFSObject winnerObj = SFSObject.newInstance();
-		winnerObj.putClass("GameOverModel", new GameOverModel( winner ) );
+		winnerObj.putClass("GameOverModel", new GameOverModel( winnerId ) );
 		sendSFSObject("CHESS_GAME_OVER", winnerObj );			
 	}
 	

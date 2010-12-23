@@ -18,7 +18,7 @@ public class MoveHandler extends BaseClientRequestHandler
 			return ;
 		}
 	
-		if ( gameExt.getWhoseTurn().getId() != user.getId() ) {
+		if ( gameExt.getWhoseTurn() != user.getId() ) {
 			return ;
 		}
 		
