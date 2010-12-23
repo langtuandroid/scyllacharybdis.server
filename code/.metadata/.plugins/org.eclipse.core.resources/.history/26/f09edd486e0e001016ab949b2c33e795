@@ -1,5 +1,7 @@
 package com.pikitus.games.chess;
 
+import models.chess.GameOverModel;
+import models.chess.MoveModel;
 import models.chess.PlayersModel;
 import models.chess.TurnModel;
 
@@ -66,6 +68,9 @@ public class SFSChess extends SFSExtension
 		{
 			throw new IllegalStateException("Already have 2 players!");
 		}
+
+		// Send the board to the player
+		sendBoard( user );
 		
 		if ( mPlayers.getPlayer1() == null ) 
 		{
@@ -80,9 +85,6 @@ public class SFSChess extends SFSExtension
 			mPlayers.setPlayer2(user);
 		}
 
-		// Send the board to the player
-		sendBoard( user );
-
 		// Send the players
 		sendPlayers();
 
@@ -92,6 +94,26 @@ public class SFSChess extends SFSExtension
 			sendTurn();
 		}
 	}
+	
+	public void movePiece( SFSChess sfsChess, User user, MoveModel move ) 
+	{
+		boolean valid = sfsChess.getGameBoard().movePiece( move );
+		move.setValid( valid );
+
+		ISFSObject resObj = new SFSObject();
+		resObj.putClass("MoveModel", move);
+
+		// Is it a valid move
+		if ( valid ) 
+		{
+			sfsChess.sendSFSObject("MOVE_PIECE_RESULTS", resObj);
+		} 
+		else 
+		{
+			sfsChess.sendSFSObject("MOVE_PIECE_RESULTS", resObj, user);
+			swapTurn();
+		}
+	}		
 
 	/**
 	 * Player left the game
@@ -139,28 +161,40 @@ public class SFSChess extends SFSExtension
 	}
 
 
-	private void sendPlayers() {
-		// TODO Auto-generated method stub
+	private void sendBoard(User user) 
+	{
+		ISFSObject board = SFSObject.newInstance();
+		board.putClass("BoardModel", mGameBoard.getBoard() );
+		sendSFSObject("CHESS_BOARD", board, user);
 		
 	}
 
-	private void sendBoard(User user) {
-		// TODO Auto-generated method stub
-		
+	private void sendValidMoves(User user) 
+	{
+		ISFSObject validMoves = SFSObject.newInstance();
+		validMoves.putClass("ValidMovesModel", mGameBoard.getValidMoves() );
+		sendSFSObject("CHESS_VALID_MOVES", validMoves, user);
 	}
 
-	private void sendValidMoves(User user) {
-		// TODO Auto-generated method stub
+	private void sendPlayers() 
+	{
+		ISFSObject players = SFSObject.newInstance();
+		players.putClass("PlayersModel", mPlayers );
+		sendSFSObject("CHESS_PLAYERS", players );		
 	}
 
 	private void sendTurn() 
 	{
-		// TODO Auto-generated method stub
+		ISFSObject turn = SFSObject.newInstance();
+		turn.putClass("PlayersModel", mTurn );
+		sendSFSObject("CHESS_TURN", turn );			
 	}
 	
-	private void sendGameOver(User player1) {
-		// TODO Auto-generated method stub
-		
+	private void sendGameOver(User winner) 
+	{
+		ISFSObject winnerObj = SFSObject.newInstance();
+		winnerObj.putClass("GameOverModel", new GameOverModel( winner ) );
+		sendSFSObject("CHESS_GAME_OVER", winnerObj );			
 	}
 	
 	/**

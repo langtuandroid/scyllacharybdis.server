@@ -4,6 +4,7 @@ import models.chess.MoveModel;
 
 import com.smartfoxserver.v2.entities.User;
 import com.smartfoxserver.v2.entities.data.ISFSObject;
+import com.smartfoxserver.v2.entities.data.SFSObject;
 import com.smartfoxserver.v2.extensions.BaseClientRequestHandler;
 import com.pikitus.games.chess.SFSChess;
 
@@ -22,6 +23,25 @@ public class MoveHandler extends BaseClientRequestHandler
 			return ;
 		}
 		
-		gameExt.movePiece(user, (MoveModel) params.getClass("MoveModel")); 
+		gameExt.movePiece(user, params.getClass("MoveModel")); 
 	}
+	
+	public void movePiece( SFSChess sfsChess, User user, MoveModel move ) 
+	{
+		boolean valid = sfsChess.getGameBoard().movePiece( move );
+		move.setValid( valid );
+
+		ISFSObject resObj = new SFSObject();
+		resObj.putClass("MoveModel", move);
+
+		// Is it a valid move
+		if ( valid ) 
+		{
+			sfsChess.sendSFSObject("MOVE_PIECE_RESULTS", resObj);
+		} 
+		else 
+		{
+			sfsChess.sendSFSObject("MOVE_PIECE_RESULTS", resObj, user);
+		}
+	}	
 }

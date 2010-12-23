@@ -1,5 +1,7 @@
 package com.pikitus.games.chess;
 
+import models.chess.GameOverModel;
+import models.chess.MoveModel;
 import models.chess.PlayersModel;
 import models.chess.TurnModel;
 
@@ -92,6 +94,30 @@ public class SFSChess extends SFSExtension
 			sendTurn();
 		}
 	}
+	
+	public void movePiece( User user, Object object ) 
+	{
+		boolean valid = getGameBoard().movePiece( object );
+		object.setValid( valid );
+
+		ISFSObject resObj = new SFSObject();
+		resObj.putClass("MoveModel", object);
+
+		// Is it a valid move
+		if ( valid ) 
+		{
+			// Send the move back to the player if there is a problem
+			sendSFSObject("MOVE_PIECE_RESULTS", resObj);
+		} 
+		else 
+		{
+			// Send the move results
+			sendSFSObject("MOVE_PIECE_RESULTS", resObj, user);
+			
+			// Swap player turns
+			swapTurn();
+		}
+	}		
 
 	/**
 	 * Player left the game
@@ -142,25 +168,37 @@ public class SFSChess extends SFSExtension
 	private void sendBoard(User user) 
 	{
 		ISFSObject board = SFSObject.newInstance();
+		board.putClass("BoardModel", mGameBoard.getBoard() );
+		sendSFSObject("CHESS_BOARD", board, user);
+		
 	}
 
-	private void sendValidMoves(User user) {
-		// TODO Auto-generated method stub
+	private void sendValidMoves(User user) 
+	{
+		ISFSObject validMoves = SFSObject.newInstance();
+		validMoves.putClass("ValidMovesModel", mGameBoard.getValidMoves() );
+		sendSFSObject("CHESS_VALID_MOVES", validMoves, user);
+	}
+
+	private void sendPlayers() 
+	{
+		ISFSObject players = SFSObject.newInstance();
+		players.putClass("PlayersModel", mPlayers );
+		sendSFSObject("CHESS_PLAYERS", players );		
 	}
 
 	private void sendTurn() 
 	{
-		// TODO Auto-generated method stub
-	}
-
-	private void sendPlayers() {
-		// TODO Auto-generated method stub
-		
+		ISFSObject turn = SFSObject.newInstance();
+		turn.putClass("PlayersModel", mTurn );
+		sendSFSObject("CHESS_TURN", turn );			
 	}
 	
-	private void sendGameOver() {
-		// TODO Auto-generated method stub
-		
+	private void sendGameOver(User winner) 
+	{
+		ISFSObject winnerObj = SFSObject.newInstance();
+		winnerObj.putClass("GameOverModel", new GameOverModel( winner ) );
+		sendSFSObject("CHESS_GAME_OVER", winnerObj );			
 	}
 	
 	/**
@@ -183,4 +221,5 @@ public class SFSChess extends SFSExtension
 	{
 		send( name, object, user );
 	}
+
 }	

@@ -4,6 +4,7 @@ import models.chess.MoveModel;
 
 import com.smartfoxserver.v2.entities.User;
 import com.smartfoxserver.v2.entities.data.ISFSObject;
+import com.smartfoxserver.v2.entities.data.SFSObject;
 import com.smartfoxserver.v2.extensions.BaseClientRequestHandler;
 import com.pikitus.games.chess.SFSChess;
 
@@ -22,6 +23,6 @@ public class MoveHandler extends BaseClientRequestHandler
 			return ;
 		}
 		
-		gameExt.movePiece(user, (MoveModel) params.getClass("MoveModel")); 
+		gameExt.movePiece(user, params.getClass("MoveModel")); 
 	}
 }
