@@ -1,6 +1,7 @@
 package com.pikitus.games.chess;
 
 import models.chess.GameOverModel;
+import models.chess.MoveModel;
 import models.chess.PlayersModel;
 import models.chess.TurnModel;
 
@@ -93,6 +94,30 @@ public class SFSChess extends SFSExtension
 			sendTurn();
 		}
 	}
+	
+	public void movePiece( User user, MoveModel move ) 
+	{
+		boolean valid = getGameBoard().movePiece( move );
+		move.setValid( valid );
+
+		ISFSObject resObj = new SFSObject();
+		resObj.putClass("MoveModel", move);
+
+		// Is it a valid move
+		if ( valid ) 
+		{
+			// Send the move back to the player if there is a problem
+			sendSFSObject("MOVE_PIECE_RESULTS", resObj);
+		} 
+		else 
+		{
+			// Send the move results
+			sendSFSObject("MOVE_PIECE_RESULTS", resObj, user);
+			
+			// Swap player turns
+			swapTurn();
+		}
+	}		
 
 	/**
 	 * Player left the game
@@ -196,4 +221,5 @@ public class SFSChess extends SFSExtension
 	{
 		send( name, object, user );
 	}
+
 }	
