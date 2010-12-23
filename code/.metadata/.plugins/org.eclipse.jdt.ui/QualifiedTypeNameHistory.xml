@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="com.pikitus.chess.handlers.MoveHandler"/>
-<fullyQualifiedTypeName name="com.pikitus.games.chess.ChessBoard"/>
-<fullyQualifiedTypeName name="pl.rmalinowski.gwt2swf.client.ui.SWFWidget"/>
 <fullyQualifiedTypeName name="com.google.gwt.user.client.rpc.RemoteServiceRelativePath"/>
 <fullyQualifiedTypeName name="com.google.gwt.user.client.ui.Composite"/>
 <fullyQualifiedTypeName name="com.google.gwt.user.client.ui.DockPanel"/>
@@ -33,7 +30,6 @@
 <fullyQualifiedTypeName name="com.smartfoxserver.v2.entities.Room"/>
 <fullyQualifiedTypeName name="com.smartfoxserver.v2.game.CreateSFSGameSettings"/>
 <fullyQualifiedTypeName name="com.smartfoxserver.v2.api.ISFSGameApi"/>
-<fullyQualifiedTypeName name="com.smartfoxserver.v2.SmartFoxServer"/>
 <fullyQualifiedTypeName name="com.smartfoxserver.v2.entities.SFSRoomRemoveMode"/>
 <fullyQualifiedTypeName name="com.smartfoxserver.v2.api.CreateRoomSettings.RoomExtensionSettings"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
@@ -45,8 +41,6 @@
 <fullyQualifiedTypeName name="com.smartfoxserver.v2.entities.match.RoomProperties"/>
 <fullyQualifiedTypeName name="com.smartfoxserver.v2.entities.match.BoolMatch"/>
 <fullyQualifiedTypeName name="com.smartfoxserver.v2.extensions.SFSExtension"/>
-<fullyQualifiedTypeName name="com.smartfoxserver.v2.entities.data.ISFSObject"/>
-<fullyQualifiedTypeName name="com.smartfoxserver.v2.entities.User"/>
 <fullyQualifiedTypeName name="com.pikitus.games.go.SFSGo"/>
 <fullyQualifiedTypeName name="java.lang.reflect.Array"/>
 <fullyQualifiedTypeName name="com.pikitus.games.go.handlers.PlayerJoinedHandler"/>
@@ -57,4 +51,13 @@
 <fullyQualifiedTypeName name="com.pikitus.games.go.models.MoveModel"/>
 <fullyQualifiedTypeName name="com.pikitus.login.models.RandomGameModel"/>
 <fullyQualifiedTypeName name="models.RandomGameModel"/>
+<fullyQualifiedTypeName name="com.smartfoxserver.v2.SmartFoxServer"/>
+<fullyQualifiedTypeName name="com.smartfoxserver.v2.core.SFSEvent"/>
+<fullyQualifiedTypeName name="models.chess.MoveModel"/>
+<fullyQualifiedTypeName name="com.smartfoxserver.v2.entities.User"/>
+<fullyQualifiedTypeName name="models.chess.PlayersModel"/>
+<fullyQualifiedTypeName name="models.chess.TurnModel"/>
+<fullyQualifiedTypeName name="com.smartfoxserver.v2.entities.data.ISFSObject"/>
+<fullyQualifiedTypeName name="models.chess.BoardModel"/>
+<fullyQualifiedTypeName name="models.chess.GameOverModel"/>
 </qualifiedTypeNameHistroy>
