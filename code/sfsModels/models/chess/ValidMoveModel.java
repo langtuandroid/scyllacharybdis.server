@@ -4,20 +4,20 @@ import com.smartfoxserver.v2.protocol.serialization.SerializableSFSType;
 
 public class ValidMoveModel implements SerializableSFSType
 {
-	private int[] validMoves;
+	int[] validMoves;
 	
-	ValidMoveModel() 
+	public ValidMoveModel() 
 	{
 	}
 
-	ValidMoveModel( int[] validMoves )
+	public ValidMoveModel( int[] validMoves )
 	{
 		this.validMoves = validMoves;
 	}
 	
 	public int[] getValidMoves() { return this.validMoves; }
 	
-	public void setValidMoves(int [] validMoves) 
+	public void setValidMoves( int[] validMoves ) 
 	{
 		this.validMoves = validMoves;
 	}

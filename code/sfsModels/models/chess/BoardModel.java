@@ -4,13 +4,13 @@ import com.smartfoxserver.v2.protocol.serialization.SerializableSFSType;
 
 public class BoardModel implements SerializableSFSType
 {
-	private int[] board;
+	int[] board;
 	
-	BoardModel() 
+	public BoardModel() 
 	{
 	}
 
-	BoardModel( int[] board )
+	public BoardModel( int[] board )
 	{
 		this.board = board;
 	}

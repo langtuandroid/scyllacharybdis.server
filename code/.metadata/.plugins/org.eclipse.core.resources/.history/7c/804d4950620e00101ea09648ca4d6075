@@ -1,0 +1,71 @@
+package com.pikitus.games.chess;
+
+import com.smartfoxserver.v2.entities.User;
+import com.smartfoxserver.v2.entities.data.ISFSObject;
+import com.smartfoxserver.v2.entities.data.SFSObject;
+import com.smartfoxserver.v2.extensions.SFSExtension;
+import com.pikitus.games.chess.ChessBoard;
+import com.pikitus.games.chess.handlers.BoardHandler;
+import com.pikitus.games.chess.handlers.MoveHandler;
+import com.pikitus.games.chess.handlers.PlayerJoinedHandler;
+import com.pikitus.games.chess.handlers.ValidMoveHandler;
+
+public class SFSChess extends SFSExtension 
+{
+	private final String version = "0.2";
+	private ChessBoard mGameBoard;
+	private GameManager mGameManager;
+	
+	@Override
+	public void init() 
+	{
+		// Trace the version
+		trace("SFSChess Extension started, rel. " + version);
+		
+		// Create a new chess board
+		mGameBoard = new ChessBoard();
+		
+		// Create a game manager
+		mGameManager = new GameManager();
+		
+	    addRequestHandler("PLAYER_JOINED", PlayerJoinedHandler.class);
+	    addRequestHandler("GET_BOARD", BoardHandler.class);
+	    addRequestHandler("GET_VALID_MOVES", ValidMoveHandler.class);
+	    addRequestHandler("MOVE_PIECE", MoveHandler.class);
+	}
+	
+	/**
+	 * Get the game board
+	 * @return (ChessBoard) 
+	 */
+	public ChessBoard getGameBoard() 
+	{
+		return mGameBoard;
+	}
+	
+	public GameManager getGameManager()
+	{
+		return mGameManager;
+	}
+	
+	/**
+	 * Send a sfs object to all the clients in the room
+	 * @param name (String) Event name the client receives
+	 * @param object (ISFSObject) The object being sent to the client
+	 */
+	public void sendSFSObject(String name, ISFSObject object)
+	{
+		send( name, object, getParentRoom().getUserList() );
+	}
+
+	/**
+	 * Send a sfsobject to a user in the room
+	 * @param name (String) Event name the client receives
+	 * @param object (ISFSObject) The object being sent to the client
+	 * @param user (User) The user to send the object too
+	 */
+	public void sendSFSObject(String name, ISFSObject object, User user) 
+	{
+		send( name, object, user );
+	}
+}	
