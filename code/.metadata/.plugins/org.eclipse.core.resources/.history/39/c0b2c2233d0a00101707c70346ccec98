@@ -1,0 +1,12 @@
+package snippet;
+
+public class Snippet {
+	public static void main(String[] args) {
+		..\..\sfs2x\lib\log4j-1.2.15.jar
+		..\..\sfs2x\lib\sfs2x.jar
+		..\..\sfs2x\lib\sfs2x-core.jar
+		..\..\sfs2x\lib\slf4j-api-1.5.10.jar
+		..\..\sfs2x\lib\slf4j-log4j12.jar
+	}
+}
+

@@ -3,6 +3,8 @@ package com.pikitus.login.handlers;
 import java.util.ArrayList;
 import java.util.List;
 
+import models.RandomGameModel;
+
 import com.smartfoxserver.v2.SmartFoxServer;
 import com.smartfoxserver.v2.api.CreateRoomSettings.RoomExtensionSettings;
 import com.smartfoxserver.v2.api.ISFSGameApi;
@@ -25,18 +27,19 @@ import com.smartfoxserver.v2.game.CreateSFSGameSettings;
 public class RandomGameHandler extends BaseClientRequestHandler
 {
 	static volatile int mNextGameID = 1;
+	private RandomGameModel mRandomGameModel = new RandomGameModel();
 	
     @Override
     public void handleClientRequest(User user, ISFSObject params)
     {
-    	String difficulty = params.getUtfString("difficulty");
-    	if ( ! findGame( user, difficulty ) ) 
+    	mRandomGameModel = (RandomGameModel) params.getClass("RandomGameModel");
+    	if ( ! findGame( user ) ) 
     	{
-    		createRoom( user, difficulty );
+    		createRoom( user );
     	}
     }
     
-    public void createRoom(User user, String difficulty)
+    public void createRoom(User user)
     {
     	// Get the game api and zone
     	ISFSGameApi gameApi = SmartFoxServer.getInstance().getAPIManager().getGameApi();
@@ -44,14 +47,17 @@ public class RandomGameHandler extends BaseClientRequestHandler
 
     	// Create a difficult variable for the room
         List<RoomVariable> roomVariablelist = new ArrayList<RoomVariable>();
-        roomVariablelist.add(new SFSRoomVariable("difficulty", difficulty, false, true, false));
+        roomVariablelist.add(new SFSRoomVariable("gameType", mRandomGameModel.getGameType(), false, true, false));
+        roomVariablelist.add(new SFSRoomVariable("gameDifficulty", mRandomGameModel.getDifficulty(), false, true, false));
+        roomVariablelist.add(new SFSRoomVariable("gameArea", mRandomGameModel.getArea(), false, true, false));
 
         // Create the extension settings
-        RoomExtensionSettings extensionSetting = new RoomExtensionSettings("sfsChess", "com.pikitus.games.chess.SFSChess");
+        //RoomExtensionSettings extensionSetting = new RoomExtensionSettings("sfsGo", "com.pikitus.games.go.SFSGo");
+        RoomExtensionSettings extensionSetting = new RoomExtensionSettings(mRandomGameModel.getGameType(), mRandomGameModel.getGameExtension());
     	
         // Create the game settings
         CreateSFSGameSettings roomSettings = new CreateSFSGameSettings();
-        roomSettings.setName("ChessGame" + mNextGameID++); 
+        roomSettings.setName("Game" + mNextGameID++); 
         roomSettings.setInvitationExpiryTime(30); 
         roomSettings.setDynamic(true);
         roomSettings.setGame(true);
@@ -66,7 +72,7 @@ public class RandomGameHandler extends BaseClientRequestHandler
         
         try 
         {
-        	// Create the room
+        	trace("creating the game room");
         	gameApi.createGame(zone, roomSettings, user);
 		} 
         catch (SFSCreateRoomException e) 
@@ -75,21 +81,28 @@ public class RandomGameHandler extends BaseClientRequestHandler
 		}
     }  
     
-    public boolean findGame(User user, String difficulty)
+    public boolean findGame(User user)
     {
     	Zone zone = getParentExtension().getParentZone();
     	
     	MatchExpression exp = new MatchExpression(RoomProperties.IS_GAME, BoolMatch.EQUALS, true)
     		.and(RoomProperties.HAS_FREE_PLAYER_SLOTS, BoolMatch.EQUALS, true)
-    		.and("difficulty", StringMatch.EQUALS, difficulty);
+    		.and("gameType", StringMatch.EQUALS, mRandomGameModel.getGameType())
+    		.and("gameDifficulty", StringMatch.EQUALS, mRandomGameModel.getDifficulty())
+    		.and("gameArea", StringMatch.EQUALS, mRandomGameModel.getArea());
+    	
+    	// Get a list of rooms
     	List<Room> joinableRooms = getApi().findRooms(zone.getRoomList(), exp, 0);
     	if ( joinableRooms.size() == 0)
     	{
+    		trace("No games found");
     		return false;
     	}
-    	
+
+    	// Try to join the room
     	try 
     	{
+    		trace("Joining the first game");
 			getApi().joinRoom(user, joinableRooms.get(0));
 		} 
     	catch (SFSJoinRoomException e) 

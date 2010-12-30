@@ -14,7 +14,7 @@ public class LoginEventHandler extends BaseServerEventHandler
 	public void handleServerEvent(ISFSEvent event) throws SFSException 
 	{ 
 		String name = (String) event.getParameter(SFSEventParam.LOGIN_NAME); 
-        
+        trace ("Hello " + name.toString());
 		if (name.equals("Gonzo") || name.equals("Kermit")) 
 		{
      

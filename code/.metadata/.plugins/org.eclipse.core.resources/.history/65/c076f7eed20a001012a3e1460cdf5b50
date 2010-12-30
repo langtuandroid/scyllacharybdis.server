@@ -1,0 +1,17 @@
+package models.chess;
+
+import java.util.Arrays;
+import com.smartfoxserver.v2.protocol.serialization.SerializableSFSType;
+
+public class BoardModel implements SerializableSFSType
+{
+	private Arrays mBoard;
+	
+	BoardModel( Array board )
+	{
+		mBoard = board;
+	}
+	
+	public Array GetBoard() { return mBoard; }
+}
+
