@@ -3,6 +3,7 @@
 	<name>sfsGo</name>
 	<comment></comment>
 	<projects>
+		<project>sfsModels</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

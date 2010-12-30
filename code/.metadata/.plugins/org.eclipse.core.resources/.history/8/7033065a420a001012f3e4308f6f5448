@@ -1,0 +1,56 @@
+package models;
+
+import com.smartfoxserver.v2.protocol.serialization.SerializableSFSType;
+
+public class RandomGameModel implements SerializableSFSType
+{
+	private String mGameType;
+	private String mGameExtension;
+	private String mDifficulty;
+	private String mArea;
+	
+	public RandomGameModel()
+	{
+	}
+
+	public RandomGameModel(String gameType, String gameExtension, String difficulty, String area)
+	{
+		mGameType = gameType;
+		mGameExtension = gameExtension;
+		mDifficulty = difficulty;
+		mArea = area;
+	}
+	
+	public String getGameType() 
+	{
+		return mGameType;
+	}
+
+	public void setGameType(String gameType) {
+		mGameType = gameType;
+	}
+	
+	public String getGameExtension() {
+		return mGameExtension;
+	}
+
+	public void setGameExtension(String gameExtension) {
+		mGameExtension = gameExtension;
+	}
+	
+	public String getDifficulty() {
+		return mDifficulty;
+	}
+
+	public void setDifficulty(String difficulty) {
+		mDifficulty = difficulty;
+	}
+	
+	public String getArea() {
+		return mArea;
+	}
+
+	public void setArea(String area) {
+		mArea = area;
+	}
+}

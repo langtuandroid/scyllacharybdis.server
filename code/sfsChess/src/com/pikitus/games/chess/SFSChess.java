@@ -1,23 +1,24 @@
 package com.pikitus.games.chess;
 
+import models.chess.GameOverModel;
+import models.chess.MoveModel;
+import models.chess.PlayersModel;
+import models.chess.TurnModel;
+
 import com.smartfoxserver.v2.entities.User;
 import com.smartfoxserver.v2.entities.data.ISFSObject;
 import com.smartfoxserver.v2.entities.data.SFSObject;
 import com.smartfoxserver.v2.extensions.SFSExtension;
 import com.pikitus.games.chess.ChessBoard;
-import com.pikitus.games.chess.handlers.BoardHandler;
 import com.pikitus.games.chess.handlers.MoveHandler;
 import com.pikitus.games.chess.handlers.PlayerJoinedHandler;
-import com.pikitus.games.chess.handlers.ValidMoveHandler;
 
 public class SFSChess extends SFSExtension 
 {
-	private final String version = "0.2";
+	private final String version = "0.1";
 	private ChessBoard mGameBoard;
-	private volatile boolean mGameStarted = false;
-	private User mWhoseTurn;
-	private User mPlayer1;
-	private User mPlayer2;
+	private PlayersModel mPlayers;
+	private TurnModel mTurn;
 	
 	@Override
 	public void init() 
@@ -25,14 +26,26 @@ public class SFSChess extends SFSExtension
 		// Trace the version
 		trace("SFSChess Extension started, rel. " + version);
 		
+		// Add the handlers
+	    addRequestHandler("PLAYER_JOINED", PlayerJoinedHandler.class);
+	    addRequestHandler("MOVE_PIECE", MoveHandler.class);
+
+	    // Initialize the game
+	    initializeGame();
+	}
+	
+	/**
+	 * Initialize any game memory
+	 */
+	public void initializeGame()
+	{
 		// Create a new chess board
 		mGameBoard = new ChessBoard();
+		mGameBoard.initializeBoard();
 		
-	    addRequestHandler("PLAYER_JOINED", PlayerJoinedHandler.class);
-	    addRequestHandler("GET_BOARD", BoardHandler.class);
-	    addRequestHandler("GET_VALID_MOVES", ValidMoveHandler.class);
-	    addRequestHandler("MOVE_PIECE", MoveHandler.class);
-	    
+		// Create the models
+		mPlayers = new PlayersModel();
+		mTurn = new TurnModel();		
 	}
 	
 	/**
@@ -45,88 +58,67 @@ public class SFSChess extends SFSExtension
 	}
 
 	/**
-	 * Has the game started yet
-	 * @return (Boolean) True if the game has started.
+	 * Player has joined the game
+	 * @param user (User) The user that joined the game
 	 */
-	public boolean isStarted()
+	public void playerJoined( User user )
 	{
-		return mGameStarted;
-	}
-	
-	/**
-	 * Start the game
-	 */
-	public void startGame() 
-	{
-		// Check to make sure the game hasn't already started
-		if (mGameStarted) 
+		// Check to make sure something didn't go horrible wrong
+		if ( mPlayers.getPlayer1() != 0 && mPlayers.getPlayer2() != 0 ) 
 		{
-			// Throw an exception
-			throw new IllegalStateException("Game is already started!");
+			throw new IllegalStateException("Already have 2 players!");
 		}
 
-		// Mark the game started
-		mGameStarted = true;
+		// Send the board to the player
+		sendBoard( user.getId() );
 		
-		// Reset the board
-		mGameBoard.initializeBoard();
-		
-		// Get the users by the location they entered the game
-		mPlayer1 = getParentRoom().getUserByPlayerId(1);
-		mPlayer2 = getParentRoom().getUserByPlayerId(2);
-		
-		// If no player is set yet then set it to player 1 ( white )
-		if (mWhoseTurn == null)
-			mWhoseTurn = mPlayer1;
-		
-		// Create a response object
-		ISFSObject resObj = new SFSObject();
-		
-		// Send who's turn it is
-		resObj.putInt("turn", mWhoseTurn.getPlayerId());
-		
-		// Send player 1s information
-		resObj.putUtfString("player1Name", mPlayer1.getName());
-		resObj.putInt("player1Id", mPlayer1.getId());
-		
-		// Send player 2s information
-		resObj.putUtfString("player2Name", mPlayer2.getName());
-		resObj.putInt("player2Id", mPlayer2.getId());
-		
-		// Send information to all the clients
-		this.sendSFSObject( "START_GAME", resObj );		
-	}	
-	
-	/**
-	 * Get who's turn it is
-	 * @return (User) The players id.
-	 */
-	public User getWhoseTurn()
-    {
-	    return mWhoseTurn;
-    }
-	
-	/**
-	 * Set who's turn it is
-	 * @param user (User) The user
-	 */
-	void setTurn(User user)
-	{
-		mWhoseTurn = user;
-	}
-	
-	/**
-	 * Swap turn
-	 */
-	public void swapTurn()
-	{
-		if ( mWhoseTurn == mPlayer1) {
-			setTurn(mPlayer2);
-		} else { 
-			setTurn(mPlayer1);
+		if ( mPlayers.getPlayer1() == 0 ) 
+		{
+			mPlayers.setPlayer1(user.getId());
+			
+			// Send the valid moves just to player 1
+			sendValidMoves( user.getId() );
+			
+		} 
+		else 
+		{
+			mPlayers.setPlayer2(user.getId());
+		}
+
+		// Send the players
+		sendPlayers();
+
+		// Check to see if we have 2 players
+		if ( mPlayers.getPlayer1() != 0 && mPlayers.getPlayer2() != 0 )
+		{
+			sendTurn();
 		}
 	}
 	
+	public void movePiece( User user, MoveModel move ) 
+	{
+		boolean valid = getGameBoard().movePiece( move );
+		move.setValid( valid );
+
+		ISFSObject resObj = new SFSObject();
+		resObj.putClass("MoveModel", move);
+
+		// Is it a valid move
+		if ( valid ) 
+		{
+			// Send the move back to the player if there is a problem
+			sendSFSObject("CHESS_MOVE_RESULTS", resObj);
+		} 
+		else 
+		{
+			// Send the move results
+			sendSFSObject("CHESS_MOVE_RESULTS", resObj, user);
+			
+			// Swap player turns
+			swapTurn();
+		}
+	}		
+
 	/**
 	 * Player left the game
 	 * @param user (User) The user that left
@@ -134,36 +126,81 @@ public class SFSChess extends SFSExtension
 	 */
 	public void playerLeft( User user, boolean connectionDroped ) 
 	{
-		if ( user.getId() == mPlayer1.getId() ) {
-			sendWinner( mPlayer2 );
-			gameOver();
-			return;
+		if ( user.getId() == mPlayers.getPlayer1() ) 
+		{
+			sendGameOver( mPlayers.getPlayer2() );
+		} 
+		else if ( user.getId() == mPlayers.getPlayer2() ) 
+		{
+			sendGameOver( mPlayers.getPlayer1() );
 		}
-		if ( user.getId() == mPlayer2.getId() ) {
-			sendWinner( mPlayer1 );
-			gameOver();
-			return;
-		}
-	}
+	}	
+
+	/**
+	 * Get who's turn it is
+	 * @return (int) The players id.
+	 */
+	public int getWhoseTurn()
+    {
+	    return mTurn.getTurn();
+    }
 	
 	/**
-	 * Send the user a game over command
+	 * Swap turn
 	 */
-	public void gameOver() 
+	public void swapTurn()
 	{
-		this.sendSFSObject( "GAME_OVER", new SFSObject() );				
+		if ( mTurn.getTurn() == mPlayers.getPlayer1() )
+		{
+			mTurn.setTurn( mPlayers.getPlayer2() );
+		} 
+		else
+		{
+			mTurn.setTurn( mPlayers.getPlayer1() );
+		}
+		
+		sendBoard( mTurn.getTurn() );
+		sendValidMoves( mTurn.getTurn() );
+		sendTurn();
+	}
+
+
+	private void sendBoard(int userId) 
+	{
+		User user = getParentRoom().getUserById(userId);
+		ISFSObject board = SFSObject.newInstance();
+		board.putClass("BoardModel", mGameBoard.getBoard() );
+		sendSFSObject("CHESS_BOARD", board, user);
+		
+	}
+
+	private void sendValidMoves(int userId) 
+	{
+		User user = getParentRoom().getUserById(userId);
+		ISFSObject validMoves = SFSObject.newInstance();
+		validMoves.putClass("ValidMovesModel", mGameBoard.getValidMoves() );
+		sendSFSObject("CHESS_VALID_MOVES", validMoves, user);
+	}
+
+	private void sendPlayers() 
+	{
+		ISFSObject players = SFSObject.newInstance();
+		players.putClass("PlayersModel", mPlayers );
+		sendSFSObject("CHESS_PLAYERS", players );		
+	}
+
+	private void sendTurn() 
+	{
+		ISFSObject turn = SFSObject.newInstance();
+		turn.putClass("PlayersModel", mTurn );
+		sendSFSObject("CHESS_TURN", turn );			
 	}
 	
-	/**
-	 * Send all the users the player that won.
-	 * @param winner (User) The player that won.
-	 */
-	public void sendWinner( User winner ) 
+	private void sendGameOver(int winnerId) 
 	{
-		ISFSObject resObj = new SFSObject();
-		resObj.putInt("winner", winner.getId() );
-		send("winner", resObj, getParentRoom().getUserList() );		
-		gameOver();
+		ISFSObject winnerObj = SFSObject.newInstance();
+		winnerObj.putClass("GameOverModel", new GameOverModel( winnerId ) );
+		sendSFSObject("CHESS_GAME_OVER", winnerObj );			
 	}
 	
 	/**
@@ -186,4 +223,5 @@ public class SFSChess extends SFSExtension
 	{
 		send( name, object, user );
 	}
+
 }	

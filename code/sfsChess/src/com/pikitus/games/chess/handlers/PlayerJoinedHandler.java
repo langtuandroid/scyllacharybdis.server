@@ -15,13 +15,7 @@ public class PlayerJoinedHandler extends BaseClientRequestHandler
 		
 		if (user.isPlayer())
 		{
-			//gameExt.sendBoard(user);
-
-			// Checks if two players are available and start game
-			if (gameExt.getParentRoom().getSize().getUserCount() == 1){
-				gameExt.startGame();
-			}
-			
+			gameExt.playerJoined(user);
 		}
 	}
 }

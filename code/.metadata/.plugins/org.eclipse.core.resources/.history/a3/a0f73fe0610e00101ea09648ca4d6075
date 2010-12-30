@@ -1,0 +1,21 @@
+package com.pikitus.games.chess;
+
+import com.smartfoxserver.v2.entities.User;
+
+public class GameManager 
+{
+	private User mWhoseTurn;
+	private User mPlayer1;
+	private User mPlayer2;
+	private volatile boolean mGameStarted = false;
+
+	
+	/**
+	 * Has the game started yet
+	 * @return (Boolean) True if the game has started.
+	 */
+	public boolean isStarted()
+	{
+		return mGameStarted;
+	}	
+}
