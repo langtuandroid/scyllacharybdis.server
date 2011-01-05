@@ -1,5 +1,6 @@
 package com.pikitus.games.chess;
 
+import models.chess.BoardModel;
 import models.chess.GameOverModel;
 import models.chess.MoveModel;
 import models.chess.PlayersModel;
@@ -172,7 +173,13 @@ public class SFSChess extends SFSExtension
 		trace("SENDING BOARD");
 		User user = getParentRoom().getUserById(userId);
 		ISFSObject board = SFSObject.newInstance();
+		
+		BoardModel model = mGameBoard.getBoard();
+		trace("BOARD CONTENTS: " + model.getBoard() );
+		
 		board.putClass("BoardModel", mGameBoard.getBoard() );
+		
+		trace("USER CONTENTS: " + user.toString());
 		sendSFSObject("CHESS_BOARD", board, user);
 		
 	}
