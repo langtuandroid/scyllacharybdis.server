@@ -40,48 +40,33 @@
 <part id="3"/>
 <part id="4"/>
 <part id="5"/>
-<part id="6"/>
-<part id="7"/>
-<part id="8"/>
 </presentation>
 </folder>
 </info>
 </editorArea>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="BoardModel.java" partName="BoardModel.java" path="C:/Development/server/code/sfsModels/models/chess/BoardModel.java" title="BoardModel.java" tooltip="sfsModels/models/chess/BoardModel.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/sfsModels/models/chess/BoardModel.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="248" selectionTopPixel="0"/>
-</editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="GameOverModel.java" partName="GameOverModel.java" path="C:/Development/server/code/sfsModels/models/chess/GameOverModel.java" title="GameOverModel.java" tooltip="sfsModels/models/chess/GameOverModel.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/sfsModels/models/chess/GameOverModel.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="25" selectionTopPixel="72"/>
-</editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="TurnModel.java" partName="TurnModel.java" path="C:/Development/server/code/sfsModels/models/chess/TurnModel.java" title="TurnModel.java" tooltip="sfsModels/models/chess/TurnModel.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/sfsModels/models/chess/TurnModel.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="320" selectionTopPixel="0"/>
-</editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ValidMoveModel.java" partName="ValidMoveModel.java" path="C:/Development/server/code/sfsModels/models/chess/ValidMoveModel.java" title="ValidMoveModel.java" tooltip="sfsModels/models/chess/ValidMoveModel.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/sfsModels/models/chess/ValidMoveModel.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
-</editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="PlayersModel.java" partName="PlayersModel.java" path="C:/Development/server/code/sfsModels/models/chess/PlayersModel.java" title="PlayersModel.java" tooltip="sfsModels/models/chess/PlayersModel.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/sfsModels/models/chess/PlayersModel.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="25" selectionTopPixel="0"/>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ChessBoard.java" partName="ChessBoard.java" path="C:/Development/server/code/sfsChess/src/com/pikitus/games/chess/ChessBoard.java" title="ChessBoard.java" tooltip="sfsChess/src/com/pikitus/games/chess/ChessBoard.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/sfsChess/src/com/pikitus/games/chess/ChessBoard.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="22229" selectionTopPixel="14880"/>
 </editor>
 <editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="SFSChess.java" partName="SFSChess.java" path="C:/Development/server/code/sfsChess/src/com/pikitus/games/chess/SFSChess.java" title="SFSChess.java" tooltip="sfsChess/src/com/pikitus/games/chess/SFSChess.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/sfsChess/src/com/pikitus/games/chess/SFSChess.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="2706" selectionTopPixel="1663"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="925" selectionTopPixel="120"/>
 </editor>
 <editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="MoveHandler.java" partName="MoveHandler.java" path="C:/Development/server/code/sfsChess/src/com/pikitus/games/chess/handlers/MoveHandler.java" title="MoveHandler.java" tooltip="sfsChess/src/com/pikitus/games/chess/handlers/MoveHandler.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/sfsChess/src/com/pikitus/games/chess/handlers/MoveHandler.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="571" selectionTopPixel="0"/>
-</editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="MoveModel.java" partName="MoveModel.java" path="C:/Development/server/code/sfsModels/models/chess/MoveModel.java" title="MoveModel.java" tooltip="sfsModels/models/chess/MoveModel.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/sfsModels/models/chess/MoveModel.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="424" selectionTopPixel="0"/>
-</editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ChessBoard.java" partName="ChessBoard.java" path="C:/Development/server/code/sfsChess/src/com/pikitus/games/chess/ChessBoard.java" title="ChessBoard.java" tooltip="sfsChess/src/com/pikitus/games/chess/ChessBoard.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/sfsChess/src/com/pikitus/games/chess/ChessBoard.java"/>
 <editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="OnUserGoneHandler.java" partName="OnUserGoneHandler.java" path="C:/Development/server/code/sfsChess/src/com/pikitus/games/chess/handlers/OnUserGoneHandler.java" title="OnUserGoneHandler.java" tooltip="sfsChess/src/com/pikitus/games/chess/handlers/OnUserGoneHandler.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/sfsChess/src/com/pikitus/games/chess/handlers/OnUserGoneHandler.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="12"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="PlayerJoinedHandler.java" partName="PlayerJoinedHandler.java" path="C:/Development/server/code/sfsChess/src/com/pikitus/games/chess/handlers/PlayerJoinedHandler.java" title="PlayerJoinedHandler.java" tooltip="sfsChess/src/com/pikitus/games/chess/handlers/PlayerJoinedHandler.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/sfsChess/src/com/pikitus/games/chess/handlers/PlayerJoinedHandler.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="517" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="SFSTrisGame.java" partName="SFSTrisGame.java" path="C:/Development/server/code/sfsTris/src/sfs2x/extensions/games/tris/SFSTrisGame.java" title="SFSTrisGame.java" tooltip="sfsTris/src/sfs2x/extensions/games/tris/SFSTrisGame.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/sfsTris/src/sfs2x/extensions/games/tris/SFSTrisGame.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="12" selectionOffset="892" selectionTopPixel="180"/>
 </editor>
 </editors>
 <views>
@@ -90,10 +75,10 @@
 </view>
 <view id="org.eclipse.ui.views.ProblemView" partName="Problems">
 <viewState PRIMARY_SORT_FIELD="org.eclipse.ui.ide.severityAndDescriptionField" categoryGroup="org.eclipse.ui.ide.severity" markerContentGenerator="org.eclipse.ui.ide.problemsGenerator" partName="Problems">
-<expanded>&#x0A;<category IMemento.internal.id="Warnings"/>
-<category IMemento.internal.id="Errors"/>
+<expanded>
+<category IMemento.internal.id="Warnings (1 item)"/>
 </expanded>
-<columnWidths org.eclipse.ui.ide.locationField="0" org.eclipse.ui.ide.markerType="0" org.eclipse.ui.ide.pathField="0" org.eclipse.ui.ide.resourceField="0" org.eclipse.ui.ide.severityAndDescriptionField="0"/>
+<columnWidths org.eclipse.ui.ide.locationField="84" org.eclipse.ui.ide.markerType="124" org.eclipse.ui.ide.pathField="164" org.eclipse.ui.ide.resourceField="124" org.eclipse.ui.ide.severityAndDescriptionField="866"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.severityAndDescriptionField"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.resourceField"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.pathField"/>
@@ -152,13 +137,17 @@
 <view id="org.eclipse.ui.views.ContentOutline" partName="Outline">
 <viewState/>
 </view>
-<view id="org.eclipse.jdt.ui.SourceView" partName="Declaration"/>
+<view id="org.eclipse.jdt.ui.SourceView" partName="Declaration">
+<viewState/>
+</view>
 <view id="com.google.gwt.eclipse.DevModeView" partName="Development Mode">
 <viewState/>
 </view>
-<view id="org.eclipse.jdt.ui.JavadocView" partName="Javadoc"/>
+<view id="org.eclipse.jdt.ui.JavadocView" partName="Javadoc">
+<viewState/>
+</view>
 </views>
-<perspectives activePart="org.eclipse.jdt.ui.PackageExplorer" activePerspective="org.eclipse.jdt.ui.JavaPerspective">
+<perspectives activePart="org.eclipse.jdt.ui.CompilationUnitEditor" activePerspective="org.eclipse.jdt.ui.JavaPerspective">
 <perspective editorAreaTrimState="2" editorAreaVisible="1" fixed="0" version="0.016">
 <descriptor class="org.eclipse.jdt.internal.ui.JavaPerspectiveFactory" id="org.eclipse.jdt.ui.JavaPerspective" label="Java"/>
 <alwaysOnActionSet id="org.eclipse.mylyn.context.ui.actionSet"/>
@@ -258,7 +247,7 @@
 </info>
 <info part="org.eclipse.ui.editorss" ratio="0.19233073" ratioLeft="321" ratioRight="1348" relationship="2" relative="left"/>
 <info folder="true" part="bottom" ratio="0.6340909" ratioLeft="558" ratioRight="322" relationship="4" relative="org.eclipse.ui.editorss">
-<folder activePageID="org.eclipse.ui.console.ConsoleView" appearance="2" expanded="2">
+<folder activePageID="org.eclipse.ui.views.ProblemView" appearance="2" expanded="2">
 <page content="org.eclipse.ui.views.ProblemView" label="Problems"/>
 <page content="org.eclipse.jdt.ui.JavadocView" label="Javadoc"/>
 <page content="org.eclipse.jdt.ui.SourceView" label="Declaration"/>
@@ -301,12 +290,7 @@
 <workingSets/>
 <navigationHistory>
 <editors>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/sfsChess/src/com/pikitus/games/chess/handlers/PlayerJoinedHandler.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/sfsChess/src/com/pikitus/games/chess/handlers/MoveHandler.java"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/sfsChess/src/com/pikitus/games/chess/SFSChess.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/sfsChess/src/com/pikitus/games/chess/SFSChess.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/sfsChess/src/com/pikitus/games/chess/handlers/PlayerJoinedHandler.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/sfsChess/src/com/pikitus/games/chess/handlers/OnUserGoneHandler.java"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/sfsChess/src/com/pikitus/games/chess/ChessBoard.java"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/sfsModels/models/chess/BoardModel.java"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/sfsModels/models/chess/GameOverModel.java"/>
@@ -315,156 +299,170 @@
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/sfsModels/models/chess/PlayersModel.java"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/sfsChess/src/com/pikitus/games/chess/handlers/MoveHandler.java"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/sfsModels/models/chess/MoveModel.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/sfsModels/models/chess/BoardModel.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/sfsModels/models/chess/GameOverModel.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/sfsModels/models/chess/MoveModel.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/sfsModels/models/chess/PlayersModel.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/sfsModels/models/chess/TurnModel.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/sfsModels/models/chess/ValidMoveModel.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/sfsLogin/src/com/pikitus/login/SFSLogin.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/sfsChess/src/com/pikitus/games/chess/ChessBoard.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/sfsChess/src/com/pikitus/games/chess/SFSChess.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/sfsChess/src/com/pikitus/games/chess/handlers/MoveHandler.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/sfsChess/src/com/pikitus/games/chess/handlers/OnUserGoneHandler.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/sfsChess/src/com/pikitus/games/chess/handlers/PlayerJoinedHandler.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/sfsTris/src/sfs2x/extensions/games/tris/SFSTrisGame.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/sfsTris/src/sfs2x/extensions/games/tris/OnSpectatorToPlayerHandler.java"/>
 </editors>
-<item historyLabel="MoveHandler.java" index="1">
-<position/>
-</item>
-<item historyLabel="MoveHandler.java" index="1">
-<position/>
-</item>
-<item historyLabel="PlayerJoinedHandler.java" index="0">
-<position info="not_deleted" x="527" y="0"/>
-</item>
-<item historyLabel="MoveHandler.java" index="1">
-<position/>
-</item>
-<item historyLabel="SFSChess.java" index="2">
-<position info="not_deleted" x="4750" y="0"/>
-</item>
-<item historyLabel="SFSChess.java" index="2">
-<position info="not_deleted" x="2938" y="0"/>
-</item>
-<item historyLabel="MoveHandler.java" index="1">
-<position info="not_deleted" x="633" y="9"/>
-</item>
-<item historyLabel="SFSChess.java" index="2">
-<position info="not_deleted" x="2723" y="0"/>
-</item>
-<item historyLabel="MoveHandler.java" index="1">
-<position info="not_deleted" x="699" y="0"/>
-</item>
-<item historyLabel="SFSChess.java" index="2">
-<position info="not_deleted" x="2327" y="9"/>
-</item>
-<item historyLabel="MoveHandler.java" index="1">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="MoveHandler.java" index="1">
-<position info="not_deleted" x="363" y="0"/>
-</item>
-<item historyLabel="SFSChess.java" index="3">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="SFSChess.java" index="3">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="PlayerJoinedHandler.java" index="4">
-<position info="not_deleted" x="527" y="0"/>
-</item>
-<item historyLabel="SFSChess.java" index="3">
-<position info="not_deleted" x="477" y="0"/>
-</item>
-<item historyLabel="OnUserGoneHandler.java" index="5">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="SFSChess.java" index="3">
-<position info="not_deleted" x="477" y="0"/>
-</item>
-<item historyLabel="ChessBoard.java" index="6">
-<position info="not_deleted" x="35207" y="0"/>
-</item>
-<item historyLabel="SFSChess.java" index="3">
-<position info="not_deleted" x="477" y="0"/>
-</item>
-<item historyLabel="BoardModel.java" index="7">
-<position info="not_deleted" x="248" y="0"/>
-</item>
-<item historyLabel="GameOverModel.java" index="8">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="GameOverModel.java" index="8">
-<position info="not_deleted" x="25" y="0"/>
-</item>
-<item historyLabel="TurnModel.java" index="9">
-<position info="not_deleted" x="350" y="0"/>
-</item>
-<item historyLabel="ValidMoveModel.java" index="10">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="TurnModel.java" index="9">
-<position info="not_deleted" x="350" y="0"/>
-</item>
-<item historyLabel="PlayersModel.java" index="11">
-<position info="not_deleted" x="25" y="0"/>
-</item>
-<item historyLabel="SFSChess.java" index="3">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="SFSChess.java" index="3">
-<position info="not_deleted" x="1964" y="0"/>
-</item>
-<item historyLabel="SFSChess.java" index="3">
+<item historyLabel="SFSChess.java" index="0">
 <position info="not_deleted" x="4807" y="0"/>
 </item>
-<item historyLabel="MoveHandler.java" index="12">
+<item historyLabel="MoveHandler.java" index="7">
 <position info="not_deleted" x="571" y="0"/>
 </item>
-<item historyLabel="SFSChess.java" index="3">
+<item historyLabel="SFSChess.java" index="0">
 <position info="not_deleted" x="4807" y="0"/>
 </item>
-<item historyLabel="SFSChess.java" index="3">
+<item historyLabel="SFSChess.java" index="0">
 <position info="not_deleted" x="3844" y="0"/>
 </item>
-<item historyLabel="SFSChess.java" index="3">
+<item historyLabel="SFSChess.java" index="0">
 <position info="not_deleted" x="3844" y="0"/>
 </item>
-<item historyLabel="SFSChess.java" index="3">
+<item historyLabel="SFSChess.java" index="0">
 <position info="not_deleted" x="3844" y="0"/>
 </item>
-<item historyLabel="SFSChess.java" index="3">
+<item historyLabel="SFSChess.java" index="0">
 <position info="not_deleted" x="1878" y="0"/>
 </item>
-<item historyLabel="BoardModel.java" index="7">
+<item historyLabel="BoardModel.java" index="2">
 <position info="not_deleted" x="248" y="0"/>
 </item>
-<item historyLabel="GameOverModel.java" index="8">
+<item historyLabel="GameOverModel.java" index="3">
 <position info="not_deleted" x="25" y="0"/>
 </item>
-<item historyLabel="MoveModel.java" index="13">
+<item historyLabel="MoveModel.java" index="8">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="PlayersModel.java" index="11">
+<item historyLabel="PlayersModel.java" index="6">
 <position info="not_deleted" x="25" y="0"/>
 </item>
-<item historyLabel="TurnModel.java" index="9">
+<item historyLabel="TurnModel.java" index="4">
 <position info="not_deleted" x="25" y="0"/>
 </item>
-<item historyLabel="BoardModel.java" index="7">
+<item historyLabel="BoardModel.java" index="2">
 <position info="not_deleted" x="248" y="0"/>
 </item>
-<item historyLabel="MoveModel.java" index="13">
+<item historyLabel="MoveModel.java" index="8">
 <position info="not_deleted" x="437" y="0"/>
 </item>
-<item historyLabel="ValidMoveModel.java" index="10">
+<item historyLabel="ValidMoveModel.java" index="5">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="GameOverModel.java" index="8">
+<item historyLabel="GameOverModel.java" index="3">
 <position info="not_deleted" x="25" y="0"/>
 </item>
-<item historyLabel="MoveModel.java" index="13">
+<item historyLabel="MoveModel.java" index="8">
 <position info="not_deleted" x="424" y="0"/>
 </item>
-<item historyLabel="PlayersModel.java" index="11">
+<item historyLabel="PlayersModel.java" index="6">
 <position info="not_deleted" x="25" y="0"/>
 </item>
-<item historyLabel="TurnModel.java" index="9">
+<item historyLabel="TurnModel.java" index="4">
 <position info="not_deleted" x="320" y="0"/>
 </item>
-<item historyLabel="ChessBoard.java" index="6">
+<item historyLabel="ChessBoard.java" index="1">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item active="true" historyLabel="SFSChess.java" index="3">
+<item historyLabel="SFSChess.java" index="0">
 <position info="not_deleted" x="1878" y="0"/>
+</item>
+<item historyLabel="BoardModel.java" index="9">
+<position info="not_deleted" x="248" y="0"/>
+</item>
+<item historyLabel="GameOverModel.java" index="10">
+<position info="not_deleted" x="25" y="0"/>
+</item>
+<item historyLabel="MoveModel.java" index="11">
+<position info="not_deleted" x="424" y="0"/>
+</item>
+<item historyLabel="PlayersModel.java" index="12">
+<position info="not_deleted" x="25" y="0"/>
+</item>
+<item historyLabel="TurnModel.java" index="13">
+<position info="not_deleted" x="320" y="0"/>
+</item>
+<item historyLabel="ValidMoveModel.java" index="14">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="SFSLogin.java" index="15">
+<position info="not_deleted" x="1291" y="0"/>
+</item>
+<item historyLabel="ChessBoard.java" index="16">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="ChessBoard.java" index="16">
+<position info="not_deleted" x="90" y="0"/>
+</item>
+<item historyLabel="SFSLogin.java" index="15">
+<position info="not_deleted" x="580" y="0"/>
+</item>
+<item historyLabel="ChessBoard.java" index="16">
+<position info="not_deleted" x="359" y="0"/>
+</item>
+<item historyLabel="SFSChess.java" index="17">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="ChessBoard.java" index="16">
+<position info="not_deleted" x="22229" y="0"/>
+</item>
+<item historyLabel="MoveHandler.java" index="18">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="OnUserGoneHandler.java" index="19">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="PlayerJoinedHandler.java" index="20">
+<position info="not_deleted" x="508" y="12"/>
+</item>
+<item historyLabel="ChessBoard.java" index="16">
+<position info="not_deleted" x="22229" y="0"/>
+</item>
+<item historyLabel="SFSChess.java" index="17">
+<position info="not_deleted" x="916" y="19"/>
+</item>
+<item historyLabel="PlayerJoinedHandler.java" index="20">
+<position info="not_deleted" x="517" y="0"/>
+</item>
+<item historyLabel="SFSTrisGame.java" index="21">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="OnSpectatorToPlayerHandler.java" index="22">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="SFSTrisGame.java" index="21">
+<position info="not_deleted" x="892" y="12"/>
+</item>
+<item historyLabel="SFSChess.java" index="17">
+<position info="not_deleted" x="1003" y="0"/>
+</item>
+<item historyLabel="PlayerJoinedHandler.java" index="20">
+<position info="not_deleted" x="517" y="0"/>
+</item>
+<item historyLabel="OnUserGoneHandler.java" index="19">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="MoveHandler.java" index="18">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="SFSChess.java" index="17">
+<position info="not_deleted" x="1003" y="0"/>
+</item>
+<item historyLabel="ChessBoard.java" index="16">
+<position info="not_deleted" x="22229" y="0"/>
+</item>
+<item active="true" historyLabel="SFSChess.java" index="17">
+<position info="not_deleted" x="1003" y="0"/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
@@ -484,17 +482,32 @@
 </trimLayout>
 </window>
 <mruList>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ChessBoard.java" tooltip="sfsChess/src/com/pikitus/games/chess/ChessBoard.java">
-<persistable path="/sfsChess/src/com/pikitus/games/chess/ChessBoard.java"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="OnSpectatorToPlayerHandler.java" tooltip="sfsTris/src/sfs2x/extensions/games/tris/OnSpectatorToPlayerHandler.java">
+<persistable path="/sfsTris/src/sfs2x/extensions/games/tris/OnSpectatorToPlayerHandler.java"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="MoveModel.java" tooltip="sfsModels/models/chess/MoveModel.java">
-<persistable path="/sfsModels/models/chess/MoveModel.java"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="SFSTrisGame.java" tooltip="sfsTris/src/sfs2x/extensions/games/tris/SFSTrisGame.java">
+<persistable path="/sfsTris/src/sfs2x/extensions/games/tris/SFSTrisGame.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="PlayerJoinedHandler.java" tooltip="sfsChess/src/com/pikitus/games/chess/handlers/PlayerJoinedHandler.java">
+<persistable path="/sfsChess/src/com/pikitus/games/chess/handlers/PlayerJoinedHandler.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="OnUserGoneHandler.java" tooltip="sfsChess/src/com/pikitus/games/chess/handlers/OnUserGoneHandler.java">
+<persistable path="/sfsChess/src/com/pikitus/games/chess/handlers/OnUserGoneHandler.java"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="MoveHandler.java" tooltip="sfsChess/src/com/pikitus/games/chess/handlers/MoveHandler.java">
 <persistable path="/sfsChess/src/com/pikitus/games/chess/handlers/MoveHandler.java"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="SFSChess.java" tooltip="sfsChess/src/com/pikitus/games/chess/SFSChess.java">
 <persistable path="/sfsChess/src/com/pikitus/games/chess/SFSChess.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ChessBoard.java" tooltip="sfsChess/src/com/pikitus/games/chess/ChessBoard.java">
+<persistable path="/sfsChess/src/com/pikitus/games/chess/ChessBoard.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="SFSLogin.java" tooltip="sfsLogin/src/com/pikitus/login/SFSLogin.java">
+<persistable path="/sfsLogin/src/com/pikitus/login/SFSLogin.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="MoveModel.java" tooltip="sfsModels/models/chess/MoveModel.java">
+<persistable path="/sfsModels/models/chess/MoveModel.java"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="PlayersModel.java" tooltip="sfsModels/models/chess/PlayersModel.java">
 <persistable path="/sfsModels/models/chess/PlayersModel.java"/>
@@ -513,21 +526,6 @@
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ValidMoveHandler.java" tooltip="sfsChess/src/com/pikitus/games/chess/handlers/ValidMoveHandler.java">
 <persistable path="/sfsChess/src/com/pikitus/games/chess/handlers/ValidMoveHandler.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="PlayerJoinedHandler.java" tooltip="sfsChess/src/com/pikitus/games/chess/handlers/PlayerJoinedHandler.java">
-<persistable path="/sfsChess/src/com/pikitus/games/chess/handlers/PlayerJoinedHandler.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="OnUserGoneHandler.java" tooltip="sfsChess/src/com/pikitus/games/chess/handlers/OnUserGoneHandler.java">
-<persistable path="/sfsChess/src/com/pikitus/games/chess/handlers/OnUserGoneHandler.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="UpdateModel.java" tooltip="sfsChess/src/com/pikitus/games/chess/models/UpdateModel.java">
-<persistable path="/sfsChess/src/com/pikitus/games/chess/models/UpdateModel.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="MoveModel.java" tooltip="sfsChess/src/com/pikitus/games/chess/models/MoveModel.java">
-<persistable path="/sfsChess/src/com/pikitus/games/chess/models/MoveModel.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="GameManager.java" tooltip="sfsChess/src/com/pikitus/games/chess/GameManager.java">
-<persistable path="/sfsChess/src/com/pikitus/games/chess/GameManager.java"/>
 </file>
 </mruList>
 </workbench>
