@@ -11,6 +11,8 @@ public class PlayerJoinedHandler extends BaseClientRequestHandler
 	@Override
 	public void handleClientRequest(User user, ISFSObject params)
 	{
+		trace("!!!!PLAYER JOINED HANDLER RUNNING!!!!");
+		
 		SFSChess gameExt = (SFSChess) getParentExtension();
 		
 		if (user.isPlayer())
