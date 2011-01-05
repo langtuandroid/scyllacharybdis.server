@@ -439,6 +439,49 @@ public class ChessBoard
 		return mLastMove;
 	}
 	
+	public BoardModel getBoard() 
+	{
+		// Output a BoardModel
+		int[][] pieces = new int[12][2];
+		
+		pieces[0][0] = (int) ( mPieceBoards.get(WHITE_PAWNS) & -1 );
+		pieces[0][1] = (int) ( ( mPieceBoards.get(WHITE_PAWNS) << 32 ) & -1 );
+		
+		pieces[1][0] = (int) ( mPieceBoards.get(WHITE_ROOKS) & -1 );
+		pieces[1][1] = (int) ( ( mPieceBoards.get(WHITE_ROOKS) << 32 ) & -1 );
+		
+		pieces[2][0] = (int) ( mPieceBoards.get(WHITE_KNIGHTS) & -1 );
+		pieces[2][1] = (int) ( ( mPieceBoards.get(WHITE_KNIGHTS) << 32 ) & -1 );
+		
+		pieces[3][0] = (int) ( mPieceBoards.get(WHITE_BISHOPS) & -1 );
+		pieces[3][1] = (int) ( ( mPieceBoards.get(WHITE_BISHOPS) << 32 ) & -1 );
+		
+		pieces[4][0] = (int) ( mPieceBoards.get(WHITE_QUEEN) & -1 );
+		pieces[4][1] = (int) ( ( mPieceBoards.get(WHITE_QUEEN) << 32 ) & -1 );
+		
+		pieces[5][0] = (int) ( mPieceBoards.get(WHITE_KING) & -1 );
+		pieces[5][1] = (int) ( ( mPieceBoards.get(WHITE_KING) << 32 ) & -1 );
+		
+		pieces[6][0] = (int) ( mPieceBoards.get(BLACK_PAWNS) & -1 );
+		pieces[6][1] = (int) ( ( mPieceBoards.get(BLACK_PAWNS) << 32 ) & -1 );
+		
+		pieces[7][0] = (int) ( mPieceBoards.get(BLACK_ROOKS) & -1 );
+		pieces[7][1] = (int) ( ( mPieceBoards.get(BLACK_ROOKS) << 32 ) & -1 );
+		
+		pieces[8][0] = (int) ( mPieceBoards.get(BLACK_KNIGHTS) & -1 );
+		pieces[8][1] = (int) ( ( mPieceBoards.get(BLACK_KNIGHTS) << 32 ) & -1 );
+		
+		pieces[9][0] = (int) ( mPieceBoards.get(BLACK_BISHOPS) & -1 );
+		pieces[9][1] = (int) ( ( mPieceBoards.get(BLACK_BISHOPS) << 32 ) & -1 );
+		
+		pieces[10][0] = (int) ( mPieceBoards.get(BLACK_QUEEN) & -1 );
+		pieces[10][1] = (int) ( ( mPieceBoards.get(BLACK_QUEEN) << 32 ) & -1 );
+		
+		pieces[11][0] = (int) ( mPieceBoards.get(BLACK_KING) & -1 );
+		pieces[11][1] = (int) ( ( mPieceBoards.get(BLACK_KING) << 32 ) & -1 );
+		
+		return new BoardModel( pieces );
+	}
 	/*
 	 * End of interface
 	 */
@@ -1288,11 +1331,7 @@ public class ChessBoard
 		}
 	}
 
-	public BoardModel getBoard() 
-	{
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 
 	public ValidMoveModel getValidMoves() 
 	{

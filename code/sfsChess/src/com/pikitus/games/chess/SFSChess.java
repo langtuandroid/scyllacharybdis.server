@@ -167,6 +167,7 @@ public class SFSChess extends SFSExtension
 
 	private void sendBoard(int userId) 
 	{
+		System.out.println("SENDING BOARD");
 		User user = getParentRoom().getUserById(userId);
 		ISFSObject board = SFSObject.newInstance();
 		board.putClass("BoardModel", mGameBoard.getBoard() );
