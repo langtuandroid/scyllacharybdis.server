@@ -1,6 +1,0 @@
-package com.pikitus.games.go.models;
-
-public class BoardModel 
-{
-	private array mBoardModel[][];
-}

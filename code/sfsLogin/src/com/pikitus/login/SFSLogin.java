@@ -26,7 +26,6 @@ public class SFSLogin extends SFSExtension
 	    
 	    // Add custom event handlers
 	    addRequestHandler("JOIN_RANDOM_ROOM", RandomGameHandler.class);
-	    addRequestHandler("GET_FACEBOOK_FRIENDS", FriendsList.class);
 	}
 
 	public void sendSFSObject(String name, ISFSObject object)
