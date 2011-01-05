@@ -1,0 +1,12 @@
+what,kind,bundleId,bundleVersion,description,time
+stopped,bundle,com.google.gdt.eclipse.platform,1.4.0.v201010280102,"com.google.gdt.eclipse.platform",1293095539544
+stopped,bundle,com.google.gdt.eclipse.platform.e36,1.4.0.v201010280102,"com.google.gdt.eclipse.platform.e36",1293095539544
+stopped,bundle,org.eclipse.equinox.p2.ui.sdk,1.0.100.v20100513,"org.eclipse.equinox.p2.ui.sdk",1293095539545
+stopped,bundle,org.eclipse.mylyn.java.tasks,3.4.0.v20100608-0100-e3x,"org.eclipse.mylyn.java.tasks",1293095539545
+stopped,bundle,org.eclipse.mylyn.java.ui,3.4.0.v20100608-0100-e3x,"org.eclipse.mylyn.java.ui",1293095539546
+stopped,bundle,org.eclipse.jdt.junit,3.6.1.r361_v20100825-0800,"org.eclipse.jdt.junit",1293095539548
+stopped,bundle,org.eclipse.jdt.apt.ui,3.3.300.v20100513-0845,"org.eclipse.jdt.apt.ui",1293095539548
+stopped,bundle,org.eclipse.jdt.debug.ui,3.5.0.v20100602-0830,"org.eclipse.jdt.debug.ui",1293095539548
+stopped,bundle,com.google.gdt.eclipse.platform.shared,1.4.0.v201010280102,"com.google.gdt.eclipse.platform.shared",1293095539548
+stopped,bundle,org.eclipse.jdt.ui,3.6.1.r361_v20100825-0800,"org.eclipse.jdt.ui",1293095539562
+stopped,bundle,org.eclipse.wst.dtd.ui,1.0.500.v201004290328,"org.eclipse.wst.dtd.ui",1293095539563

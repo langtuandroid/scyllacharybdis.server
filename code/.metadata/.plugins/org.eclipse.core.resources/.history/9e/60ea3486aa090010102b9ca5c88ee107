@@ -1,0 +1,11 @@
+package com.pikitus.games.go;
+
+import com.smartfoxserver.v2.entities.User;
+import com.smartfoxserver.v2.entities.data.ISFSObject;
+
+
+public class GoBoard 
+{
+	private int[][] mBoardModel;
+
+}

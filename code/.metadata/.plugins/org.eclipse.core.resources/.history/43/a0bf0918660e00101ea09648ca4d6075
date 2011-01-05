@@ -1,0 +1,6 @@
+package models.chess;
+
+public class TurnModel 
+{
+
+}
