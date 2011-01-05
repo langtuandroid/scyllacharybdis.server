@@ -70,6 +70,8 @@ public class SFSChess extends SFSExtension
 		}
 
 		// Send the board to the player
+		trace("ATTEMPTING TO SEND THE BOARD");
+		
 		sendBoard( user.getId() );
 		
 		if ( mPlayers.getPlayer1() == 0 ) 
@@ -77,21 +79,21 @@ public class SFSChess extends SFSExtension
 			mPlayers.setPlayer1(user.getId());
 			
 			// Send the valid moves just to player 1
-			sendValidMoves( user.getId() );
+			//sendValidMoves( user.getId() );
 			
 		} 
 		else 
 		{
-			mPlayers.setPlayer2(user.getId());
+			//mPlayers.setPlayer2(user.getId());
 		}
 
 		// Send the players
-		sendPlayers();
+		//sendPlayers();
 
 		// Check to see if we have 2 players
 		if ( mPlayers.getPlayer1() != 0 && mPlayers.getPlayer2() != 0 )
 		{
-			sendTurn();
+			//sendTurn();
 		}
 	}
 	
@@ -167,7 +169,7 @@ public class SFSChess extends SFSExtension
 
 	private void sendBoard(int userId) 
 	{
-		System.out.println("SENDING BOARD");
+		trace("SENDING BOARD");
 		User user = getParentRoom().getUserById(userId);
 		ISFSObject board = SFSObject.newInstance();
 		board.putClass("BoardModel", mGameBoard.getBoard() );
