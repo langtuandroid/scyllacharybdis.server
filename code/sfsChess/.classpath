@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
+	<classpathentry kind="src" path="/sfsModels"/>
+	<classpathentry kind="lib" path="C:/Users/danny/Code/Flash/scyllacharybdis-server/sfs2x/lib/boot.jar"/>
+	<classpathentry kind="lib" path="C:/Users/danny/Code/Flash/scyllacharybdis-server/sfs2x/lib/commons-beanutils-1.7.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/danny/Code/Flash/scyllacharybdis-server/sfs2x/lib/commons-collections-3.2.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/danny/Code/Flash/scyllacharybdis-server/sfs2x/lib/commons-dbcp-1.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/danny/Code/Flash/scyllacharybdis-server/sfs2x/lib/commons-io-1.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/danny/Code/Flash/scyllacharybdis-server/sfs2x/lib/commons-lang-2.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/danny/Code/Flash/scyllacharybdis-server/sfs2x/lib/commons-logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/danny/Code/Flash/scyllacharybdis-server/sfs2x/lib/commons-pool-1.5.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/danny/Code/Flash/scyllacharybdis-server/sfs2x/lib/commons-vfs-1.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/danny/Code/Flash/scyllacharybdis-server/sfs2x/lib/ezmorph-1.0.6.jar"/>
+	<classpathentry kind="lib" path="C:/Users/danny/Code/Flash/scyllacharybdis-server/sfs2x/lib/jmx-util-1.2.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/danny/Code/Flash/scyllacharybdis-server/sfs2x/lib/joda-time-1.6.jar"/>
+	<classpathentry kind="lib" path="C:/Users/danny/Code/Flash/scyllacharybdis-server/sfs2x/lib/js.jar"/>
+	<classpathentry kind="lib" path="C:/Users/danny/Code/Flash/scyllacharybdis-server/sfs2x/lib/json-lib-2.2.3-jdk15.jar"/>
+	<classpathentry kind="lib" path="C:/Users/danny/Code/Flash/scyllacharybdis-server/sfs2x/lib/jython.jar"/>
+	<classpathentry kind="lib" path="C:/Users/danny/Code/Flash/scyllacharybdis-server/sfs2x/lib/log4j-1.2.15.jar"/>
+	<classpathentry kind="lib" path="C:/Users/danny/Code/Flash/scyllacharybdis-server/sfs2x/lib/scala.jar"/>
+	<classpathentry kind="lib" path="C:/Users/danny/Code/Flash/scyllacharybdis-server/sfs2x/lib/sfs2x.jar"/>
+	<classpathentry kind="lib" path="C:/Users/danny/Code/Flash/scyllacharybdis-server/sfs2x/lib/sfs2x-admin.jar"/>
+	<classpathentry kind="lib" path="C:/Users/danny/Code/Flash/scyllacharybdis-server/sfs2x/lib/sfs2x-core.jar"/>
+	<classpathentry kind="lib" path="C:/Users/danny/Code/Flash/scyllacharybdis-server/sfs2x/lib/sfs2x-util.jar"/>
+	<classpathentry kind="lib" path="C:/Users/danny/Code/Flash/scyllacharybdis-server/sfs2x/lib/slf4j-api-1.5.10.jar"/>
+	<classpathentry kind="lib" path="C:/Users/danny/Code/Flash/scyllacharybdis-server/sfs2x/lib/slf4j-log4j12.jar"/>
+	<classpathentry kind="lib" path="C:/Users/danny/Code/Flash/scyllacharybdis-server/sfs2x/lib/terracotta-api-1.1.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/danny/Code/Flash/scyllacharybdis-server/sfs2x/lib/xpp3_min-1.1.4c.jar"/>
+	<classpathentry kind="lib" path="C:/Users/danny/Code/Flash/scyllacharybdis-server/sfs2x/lib/xstream-1.3.1.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
