@@ -1,0 +1,84 @@
+package models.chess;
+
+import com.smartfoxserver.v2.protocol.serialization.SerializableSFSType;
+
+public class BoardModel implements SerializableSFSType
+{
+	//int[] board;
+	
+	// White
+	int lowerWhitePawns;
+	int higherWhitePawns;
+	int lowerWhiteRooks;
+	int higherWhiteRooks;
+	int lowerWhiteKights;
+	int higherWhiteKights;
+	int lowerWhiteBishops;
+	int higherWhiteBishops;
+	int lowerWhiteQueen;
+	int higherWhiteQueen;
+	int lowerWhiteKing;
+	int higherWhiteKing;
+
+	// Black
+	int lowerBlackPawns;
+	int higherBlackPawns;
+	int lowerBlackRooks;
+	int higherBlackRooks;
+	int lowerBlackKights;
+	int higherBlackKights;
+	int lowerBlackBishops;
+	int higherBlackBishops;
+	int lowerBlackQueen;
+	int higherBlackQueen;
+	int lowerBlackKing;
+	int higherBlackKing;
+	
+	public BoardModel() 
+	{
+	}
+
+	//public BoardModel( int[] board )
+	//{
+	//	this.board = board;
+	//}
+	public BoardModel( 	
+		int lowerWhitePawns, 
+		int higherWhitePawns, 
+		int lowerWhiteRooks,
+		int higherWhiteRooks,
+		int lowerWhiteKights,
+		int higherWhiteKights,
+		int lowerWhiteBishops,
+		int higherWhiteBishops,
+		int lowerWhiteQueen,
+		int higherWhiteQueen,
+		int lowerWhiteKing,
+		int higherWhiteKing,
+	
+		// Black
+		int lowerBlackPawns,
+		int higherBlackPawns,
+		int lowerBlackRooks,
+		int higherBlackRooks,
+		int lowerBlackKights,
+		int higherBlackKights,
+		int lowerBlackBishops,
+		int higherBlackBishops,
+		int lowerBlackQueen,
+		int higherBlackQueen,
+		int lowerBlackKing,
+		int higherBlackKing
+	)
+	{
+		
+	}
+	
+	//public int[] getBoard() { return this.board; }
+	
+	//public void setBoard(int [] board) 
+	//{
+	//	this.board = board;
+	//}
+}
+

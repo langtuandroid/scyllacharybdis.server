@@ -2,28 +2,37 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
 		<item value="305" key="DIALOG_WIDTH"/>
-		<item value="216" key="DIALOG_Y_ORIGIN"/>
+		<item value="160" key="DIALOG_Y_ORIGIN"/>
+		<item value="1007" key="DIALOG_X_ORIGIN"/>
 		<item value="442" key="DIALOG_HEIGHT"/>
-		<item value="697" key="DIALOG_X_ORIGIN"/>
 		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="true" key="wrap"/>
+		<item value="true" key="casesensitive"/>
 		<item value="false" key="isRegEx"/>
-		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wholeword"/>
-		<item value="" key="selection"/>
+		<item value="BLACK" key="selection"/>
 		<list key="findhistory">
-			<item value="this."/>
-			<item value="addAll"/>
-			<item value="getLegalMovesArray"/>
-			<item value="getPieces"/>
-			<item value="UpdateModel"/>
-			<item value="trace"/>
+			<item value="WHITE"/>
+			<item value="White"/>
+			<item value="Kights"/>
+			<item value=","/>
+			<item value="&#x09;&#x09;int higher"/>
+			<item value="&#x09;&#x09;int lower"/>
+			<item value=";"/>
+			<item value="mL"/>
 		</list>
 		<list key="replacehistory">
-			<item value=""/>
+			<item value="BLACK"/>
+			<item value="Black"/>
+			<item value="Knights"/>
+			<item value=" = ;"/>
+			<item value="&#x09;&#x09;this.higher"/>
+			<item value="&#x09;&#x09;this.lower"/>
+			<item value=","/>
+			<item value=", int"/>
 		</list>
 	</section>
 </section>

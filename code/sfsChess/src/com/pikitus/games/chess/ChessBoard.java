@@ -441,6 +441,47 @@ public class ChessBoard
 	
 	public BoardModel getBoard() 
 	{
+		BoardModel model = new BoardModel();
+		
+		model.setLowerWhitePawns( (int)( mPieceBoards.get(WHITE_PAWNS) & -1 ) );
+		model.setHigherWhitePawns( (int) ( ( mPieceBoards.get(WHITE_PAWNS) << 32 ) & -1) );
+		
+		model.setLowerWhiteRooks( (int)( mPieceBoards.get(WHITE_ROOKS) & -1 ) );
+		model.setHigherWhiteRooks( (int) ( ( mPieceBoards.get(WHITE_ROOKS) << 32 ) & -1) );
+		
+		model.setLowerWhiteKnights( (int)( mPieceBoards.get(WHITE_KNIGHTS) & -1 ) );
+		model.setHigherWhiteKnights( (int) ( ( mPieceBoards.get(WHITE_KNIGHTS) << 32 ) & -1) );
+		
+		model.setLowerWhitePawns( (int)( mPieceBoards.get(WHITE_BISHOPS) & -1 ) );
+		model.setHigherWhitePawns( (int) ( ( mPieceBoards.get(WHITE_BISHOPS) << 32 ) & -1) );
+
+		model.setLowerWhitePawns( (int)( mPieceBoards.get(WHITE_QUEEN) & -1 ) );
+		model.setHigherWhitePawns( (int) ( ( mPieceBoards.get(WHITE_QUEEN) << 32 ) & -1) );
+
+		model.setLowerWhitePawns( (int)( mPieceBoards.get(WHITE_KING) & -1 ) );
+		model.setHigherWhitePawns( (int) ( ( mPieceBoards.get(WHITE_KING) << 32 ) & -1) );
+		
+		
+		model.setLowerBlackPawns( (int)( mPieceBoards.get(BLACK_PAWNS) & -1 ) );
+		model.setHigherBlackPawns( (int) ( ( mPieceBoards.get(BLACK_PAWNS) << 32 ) & -1) );
+		
+		model.setLowerBlackRooks( (int)( mPieceBoards.get(BLACK_ROOKS) & -1 ) );
+		model.setHigherBlackRooks( (int) ( ( mPieceBoards.get(BLACK_ROOKS) << 32 ) & -1) );
+		
+		model.setLowerBlackKnights( (int)( mPieceBoards.get(BLACK_KNIGHTS) & -1 ) );
+		model.setHigherBlackKnights( (int) ( ( mPieceBoards.get(BLACK_KNIGHTS) << 32 ) & -1) );
+		
+		model.setLowerBlackPawns( (int)( mPieceBoards.get(BLACK_BISHOPS) & -1 ) );
+		model.setHigherBlackPawns( (int) ( ( mPieceBoards.get(BLACK_BISHOPS) << 32 ) & -1) );
+
+		model.setLowerBlackPawns( (int)( mPieceBoards.get(BLACK_QUEEN) & -1 ) );
+		model.setHigherBlackPawns( (int) ( ( mPieceBoards.get(BLACK_QUEEN) << 32 ) & -1) );
+
+		model.setLowerBlackPawns( (int)( mPieceBoards.get(BLACK_KING) & -1 ) );
+		model.setHigherBlackPawns( (int) ( ( mPieceBoards.get(BLACK_KING) << 32 ) & -1) );
+		
+		return model;
+		/*
 		// Output a BoardModel
 		int[] pieces = new int[24];
 		
@@ -481,6 +522,7 @@ public class ChessBoard
 		pieces[23] = (int) ( ( mPieceBoards.get(BLACK_KING) << 32 ) & -1 );
 		
 		return new BoardModel( pieces );
+		*/
 	}
 	/*
 	 * End of interface
