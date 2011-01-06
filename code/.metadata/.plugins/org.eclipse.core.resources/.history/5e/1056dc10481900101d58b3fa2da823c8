@@ -1,0 +1,142 @@
+package models.chess;
+
+import com.smartfoxserver.v2.protocol.serialization.SerializableSFSType;
+
+public class BoardModel implements SerializableSFSType
+{
+	//private int[] board;
+	
+	// White
+	private int lowerWhitePawns;
+	private int higherWhitePawns;
+	private int lowerWhiteRooks;
+	private int higherWhiteRooks;
+	private int lowerWhiteKights;
+	private int higherWhiteKights;
+	private int lowerWhiteBishops;
+	private int higherWhiteBishops;
+	private int lowerWhiteQueen;
+	private int higherWhiteQueen;
+	private int lowerWhiteKing;
+	private int higherWhiteKing;
+
+	// Black
+	private int lowerBlackPawns;
+	private int higherBlackPawns;
+	private int lowerBlackRooks;
+	private int higherBlackRooks;
+	private int lowerBlackKights;
+	private int higherBlackKights;
+	private int lowerBlackBishops;
+	private int higherBlackBishops;
+	private int lowerBlackQueen;
+	private int higherBlackQueen;
+	private int lowerBlackKing;
+	private int higherBlackKing;
+	
+	public BoardModel() 
+	{
+	}
+
+	public void setLowerWhitePawns(int lowerWhitePawns) {
+		this.lowerWhitePawns = lowerWhitePawns;
+	}
+
+	public int getLowerWhitePawns() {
+		return lowerWhitePawns;
+	}
+
+	public void setHigherWhitePawns(int higherWhitePawns) {
+		this.higherWhitePawns = higherWhitePawns;
+	}
+
+	public int getHigherWhitePawns() {
+		return higherWhitePawns;
+	}
+
+	public void setLowerWhiteRooks(int lowerWhiteRooks) {
+		this.lowerWhiteRooks = lowerWhiteRooks;
+	}
+
+	public int getLowerWhiteRooks() {
+		return lowerWhiteRooks;
+	}
+
+	/*
+	public BoardModel( int[] board )
+	{
+		this.board = board;
+	}
+	*/
+
+	/*
+	public BoardModel( 	
+		int lowerWhitePawns, 
+		int higherWhitePawns, 
+		int lowerWhiteRooks,
+		int higherWhiteRooks,
+		int lowerWhiteKights,
+		int higherWhiteKights,
+		int lowerWhiteBishops,
+		int higherWhiteBishops,
+		int lowerWhiteQueen,
+		int higherWhiteQueen,
+		int lowerWhiteKing,
+		int higherWhiteKing,
+	
+		// Black
+		int lowerBlackPawns,
+		int higherBlackPawns,
+		int lowerBlackRooks,
+		int higherBlackRooks,
+		int lowerBlackKights,
+		int higherBlackKights,
+		int lowerBlackBishops,
+		int higherBlackBishops,
+		int lowerBlackQueen,
+		int higherBlackQueen,
+		int lowerBlackKing,
+		int higherBlackKing
+	)
+	{
+		this.lowerWhitePawns = lowerWhitePawns; 
+		this.higherWhitePawns = higherWhitePawns; 
+		this.lowerWhiteRooks = lowerWhiteRooks;
+		this.higherWhiteRooks =higherWhiteRooks;
+		this.lowerWhiteKights = lowerWhiteKights;
+		this.higherWhiteKights = higherWhiteKights;
+		this.lowerWhiteBishops = lowerWhiteBishops;
+		this.higherWhiteBishops = higherWhiteBishops;
+		this.lowerWhiteQueen = lowerWhiteQueen;
+		this.higherWhiteQueen = higherWhiteQueen;
+		this.lowerWhiteKing = lowerWhiteKing;
+		this.higherWhiteKing = higherWhiteKing;
+	
+		// Black
+		this.lowerBlackPawns = lowerBlackPawns;
+		this.higherBlackPawns = higherBlackPawns;
+		this.lowerBlackRooks = lowerBlackRooks;
+		this.higherBlackRooks = higherBlackRooks;
+		this.lowerBlackKights = lowerBlackKights;
+		this.higherBlackKights = higherBlackKights;
+		this.lowerBlackBishops = lowerBlackBishops;
+		this.higherBlackBishops = higherBlackBishops;
+		this.lowerBlackQueen = lowerBlackQueen;
+		this.higherBlackQueen = higherBlackQueen;
+		this.lowerBlackKing = lowerBlackKing;
+		this.higherBlackKing = higherBlackKing;
+	}
+		*/
+	
+	/*
+	public int[] getBoard() { return this.board; }
+	
+	public void setBoard(int [] board) 
+	{
+		this.board = board;
+	}
+	*/
+	
+	
+}
+

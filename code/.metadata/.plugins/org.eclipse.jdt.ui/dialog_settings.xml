@@ -53,9 +53,9 @@
 		<item value="false" key="jarOptionsWizardPage.STORE_USE_SRC_FOLDERS"/>
 		<item value="" key="jarOptionsWizardPage.DESCRIPTION_LOCATION"/>
 		<list key="JarPackageWizardPage.DESTINATION_NAMES_ID">
+			<item value="C:\Development\server\sfs2x\extensions\sfsLogin\sfsLogin.jar"/>
 			<item value="C:\Development\server\sfs2x\extensions\sfsChess\sfsChess.jar"/>
 			<item value="C:\Development\server\sfs2x\extensions\__lib__\sfsModels.jar"/>
-			<item value="C:\Development\server\sfs2x\extensions\sfsLogin\sfsLogin.jar"/>
 			<item value="C:\Development\server\sfs2x\extensions\sfsTris\SFSTris2x.jar"/>
 			<item value="sfsChess\bin\sfsChess.jar"/>
 		</list>
@@ -66,6 +66,11 @@
 	<section name="RefactoringWizard.preview">
 		<item value="400" key="height"/>
 		<item value="600" key="width"/>
+	</section>
+	<section name="JavaSearchPage">
+		<item value="false" key="CASE_SENSITIVE"/>
+		<item value="15" key="INCLUDE_MASK"/>
+		<item value="0" key="HISTORY_SIZE"/>
 	</section>
 	<section name="org.eclipse.ltk.ui.refactoring.settings">
 		<item value="false" key="renameSubpackages"/>

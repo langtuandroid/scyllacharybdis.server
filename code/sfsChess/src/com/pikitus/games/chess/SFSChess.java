@@ -175,11 +175,11 @@ public class SFSChess extends SFSExtension
 		ISFSObject board = SFSObject.newInstance();
 		
 		BoardModel model = mGameBoard.getBoard();
-		trace("BOARD CONTENTS: " + model.getBoard() );
+		//trace("BOARD CONTENTS: " + model.getBoard() );
 		
 		board.putClass("BoardModel", model );
 		
-		trace("USER CONTENTS: " + user.toString());
+		//trace("USER CONTENTS: " + user.toString());
 		sendSFSObject("CHESS_BOARD", board, user);
 		
 	}
