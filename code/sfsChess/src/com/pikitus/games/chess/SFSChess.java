@@ -85,16 +85,16 @@ public class SFSChess extends SFSExtension
 		} 
 		else 
 		{
-			//mPlayers.setPlayer2(user.getId());
+			mPlayers.setPlayer2(user.getId());
 		}
 
 		// Send the players
-		//sendPlayers();
+		sendPlayers();
 
 		// Check to see if we have 2 players
 		if ( mPlayers.getPlayer1() != 0 && mPlayers.getPlayer2() != 0 )
 		{
-			//sendTurn();
+			sendTurn();
 		}
 	}
 	
@@ -177,7 +177,7 @@ public class SFSChess extends SFSExtension
 		BoardModel model = mGameBoard.getBoard();
 		trace("BOARD CONTENTS: " + model.getBoard() );
 		
-		board.putClass("BoardModel", mGameBoard.getBoard() );
+		board.putClass("BoardModel", model );
 		
 		trace("USER CONTENTS: " + user.toString());
 		sendSFSObject("CHESS_BOARD", board, user);
