@@ -7,7 +7,7 @@ import models.go.MoveModel;
 public class GoBoard 
 {
 	private BoardModel mBoardModel = new BoardModel();
-	private int[][] mBoard = new int[19][19];
+	private Integer[][] mBoard = new Integer[19][19];
 
 	public GoBoard() 
 	{

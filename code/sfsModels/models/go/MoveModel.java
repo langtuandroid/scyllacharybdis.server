@@ -5,7 +5,7 @@ import com.smartfoxserver.v2.protocol.serialization.SerializableSFSType;
 public class MoveModel implements SerializableSFSType
 {
 	private boolean mValid;
-	private int[] mMove = new int[2];
+	private Integer[] mMove = new Integer[2];
 	
 	public MoveModel()
 	{
@@ -24,12 +24,12 @@ public class MoveModel implements SerializableSFSType
 		mValid = true;
 	}
 		
-	public int[] getMove()
+	public Integer[] getMove()
 	{
 		return mMove;
 	}
 		
-	public void setBoard( int[] move )
+	public void setBoard( Integer[] move )
 	{
 		mMove = move;
 	}
