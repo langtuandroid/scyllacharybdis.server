@@ -1,0 +1,251 @@
+what,kind,bundleId,bundleVersion,description,time
+started,bundle,org.eclipse.ui.forms,3.5.2.r36_v20100702,"org.eclipse.ui.forms",1295121774103
+started,bundle,org.eclipse.ui.ide,3.6.1.M20100825-0800,"org.eclipse.ui.ide",1295121774103
+started,bundle,org.eclipse.ui.net,1.2.100.I20100505-1245,"org.eclipse.ui.net",1295121774103
+started,bundle,org.eclipse.ui.views,3.5.0.I20100527-0800,"org.eclipse.ui.views",1295121774103
+started,bundle,org.eclipse.ui.workbench,3.6.1.M20100826-1330,"org.eclipse.ui.workbench",1295121774103
+started,bundle,org.eclipse.ui.workbench.texteditor,3.6.1.r361_v20100714-0800,"org.eclipse.ui.workbench.texteditor",1295121774103
+started,bundle,org.eclipse.update.configurator,3.3.100.v20100512,"org.eclipse.update.configurator",1295121774104
+started,bundle,org.eclipse.update.core,3.2.402.R36x_v20100629,"org.eclipse.update.core",1295121774104
+started,bundle,org.eclipse.update.scheduler,3.2.300.v20100512,"org.eclipse.update.scheduler",1295121774104
+started,bundle,org.eclipse.wst.common.uriresolver,1.1.401.v201004280700,"org.eclipse.wst.common.uriresolver",1295121774104
+started,bundle,org.eclipse.wst.sse.core,1.1.502.v201008311901,"org.eclipse.wst.sse.core",1295121774104
+started,bundle,org.eclipse.wst.xml.core,1.1.502.v201009010342,"org.eclipse.wst.xml.core",1295121774104
+started,bundle,com.google.appengine.eclipse.core,1.4.2.v201012211742,"com.google.appengine.eclipse.core",1295121774104
+started,bundle,com.google.gdt.eclipse.core,1.4.2.v201012211742,"com.google.gdt.eclipse.core",1295121774104
+started,bundle,com.google.gdt.eclipse.maven,1.4.2.v201012211742,"com.google.gdt.eclipse.maven",1295121774104
+started,bundle,com.google.gdt.eclipse.platform.e36,1.4.2.v201012211742,"com.google.gdt.eclipse.platform.e36",1295121774104
+started,bundle,com.google.gdt.eclipse.platform.shared,1.4.2.v201012211742,"com.google.gdt.eclipse.platform.shared",1295121774105
+started,bundle,com.google.gdt.eclipse.suite,1.4.2.v201012211742,"com.google.gdt.eclipse.suite",1295121774105
+started,bundle,com.google.gwt.eclipse.core,1.4.2.v201012211742,"com.google.gwt.eclipse.core",1295121774105
+started,bundle,com.google.gwt.eclipse.sdkbundle.2.1.1,2.1.1.v201012170127,"com.google.gwt.eclipse.sdkbundle.2.1.1",1295121774105
+os,sysinfo,,,"win32",1295121774107
+arch,sysinfo,,,"x86_64",1295121774107
+ws,sysinfo,,,"win32",1295121774107
+locale,sysinfo,,,"en_US",1295121774107
+processors,sysinfo,,,"8",1295121774107
+java.runtime.name,sysinfo,,,"Java(TM) SE Runtime Environment",1295121774107
+java.runtime.version,sysinfo,,,"1.6.0_22-b04",1295121774107
+java.specification.name,sysinfo,,,"Java Platform API Specification",1295121774107
+java.specification.vendor,sysinfo,,,"Sun Microsystems Inc.",1295121774107
+java.specification.version,sysinfo,,,"1.6",1295121774107
+java.vendor,sysinfo,,,"Sun Microsystems Inc.",1295121774107
+java.version,sysinfo,,,"1.6.0_22",1295121774107
+java.vm.info,sysinfo,,,"mixed mode",1295121774107
+java.vm.name,sysinfo,,,"Java HotSpot(TM) 64-Bit Server VM",1295121774107
+java.vm.specification.name,sysinfo,,,"Java Virtual Machine Specification",1295121774107
+java.vm.specification.vendor,sysinfo,,,"Sun Microsystems Inc.",1295121774107
+java.vm.specification.version,sysinfo,,,"1.0",1295121774107
+java.vm.vendor,sysinfo,,,"Sun Microsystems Inc.",1295121774107
+java.vm.version,sysinfo,,,"17.1-b03",1295121774107
+activated,view,org.eclipse.jdt.ui,3.6.1.r361_v20100825-0800,"org.eclipse.jdt.ui.PackageExplorer",1295121775376
+error,log,,,"Cannot get version of GWT SDK ""GWT (1)"", ensure it is configured properly",1295121780136
+error,log,,,"Cannot get version of GWT SDK ""GWT (2)"", ensure it is configured properly",1295121780138
+error,log,,,"Cannot get version of GWT SDK ""GWT (1)"", ensure it is configured properly",1295121780152
+error,log,,,"Cannot get version of GWT SDK ""GWT (2)"", ensure it is configured properly",1295121780154
+deactivated,workbench,org.eclipse.ui.workbench,3.6.1.M20100826-1330,"",1295121780174
+activated,workbench,org.eclipse.ui.workbench,3.6.1.M20100826-1330,"",1295121784933
+executed,command,org.eclipse.ui,3.6.1.M20100826-1330,"org.eclipse.ui.file.properties",1295121784944
+deactivated,workbench,org.eclipse.ui.workbench,3.6.1.M20100826-1330,"",1295121788145
+activated,workbench,org.eclipse.ui.workbench,3.6.1.M20100826-1330,"",1295121809317
+deactivated,workbench,org.eclipse.ui.workbench,3.6.1.M20100826-1330,"",1295121811225
+activated,workbench,org.eclipse.ui.workbench,3.6.1.M20100826-1330,"",1295121812644
+executed,command,org.eclipse.ui,3.6.1.M20100826-1330,"org.eclipse.ui.file.properties",1295121812652
+error,log,,,"Cannot get version of GWT SDK ""GWT (1)"", ensure it is configured properly",1295121814792
+error,log,,,"Cannot get version of GWT SDK ""GWT (2)"", ensure it is configured properly",1295121814794
+error,log,,,"Cannot get version of GWT SDK ""GWT (1)"", ensure it is configured properly",1295121814805
+error,log,,,"Cannot get version of GWT SDK ""GWT (2)"", ensure it is configured properly",1295121814807
+deactivated,workbench,org.eclipse.ui.workbench,3.6.1.M20100826-1330,"",1295121814823
+activated,workbench,org.eclipse.ui.workbench,3.6.1.M20100826-1330,"",1295121817588
+executed,command,org.eclipse.ui,3.6.1.M20100826-1330,"org.eclipse.ui.file.properties",1295121817596
+activated,editor,com.google.gwt.eclipse.core,1.4.2.v201012211742,"com.google.gwt.eclipse.core.editors.gwtJavaEditor",1295121818084
+activated,view,org.eclipse.jdt.ui,3.6.1.r361_v20100825-0800,"org.eclipse.jdt.ui.PackageExplorer",1295121820751
+started,bundle,org.eclipse.compare,3.5.100.I20100526-0800,"org.eclipse.compare",1295121821381
+activated,editor,com.google.gwt.eclipse.core,1.4.2.v201012211742,"com.google.gwt.eclipse.core.editors.gwtJavaEditor",1295121824760
+started,bundle,com.google.gdt.eclipse.platform,1.4.2.v201012211742,"com.google.gdt.eclipse.platform",1295121826133
+error,log,,,"Cannot get version of GWT SDK ""GWT (1)"", ensure it is configured properly",1295121826161
+error,log,,,"Cannot get version of GWT SDK ""GWT (2)"", ensure it is configured properly",1295121826162
+error,log,,,"Cannot get version of GWT SDK ""GWT (1)"", ensure it is configured properly",1295121826171
+error,log,,,"Cannot get version of GWT SDK ""GWT (2)"", ensure it is configured properly",1295121826172
+deactivated,workbench,org.eclipse.ui.workbench,3.6.1.M20100826-1330,"",1295121826217
+activated,workbench,org.eclipse.ui.workbench,3.6.1.M20100826-1330,"",1295121828886
+activated,view,org.eclipse.jdt.ui,3.6.1.r361_v20100825-0800,"org.eclipse.jdt.ui.PackageExplorer",1295121830393
+activated,editor,com.google.gwt.eclipse.core,1.4.2.v201012211742,"com.google.gwt.eclipse.core.editors.gwtJavaEditor",1295121832680
+activated,view,org.eclipse.jdt.ui,3.6.1.r361_v20100825-0800,"org.eclipse.jdt.ui.PackageExplorer",1295121833575
+activated,editor,com.google.gwt.eclipse.core,1.4.2.v201012211742,"com.google.gwt.eclipse.core.editors.gwtJavaEditor",1295121835127
+activated,view,org.eclipse.jdt.ui,3.6.1.r361_v20100825-0800,"org.eclipse.jdt.ui.PackageExplorer",1295121837417
+deactivated,workbench,org.eclipse.ui.workbench,3.6.1.M20100826-1330,"",1295121839893
+activated,workbench,org.eclipse.ui.workbench,3.6.1.M20100826-1330,"",1295121841098
+executed,command,org.eclipse.ui,3.6.1.M20100826-1330,"org.eclipse.ui.file.properties",1295121841102
+error,log,,,"Cannot get version of GWT SDK ""GWT (1)"", ensure it is configured properly",1295121846370
+error,log,,,"Cannot get version of GWT SDK ""GWT (2)"", ensure it is configured properly",1295121846372
+error,log,,,"Cannot get version of GWT SDK ""GWT (1)"", ensure it is configured properly",1295121846380
+error,log,,,"Cannot get version of GWT SDK ""GWT (2)"", ensure it is configured properly",1295121846382
+deactivated,workbench,org.eclipse.ui.workbench,3.6.1.M20100826-1330,"",1295121846444
+activated,workbench,org.eclipse.ui.workbench,3.6.1.M20100826-1330,"",1295121852203
+deactivated,workbench,org.eclipse.ui.workbench,3.6.1.M20100826-1330,"",1295121853090
+activated,workbench,org.eclipse.ui.workbench,3.6.1.M20100826-1330,"",1295121875996
+error,log,,,"Cannot get version of GWT SDK ""GWT (1)"", ensure it is configured properly",1295121883666
+error,log,,,"Cannot get version of GWT SDK ""GWT (2)"", ensure it is configured properly",1295121883667
+error,log,,,"Cannot get version of GWT SDK ""GWT (1)"", ensure it is configured properly",1295121883676
+error,log,,,"Cannot get version of GWT SDK ""GWT (2)"", ensure it is configured properly",1295121883677
+deactivated,workbench,org.eclipse.ui.workbench,3.6.1.M20100826-1330,"",1295121883717
+activated,workbench,org.eclipse.ui.workbench,3.6.1.M20100826-1330,"",1295121887713
+activated,editor,com.google.gwt.eclipse.core,1.4.2.v201012211742,"com.google.gwt.eclipse.core.editors.gwtJavaEditor",1295121888115
+deactivated,workbench,org.eclipse.ui.workbench,3.6.1.M20100826-1330,"",1295121890107
+activated,workbench,org.eclipse.ui.workbench,3.6.1.M20100826-1330,"",1295121894385
+activated,view,org.eclipse.jdt.ui,3.6.1.r361_v20100825-0800,"org.eclipse.jdt.ui.PackageExplorer",1295121899287
+deactivated,workbench,org.eclipse.ui.workbench,3.6.1.M20100826-1330,"",1295121907162
+activated,workbench,org.eclipse.ui.workbench,3.6.1.M20100826-1330,"",1295121908023
+activated,editor,com.google.gwt.eclipse.core,1.4.2.v201012211742,"com.google.gwt.eclipse.core.editors.gwtJavaEditor",1295121908045
+deactivated,workbench,org.eclipse.ui.workbench,3.6.1.M20100826-1330,"",1295121910066
+activated,workbench,org.eclipse.ui.workbench,3.6.1.M20100826-1330,"",1295121935951
+deactivated,workbench,org.eclipse.ui.workbench,3.6.1.M20100826-1330,"",1295121937698
+activated,workbench,org.eclipse.ui.workbench,3.6.1.M20100826-1330,"",1295121949565
+activated,view,org.eclipse.jdt.ui,3.6.1.r361_v20100825-0800,"org.eclipse.jdt.ui.PackageExplorer",1295121949582
+deactivated,workbench,org.eclipse.ui.workbench,3.6.1.M20100826-1330,"",1295121966211
+error,log,,,"Cannot get version of GWT SDK ""GWT (1)"", ensure it is configured properly",1295121970323
+error,log,,,"Cannot get version of GWT SDK ""GWT (2)"", ensure it is configured properly",1295121970324
+error,log,,,"Cannot get version of GWT SDK ""GWT (1)"", ensure it is configured properly",1295121970333
+error,log,,,"Cannot get version of GWT SDK ""GWT (2)"", ensure it is configured properly",1295121970334
+activated,workbench,org.eclipse.ui.workbench,3.6.1.M20100826-1330,"",1295121975908
+deactivated,workbench,org.eclipse.ui.workbench,3.6.1.M20100826-1330,"",1295121977201
+activated,workbench,org.eclipse.ui.workbench,3.6.1.M20100826-1330,"",1295122019268
+error,log,,,"Cannot get version of GWT SDK ""GWT (1)"", ensure it is configured properly",1295122023002
+error,log,,,"Cannot get version of GWT SDK ""GWT (2)"", ensure it is configured properly",1295122023003
+error,log,,,"Cannot get version of GWT SDK ""GWT (1)"", ensure it is configured properly",1295122023012
+error,log,,,"Cannot get version of GWT SDK ""GWT (2)"", ensure it is configured properly",1295122023013
+deactivated,workbench,org.eclipse.ui.workbench,3.6.1.M20100826-1330,"",1295122023053
+opened,view,org.eclipse.ui.console,3.5.0.v20100526,"org.eclipse.ui.console.ConsoleView",1295122043253
+activated,workbench,org.eclipse.ui.workbench,3.6.1.M20100826-1330,"",1295122046306
+executed,command,org.eclipse.ui,3.6.1.M20100826-1330,"org.eclipse.ui.file.properties",1295122046318
+activated,editor,com.google.gwt.eclipse.core,1.4.2.v201012211742,"com.google.gwt.eclipse.core.editors.gwtJavaEditor",1295122050979
+deactivated,workbench,org.eclipse.ui.workbench,3.6.1.M20100826-1330,"",1295122052706
+activated,workbench,org.eclipse.ui.workbench,3.6.1.M20100826-1330,"",1295122063985
+activated,view,org.eclipse.jdt.ui,3.6.1.r361_v20100825-0800,"org.eclipse.jdt.ui.PackageExplorer",1295122065087
+activated,editor,com.google.gwt.eclipse.core,1.4.2.v201012211742,"com.google.gwt.eclipse.core.editors.gwtJavaEditor",1295122068650
+activated,view,org.eclipse.jdt.ui,3.6.1.r361_v20100825-0800,"org.eclipse.jdt.ui.PackageExplorer",1295122070424
+activated,editor,com.google.gwt.eclipse.core,1.4.2.v201012211742,"com.google.gwt.eclipse.core.editors.gwtJavaEditor",1295122072100
+activated,view,org.eclipse.jdt.ui,3.6.1.r361_v20100825-0800,"org.eclipse.jdt.ui.PackageExplorer",1295122083354
+error,log,,,"Cannot get version of GWT SDK ""GWT (1)"", ensure it is configured properly",1295122085901
+error,log,,,"Cannot get version of GWT SDK ""GWT (2)"", ensure it is configured properly",1295122085902
+error,log,,,"Cannot get version of GWT SDK ""GWT (1)"", ensure it is configured properly",1295122085918
+error,log,,,"Cannot get version of GWT SDK ""GWT (2)"", ensure it is configured properly",1295122085920
+deactivated,workbench,org.eclipse.ui.workbench,3.6.1.M20100826-1330,"",1295122085970
+activated,workbench,org.eclipse.ui.workbench,3.6.1.M20100826-1330,"",1295122091295
+activated,editor,com.google.gwt.eclipse.core,1.4.2.v201012211742,"com.google.gwt.eclipse.core.editors.gwtJavaEditor",1295122091790
+activated,view,org.eclipse.jdt.ui,3.6.1.r361_v20100825-0800,"org.eclipse.jdt.ui.PackageExplorer",1295122093008
+deactivated,workbench,org.eclipse.ui.workbench,3.6.1.M20100826-1330,"",1295122094230
+error,log,,,"Invalid preference page path: CSS Files",1295122096785
+error,log,,,"Cannot get version of GWT SDK ""GWT (1)"", ensure it is configured properly",1295122127489
+error,log,,,"Cannot get version of GWT SDK ""GWT (2)"", ensure it is configured properly",1295122127491
+error,log,,,"Cannot get version of GWT SDK ""GWT (1)"", ensure it is configured properly",1295122127505
+error,log,,,"Cannot get version of GWT SDK ""GWT (2)"", ensure it is configured properly",1295122127506
+error,log,,,"Cannot get version of GWT SDK ""GWT (1)"", ensure it is configured properly",1295122128522
+error,log,,,"Cannot get version of GWT SDK ""GWT (2)"", ensure it is configured properly",1295122128524
+error,log,,,"Cannot get version of GWT SDK ""GWT (1)"", ensure it is configured properly",1295122128541
+error,log,,,"Cannot get version of GWT SDK ""GWT (1)"", ensure it is configured properly",1295122128542
+error,log,,,"Cannot get version of GWT SDK ""GWT (2)"", ensure it is configured properly",1295122128544
+error,log,,,"Cannot get version of GWT SDK ""GWT (2)"", ensure it is configured properly",1295122128545
+error,log,,,"Cannot get version of GWT SDK ""GWT (1)"", ensure it is configured properly",1295122128557
+error,log,,,"Cannot get version of GWT SDK ""GWT (2)"", ensure it is configured properly",1295122128560
+error,log,,,"Cannot get version of GWT SDK ""GWT (1)"", ensure it is configured properly",1295122128571
+error,log,,,"Cannot get version of GWT SDK ""GWT (1)"", ensure it is configured properly",1295122128575
+error,log,,,"Cannot get version of GWT SDK ""GWT (2)"", ensure it is configured properly",1295122128577
+error,log,,,"Cannot get version of GWT SDK ""GWT (2)"", ensure it is configured properly",1295122128578
+error,log,,,"Cannot get version of GWT SDK ""GWT (1)"", ensure it is configured properly",1295122128590
+error,log,,,"Cannot get version of GWT SDK ""GWT (2)"", ensure it is configured properly",1295122128592
+error,log,,,"Cannot get version of GWT SDK ""GWT (1)"", ensure it is configured properly",1295122128603
+error,log,,,"Cannot get version of GWT SDK ""GWT (1)"", ensure it is configured properly",1295122128604
+error,log,,,"Cannot get version of GWT SDK ""GWT (2)"", ensure it is configured properly",1295122128606
+error,log,,,"Cannot get version of GWT SDK ""GWT (2)"", ensure it is configured properly",1295122128607
+error,log,,,"Cannot get version of GWT SDK ""GWT (1)"", ensure it is configured properly",1295122128621
+error,log,,,"Cannot get version of GWT SDK ""GWT (2)"", ensure it is configured properly",1295122128623
+error,log,,,"Cannot get version of GWT SDK ""GWT (1)"", ensure it is configured properly",1295122134349
+error,log,,,"Cannot get version of GWT SDK ""GWT (2)"", ensure it is configured properly",1295122134352
+error,log,,,"Cannot get version of GWT SDK ""GWT (1)"", ensure it is configured properly",1295122134365
+error,log,,,"Cannot get version of GWT SDK ""GWT (1)"", ensure it is configured properly",1295122134366
+error,log,,,"Cannot get version of GWT SDK ""GWT (2)"", ensure it is configured properly",1295122134367
+error,log,,,"Cannot get version of GWT SDK ""GWT (2)"", ensure it is configured properly",1295122134369
+error,log,,,"Cannot get version of GWT SDK ""GWT (1)"", ensure it is configured properly",1295122134383
+error,log,,,"Cannot get version of GWT SDK ""GWT (2)"", ensure it is configured properly",1295122134384
+error,log,,,"Cannot get version of GWT SDK ""GWT (1)"", ensure it is configured properly",1295122136930
+error,log,,,"Cannot get version of GWT SDK ""GWT (2)"", ensure it is configured properly",1295122136933
+error,log,,,"Cannot get version of GWT SDK ""GWT (1)"", ensure it is configured properly",1295122136944
+error,log,,,"Cannot get version of GWT SDK ""GWT (1)"", ensure it is configured properly",1295122136946
+error,log,,,"Cannot get version of GWT SDK ""GWT (2)"", ensure it is configured properly",1295122136948
+error,log,,,"Cannot get version of GWT SDK ""GWT (2)"", ensure it is configured properly",1295122136949
+error,log,,,"Cannot get version of GWT SDK ""GWT (1)"", ensure it is configured properly",1295122136968
+error,log,,,"Cannot get version of GWT SDK ""GWT (2)"", ensure it is configured properly",1295122136970
+error,log,,,"Cannot get version of GWT SDK ""GWT (1)"", ensure it is configured properly",1295122136975
+error,log,,,"Cannot get version of GWT SDK ""GWT (1)"", ensure it is configured properly",1295122136976
+error,log,,,"Cannot get version of GWT SDK ""GWT (2)"", ensure it is configured properly",1295122136977
+error,log,,,"Cannot get version of GWT SDK ""GWT (2)"", ensure it is configured properly",1295122136979
+error,log,,,"Cannot get version of GWT SDK ""GWT (1)"", ensure it is configured properly",1295122136989
+error,log,,,"Cannot get version of GWT SDK ""GWT (2)"", ensure it is configured properly",1295122136991
+error,log,,,"Cannot get version of GWT SDK ""GWT (2)"", ensure it is configured properly",1295122138610
+error,log,,,"Cannot get version of GWT SDK ""GWT (2)"", ensure it is configured properly",1295122138619
+error,log,,,"Cannot get version of GWT SDK ""GWT (2)"", ensure it is configured properly",1295122138621
+error,log,,,"Cannot get version of GWT SDK ""GWT (2)"", ensure it is configured properly",1295122138639
+error,log,,,"Cannot get version of GWT SDK ""GWT (2)"", ensure it is configured properly",1295122138647
+error,log,,,"Cannot get version of GWT SDK ""GWT (2)"", ensure it is configured properly",1295122138648
+error,log,,,"Cannot get version of GWT SDK ""GWT (2)"", ensure it is configured properly",1295122138660
+activated,workbench,org.eclipse.ui.workbench,3.6.1.M20100826-1330,"",1295122148271
+opened,editor,org.eclipse.jdt.ui,3.6.1.r361_v20100825-0800,"org.eclipse.jdt.ui.CompilationUnitEditor",1295122148486
+closed,editor,com.google.gwt.eclipse.core,1.4.2.v201012211742,"com.google.gwt.eclipse.core.editors.gwtJavaEditor",1295122148567
+opened,editor,com.google.gwt.eclipse.core,1.4.2.v201012211742,"com.google.gwt.eclipse.core.editors.gwtJavaEditor",1295122148634
+activated,editor,com.google.gwt.eclipse.core,1.4.2.v201012211742,"com.google.gwt.eclipse.core.editors.gwtJavaEditor",1295122148695
+executed,command,org.eclipse.ui,3.6.1.M20100826-1330,"org.eclipse.ui.file.properties",1295122148847
+closed,workbench,org.eclipse.ui.workbench,3.6.1.M20100826-1330,"",1295122151566
+stopped,bundle,org.eclipse.mylyn.ide.ant,3.4.0.v20100608-0100-e3x,"org.eclipse.mylyn.ide.ant",1295122151752
+stopped,bundle,org.eclipse.ant.ui,3.5.0.v20100427,"org.eclipse.ant.ui",1295122151752
+stopped,bundle,org.eclipse.ant.launching,1.0.0.v20100427,"org.eclipse.ant.launching",1295122151752
+stopped,bundle,org.eclipse.compare.win32,1.0.100.I20100505-1245,"org.eclipse.compare.win32",1295122151752
+stopped,bundle,com.google.appengine.eclipse.sdkbundle.1.3.8,1.3.8.v201010161055,"com.google.appengine.eclipse.sdkbundle.1.3.8",1295122151753
+stopped,bundle,com.google.appengine.eclipse.sdkbundle.1.4.0,1.4.0.v201012021502,"com.google.appengine.eclipse.sdkbundle.1.4.0",1295122151753
+stopped,bundle,com.google.gdt.eclipse.maven,1.4.2.v201012211742,"com.google.gdt.eclipse.maven",1295122151753
+stopped,bundle,com.google.gdt.eclipse.suite,1.4.2.v201012211742,"com.google.gdt.eclipse.suite",1295122151754
+stopped,bundle,com.google.appengine.eclipse.core,1.4.2.v201012211742,"com.google.appengine.eclipse.core",1295122151754
+stopped,bundle,com.google.gwt.eclipse.sdkbundle.2.1.0,2.1.0.v201010280102,"com.google.gwt.eclipse.sdkbundle.2.1.0",1295122151754
+stopped,bundle,com.google.gwt.eclipse.oophm,1.4.2.v201012211742,"com.google.gwt.eclipse.oophm",1295122151754
+stopped,bundle,com.google.gwt.eclipse.sdkbundle.2.1.1,2.1.1.v201012170127,"com.google.gwt.eclipse.sdkbundle.2.1.1",1295122151754
+stopped,bundle,com.google.gwt.eclipse.core,1.4.2.v201012211742,"com.google.gwt.eclipse.core",1295122151862
+stopped,bundle,com.google.gdt.eclipse.core,1.4.2.v201012211742,"com.google.gdt.eclipse.core",1295122151862
+stopped,bundle,com.google.gdt.eclipse.platform,1.4.2.v201012211742,"com.google.gdt.eclipse.platform",1295122151862
+stopped,bundle,com.google.gdt.eclipse.platform.e36,1.4.2.v201012211742,"com.google.gdt.eclipse.platform.e36",1295122151862
+stopped,bundle,org.eclipse.equinox.p2.ui.sdk,1.0.100.v20100513,"org.eclipse.equinox.p2.ui.sdk",1295122151863
+stopped,bundle,org.eclipse.mylyn.java.tasks,3.4.0.v20100608-0100-e3x,"org.eclipse.mylyn.java.tasks",1295122151863
+stopped,bundle,org.eclipse.mylyn.java.ui,3.4.0.v20100608-0100-e3x,"org.eclipse.mylyn.java.ui",1295122151863
+stopped,bundle,org.eclipse.jdt.junit,3.6.1.r361_v20100825-0800,"org.eclipse.jdt.junit",1295122151864
+stopped,bundle,org.eclipse.jdt.apt.ui,3.3.300.v20100513-0845,"org.eclipse.jdt.apt.ui",1295122151864
+stopped,bundle,org.eclipse.jdt.debug.ui,3.5.0.v20100602-0830,"org.eclipse.jdt.debug.ui",1295122151871
+stopped,bundle,com.google.gdt.eclipse.platform.shared,1.4.2.v201012211742,"com.google.gdt.eclipse.platform.shared",1295122151871
+stopped,bundle,org.eclipse.jdt.ui,3.6.1.r361_v20100825-0800,"org.eclipse.jdt.ui",1295122151885
+stopped,bundle,org.eclipse.wst.dtd.ui,1.0.500.v201004290328,"org.eclipse.wst.dtd.ui",1295122151885
+stopped,bundle,org.eclipse.wst.xsd.ui,1.2.303.v201004290328,"org.eclipse.wst.xsd.ui",1295122151886
+stopped,bundle,org.eclipse.wst.css.ui,1.0.501.v201008232042,"org.eclipse.wst.css.ui",1295122151886
+stopped,bundle,org.eclipse.wst.xml.ui,1.1.102.v201008251905,"org.eclipse.wst.xml.ui",1295122151886
+stopped,bundle,org.eclipse.wst.common.ui,1.1.500.v200911190730,"org.eclipse.wst.common.ui",1295122151886
+stopped,bundle,org.eclipse.wst.sse.ui,1.2.2.v201008232126,"org.eclipse.wst.sse.ui",1295122151886
+stopped,bundle,org.eclipse.search,3.6.0.v20100520-0800,"org.eclipse.search",1295122151892
+stopped,bundle,org.eclipse.mylyn.team.ui,3.4.2.v20100909-0100-e3x,"org.eclipse.mylyn.team.ui",1295122151892
+stopped,bundle,org.eclipse.ui.navigator.resources,3.4.201.M20100707-0800,"org.eclipse.ui.navigator.resources",1295122151892
+stopped,bundle,org.eclipse.ltk.ui.refactoring,3.5.0.v20100526-0800,"org.eclipse.ltk.ui.refactoring",1295122151892
+stopped,bundle,org.eclipse.mylyn.bugzilla.ui,3.4.2.v20100909-0100-e3x,"org.eclipse.mylyn.bugzilla.ui",1295122151893
+stopped,bundle,org.eclipse.mylyn.ide.ui,3.4.0.v20100608-0100-e3x,"org.eclipse.mylyn.ide.ui",1295122151893
+stopped,bundle,org.eclipse.mylyn.resources.ui,3.4.1.v20100909-0100-e3x,"org.eclipse.mylyn.resources.ui",1295122151893
+stopped,bundle,org.eclipse.mylyn.wikitext.tasks.ui,1.3.1.v20100823-0100-e3x,"org.eclipse.mylyn.wikitext.tasks.ui",1295122151893
+stopped,bundle,org.eclipse.mylyn.context.ui,3.4.1.v20100909-0100-e3x,"org.eclipse.mylyn.context.ui",1295122151893
+stopped,bundle,org.eclipse.mylyn.help.ui,3.4.1.v20100823-0100-e3x,"org.eclipse.mylyn.help.ui",1295122151893
+stopped,bundle,org.eclipse.mylyn.tasks.bugs,3.4.1.v20100823-0100-e3x,"org.eclipse.mylyn.tasks.bugs",1295122151893
+stopped,bundle,org.eclipse.mylyn.tasks.ui,3.4.2.v20100902-0100-e3x,"org.eclipse.mylyn.tasks.ui",1295122151893
+stopped,bundle,org.eclipse.team.cvs.ui,3.3.301.R36x_v20100825-0800,"org.eclipse.team.cvs.ui",1295122151894
+stopped,bundle,org.eclipse.team.ui,3.5.101.R36x_v20100825-0800,"org.eclipse.team.ui",1295122151894
+stopped,bundle,org.eclipse.compare,3.5.100.I20100526-0800,"org.eclipse.compare",1295122151894
+stopped,bundle,org.eclipse.ui.externaltools,3.2.0.v20100427,"org.eclipse.ui.externaltools",1295122151894
+stopped,bundle,org.eclipse.debug.ui,3.6.1.v20100901_r361,"org.eclipse.debug.ui",1295122151898
+stopped,bundle,org.eclipse.mylyn.wikitext.ui,1.3.0.v20100608-0100-e3x,"org.eclipse.mylyn.wikitext.ui",1295122151900
+stopped,bundle,org.eclipse.ui.console,3.5.0.v20100526,"org.eclipse.ui.console",1295122151901
+stopped,bundle,org.eclipse.mylyn.commons.ui,3.4.0.v20100608-0100-e3x,"org.eclipse.mylyn.commons.ui",1295122151901
+stopped,bundle,org.eclipse.ui.editors,3.6.1.r361_v20100825-0800,"org.eclipse.ui.editors",1295122151901
+stopped,bundle,org.eclipse.wst.common.snippets,1.2.1.v201008251905,"org.eclipse.wst.common.snippets",1295122151901
